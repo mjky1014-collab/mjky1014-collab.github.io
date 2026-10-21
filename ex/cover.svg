@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="EX START KIT — 회원가입부터 레퍼럴까지">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#07101b"/>
+      <stop offset="0.55" stop-color="#05070b"/>
+      <stop offset="1" stop-color="#081420"/>
+    </linearGradient>
+    <radialGradient id="glowA" cx="18%" cy="8%" r="70%">
+      <stop offset="0" stop-color="#3ef2b0" stop-opacity=".3"/>
+      <stop offset="1" stop-color="#3ef2b0" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB" cx="92%" cy="20%" r="70%">
+      <stop offset="0" stop-color="#7aa7ff" stop-opacity=".28"/>
+      <stop offset="1" stop-color="#7aa7ff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#3ef2b0" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#7aa7ff" stop-opacity=".8"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0f1b2b"/>
+      <stop offset="1" stop-color="#080d15"/>
+    </linearGradient>
+    <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse">
+      <path d="M64 0H0V64" fill="none" stroke="#ffffff" stroke-opacity=".045" stroke-width="1"/>
+    </pattern>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#000" flood-opacity=".55"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)" opacity=".7"/>
+  <rect width="1200" height="630" fill="url(#glowA)"/>
+  <rect width="1200" height="630" fill="url(#glowB)"/>
+
+  <g font-family="Pretendard, 'Apple SD Gothic Neo', 'Malgun Gothic', Arial, sans-serif">
+    <g transform="translate(74 70)">
+      <rect width="58" height="58" rx="15" fill="#3ef2b0"/>
+      <text x="29" y="38" text-anchor="middle" font-size="20" font-weight="900" fill="#04140c" font-family="Arial, sans-serif">EX</text>
+      <text x="78" y="25" font-size="20" font-weight="900" fill="#edf4ff" letter-spacing=".4">EX START KIT</text>
+      <text x="78" y="48" font-size="11" font-weight="800" fill="#5c6f89" letter-spacing="2.2">ONBOARDING GUIDE · 2026</text>
+    </g>
+
+    <g transform="translate(74 180)">
+      <text x="0" y="0" font-size="15" font-weight="900" fill="#3ef2b0" letter-spacing="2.6">EX ONBOARDING KIT</text>
+      <text x="0" y="70" font-size="63" font-weight="900" fill="#edf4ff" letter-spacing="-3">EX, 처음부터</text>
+      <text x="0" y="142" font-size="63" font-weight="900" fill="url(#line)" letter-spacing="-3">제대로 시작하기.</text>
+      <text x="0" y="196" font-size="20" font-weight="600" fill="#94a6bf">회원가입 · OTP · 패키지 · 거래소 레퍼럴까지</text>
+      <text x="0" y="226" font-size="20" font-weight="600" fill="#94a6bf">PDF 매뉴얼 12개를 한 페이지에.</text>
+
+      <g transform="translate(0 272)" font-family="ui-monospace, Consolas, monospace">
+        <g>
+          <rect width="120" height="58" rx="12" fill="#0c1725" stroke="#1d2f47"/>
+          <text x="16" y="24" font-size="20" font-weight="900" fill="#3ef2b0">12</text>
+          <text x="16" y="43" font-size="9" font-weight="800" fill="#5c6f89" letter-spacing="1.2">PDF FILES</text>
+        </g>
+        <g transform="translate(132 0)">
+          <rect width="120" height="58" rx="12" fill="#0c1725" stroke="#1d2f47"/>
+          <text x="16" y="24" font-size="20" font-weight="900" fill="#3ef2b0">240</text>
+          <text x="16" y="43" font-size="9" font-weight="800" fill="#5c6f89" letter-spacing="1.2">PAGES</text>
+        </g>
+        <g transform="translate(264 0)">
+          <rect width="120" height="58" rx="12" fill="#0c1725" stroke="#1d2f47"/>
+          <text x="16" y="24" font-size="20" font-weight="900" fill="#3ef2b0">4</text>
+          <text x="16" y="43" font-size="9" font-weight="800" fill="#5c6f89" letter-spacing="1.2">EXCHANGES</text>
+        </g>
+        <g transform="translate(396 0)">
+          <rect width="120" height="58" rx="12" fill="#0c1725" stroke="#1d2f47"/>
+          <text x="16" y="24" font-size="20" font-weight="900" fill="#3ef2b0">4</text>
+          <text x="16" y="43" font-size="9" font-weight="800" fill="#5c6f89" letter-spacing="1.2">STEPS</text>
+        </g>
+      </g>
+    </g>
+
+    <g transform="translate(760 132)" filter="url(#shadow)">
+      <rect width="366" height="420" rx="24" fill="url(#card)" stroke="#1d2f47" stroke-width="1.2"/>
+      <rect x="1" y="1" width="364" height="418" rx="23" fill="none" stroke="url(#line)" stroke-opacity=".35"/>
+      <g transform="translate(24 24)">
+        <circle cx="5" cy="5" r="5" fill="#ff5f57"/>
+        <circle cx="21" cy="5" r="5" fill="#febc2e"/>
+        <circle cx="37" cy="5" r="5" fill="#28c840"/>
+        <text x="318" y="9" text-anchor="end" font-family="ui-monospace, Consolas, monospace" font-size="9" font-weight="800" fill="#5c6f89" letter-spacing="1.2">START ROUTE</text>
+      </g>
+      <line x1="24" y1="52" x2="342" y2="52" stroke="#19283d"/>
+      <text x="24" y="88" font-size="22" font-weight="900" fill="#edf4ff">START ROUTE</text>
+      <text x="24" y="110" font-size="12" font-weight="600" fill="#5c6f89">이 순서대로만 따라오면 됩니다.</text>
+
+      <g transform="translate(24 136)" font-family="Pretendard, 'Apple SD Gothic Neo', Arial, sans-serif">
+        <g>
+          <rect width="318" height="50" rx="10" fill="#0a1420" stroke="#1b2d46"/>
+          <rect x="10" y="10" width="30" height="30" rx="8" fill="#0f2a25" stroke="#2a6b58"/>
+          <text x="25" y="30" text-anchor="middle" font-family="ui-monospace, Consolas, monospace" font-size="10" font-weight="900" fill="#3ef2b0">01</text>
+          <text x="54" y="24" font-size="13" font-weight="800" fill="#edf4ff">EX 회원가입</text>
+          <text x="54" y="39" font-size="9" font-weight="600" fill="#5c6f89">추천링크 · 후원인 · 약관</text>
+          <text x="302" y="30" text-anchor="end" font-family="ui-monospace, Consolas, monospace" font-size="8" font-weight="900" fill="#3ef2b0">START</text>
+        </g>
+        <g transform="translate(0 60)">
+          <rect width="318" height="50" rx="10" fill="#0a1420" stroke="#1b2d46"/>
+          <rect x="10" y="10" width="30" height="30" rx="8" fill="#101d33" stroke="#2a4569"/>
+          <text x="25" y="30" text-anchor="middle" font-family="ui-monospace, Consolas, monospace" font-size="10" font-weight="900" fill="#7aa7ff">02</text>
+          <text x="54" y="24" font-size="13" font-weight="800" fill="#edf4ff">OTP 등록</text>
+          <text x="54" y="39" font-size="9" font-weight="600" fill="#5c6f89">QR 스캔 · 6자리 인증</text>
+          <text x="302" y="30" text-anchor="end" font-family="ui-monospace, Consolas, monospace" font-size="8" font-weight="900" fill="#7aa7ff">NEXT</text>
+        </g>
+        <g transform="translate(0 120)">
+          <rect width="318" height="50" rx="10" fill="#0a1420" stroke="#1b2d46"/>
+          <rect x="10" y="10" width="30" height="30" rx="8" fill="#2a2413" stroke="#6b5a2a"/>
+          <text x="25" y="30" text-anchor="middle" font-family="ui-monospace, Consolas, monospace" font-size="10" font-weight="900" fill="#ffd166">03</text>
+          <text x="54" y="24" font-size="13" font-weight="800" fill="#edf4ff">패키지 구매</text>
+          <text x="54" y="39" font-size="9" font-weight="600" fill="#5c6f89">상품 선택 · 결제 · TXID</text>
+          <text x="302" y="30" text-anchor="end" font-family="ui-monospace, Consolas, monospace" font-size="8" font-weight="900" fill="#ffd166">NEXT</text>
+        </g>
+        <g transform="translate(0 180)">
+          <rect width="318" height="50" rx="10" fill="#0a1420" stroke="#1b2d46"/>
+          <rect x="10" y="10" width="30" height="30" rx="8" fill="#211a36" stroke="#5b4b8a"/>
+          <text x="25" y="30" text-anchor="middle" font-family="ui-monospace, Consolas, monospace" font-size="10" font-weight="900" fill="#b99cff">04</text>
+          <text x="54" y="24" font-size="13" font-weight="800" fill="#edf4ff">거래소 연결</text>
+          <text x="54" y="39" font-size="9" font-weight="600" fill="#5c6f89">Binance · BingX · OKX · Deepcoin</text>
+          <text x="302" y="30" text-anchor="end" font-family="ui-monospace, Consolas, monospace" font-size="8" font-weight="900" fill="#b99cff">GOAL</text>
+        </g>
+      </g>
+
+      <g transform="translate(24 384)">
+        <text x="0" y="10" font-family="ui-monospace, Consolas, monospace" font-size="9" font-weight="800" fill="#5c6f89" letter-spacing="1">PROGRESS</text>
+        <rect x="78" y="3" width="190" height="6" rx="3" fill="#142238"/>
+        <rect x="78" y="3" width="190" height="6" rx="3" fill="url(#line)"/>
+        <text x="318" y="10" text-anchor="end" font-family="ui-monospace, Consolas, monospace" font-size="9" font-weight="900" fill="#3ef2b0">4 / 4</text>
+      </g>
+    </g>
+
+    <g transform="translate(74 594)" font-family="ui-monospace, Consolas, monospace">
+      <text x="0" y="0" font-size="11" font-weight="800" fill="#5c6f89" letter-spacing="1.4">REFERENCE ONLY · NOT INVESTMENT ADVICE</text>
+      <text x="1052" y="0" text-anchor="end" font-size="11" font-weight="800" fill="#3ef2b0" letter-spacing="1.4">MJ WORKSPACE</text>
+    </g>
+  </g>
+</svg>
