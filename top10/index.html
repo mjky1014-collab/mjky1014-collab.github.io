@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>탑10 급등락 코인 공략 | 3MA · 차트 용어 · 트레이딩 원칙</title>
+<meta name="description" content="7일·20일·60일 이동평균선, 골든크로스와 데드크로스, 정배열·역배열, S2·LL 시그널과 7가지 트레이딩 원칙을 한 페이지에 정리한 실전 차트 매뉴얼.">
+<meta name="theme-color" content="#111a22">
+<meta property="og:type" content="website">
+<meta property="og:title" content="탑10 급등락 코인 공략 | 3MA 트레이딩 매뉴얼">
+<meta property="og:description" content="급등락 코인은 흐름을 먼저 본다. 7·20·60 MA와 골든크로스, S2·LL로 읽는 실전 차트 원칙.">
+<meta property="og:image" content="https://mjky1014-collab.github.io/top10/cover.svg">
+<meta property="og:url" content="https://mjky1014-collab.github.io/top10/">
+<link rel="canonical" href="https://mjky1014-collab.github.io/top10/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111a22'/%3E%3Cpath d='M14 42 26 30l8 7 16-18' fill='none' stroke='%23e8482e' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Black+Han+Sans&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#111a22;
+  --ink-2:#17232d;
+  --ink-3:#20303c;
+  --paper:#f7f2e8;
+  --paper-2:#efe7d8;
+  --paper-3:#e8dfcf;
+  --text:#171f26;
+  --muted:#6f675b;
+  --muted-2:#8c8375;
+  --red:#e8482e;
+  --red-2:#c93520;
+  --blue:#3f7df3;
+  --green:#0e9f6e;
+  --gold:#c98a00;
+  --line:#dcd2c1;
+  --line-soft:rgba(17,26,34,.12);
+  --line-dark:rgba(255,255,255,.13);
+  --display:'Black Han Sans','Noto Sans KR',sans-serif;
+  --cond:'Barlow Condensed','Arial Narrow',sans-serif;
+  --sans:'Noto Sans KR','Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+  --max:1180px;
+  --r:16px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:86px}
+body{margin:0;background:var(--paper);color:var(--text);font-family:var(--sans);line-height:1.7;overflow-x:hidden;word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+::selection{background:var(--red);color:#fff}
+:focus-visible{outline:3px solid var(--red);outline-offset:3px;border-radius:3px}
+section[id]{scroll-margin-top:86px}
+.wrap{width:min(var(--max),calc(100% - 48px));margin-inline:auto}
+.skip{position:absolute;left:-9999px;top:0;z-index:400;background:var(--red);color:#fff;padding:10px 18px;font-weight:900}
+.skip:focus{left:0}
+.progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--red);z-index:300}
+
+/* header */
+.header{position:fixed;inset:0 0 auto;z-index:250;border-bottom:1px solid transparent;transition:.28s}
+.header.scrolled{background:rgba(247,242,232,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom-color:var(--line)}
+.nav{display:flex;align-items:center;height:76px;gap:20px}
+.brand{display:flex;align-items:center;gap:11px;flex:none}
+.brand-mark{width:40px;height:40px;border-radius:11px;background:var(--ink);display:grid;place-items:center;color:var(--paper);font-family:var(--cond);font-weight:800;font-size:19px;letter-spacing:.5px;position:relative;overflow:hidden}
+.brand-mark::after{content:"";position:absolute;left:8px;right:8px;bottom:9px;height:2px;background:var(--red)}
+.brand-txt{display:flex;flex-direction:column;line-height:1.05}
+.brand-txt b{font-family:var(--display);font-size:16px;letter-spacing:-.5px}
+.brand-txt span{font-family:var(--cond);font-size:9.5px;font-weight:600;letter-spacing:2.2px;color:var(--muted);margin-top:4px}
+.nav-links{display:flex;align-items:center;gap:2px;margin-left:auto}
+.nav-links a{font-size:13px;font-weight:700;color:#4f4a41;padding:9px 11px;border-radius:7px;transition:.2s}
+.nav-links a:hover,.nav-links a.active{background:rgba(17,26,34,.07);color:var(--ink)}
+.nav-cta{margin-left:6px;display:inline-flex;align-items:center;gap:7px;background:var(--ink);color:var(--paper);padding:10px 14px;border-radius:8px;font-size:12px;font-weight:900;white-space:nowrap;transition:.2s}
+.nav-cta:hover{background:var(--red)}
+.nav-cta svg{width:13px;height:13px}
+.menu-btn{display:none;margin-left:auto;width:40px;height:40px;border:1px solid var(--line);border-radius:8px;place-items:center}
+.menu-btn svg{width:18px;height:18px}
+
+/* shared */
+.kicker{display:inline-flex;align-items:center;gap:10px;font-family:var(--cond);font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--red)}
+.kicker::before{content:"";width:26px;height:2px;background:var(--red);flex:none}
+.section{padding:106px 0;position:relative;overflow:hidden}
+.section-paper{background:var(--paper)}
+.section-paper-2{background:var(--paper-2)}
+.section-dark{background:var(--ink);color:var(--paper)}
+.section-dark .kicker{color:#ff846f}
+.section-head{display:grid;grid-template-columns:1.05fr .7fr;gap:52px;align-items:end;margin-bottom:46px;position:relative;z-index:1}
+.section-head h2{font-family:var(--display);font-size:clamp(32px,4.5vw,58px);line-height:1.16;letter-spacing:-2px;margin:14px 0 0;font-weight:400}
+.section-head h2 em{font-style:normal;color:var(--red);position:relative;white-space:nowrap}
+.section-head h2 em::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:7px;background:var(--red);opacity:.18;border-radius:99px}
+.section-head p{margin:0 0 4px;font-size:14px;line-height:1.9;color:var(--muted);max-width:440px}
+.section-dark .section-head p{color:#a6b0b8}
+.section-head p b{color:var(--ink);font-weight:900}
+.section-dark .section-head p b{color:#fff}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .75s cubic-bezier(.2,.7,.3,1),transform .75s cubic-bezier(.2,.7,.3,1)}
+.reveal.on{opacity:1;transform:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 22px;border-radius:9px;font-size:13.5px;font-weight:900;letter-spacing:-.2px;transition:.22s;white-space:nowrap}
+.btn svg{width:15px;height:15px;flex:none}
+.btn-red{background:var(--red);color:#fff;box-shadow:0 12px 30px rgba(232,72,46,.24)}
+.btn-red:hover{background:var(--red-2);transform:translateY(-2px);box-shadow:0 16px 36px rgba(232,72,46,.32)}
+.btn-ink{background:var(--ink);color:var(--paper)}
+.btn-ink:hover{background:#283a48;transform:translateY(-2px)}
+.btn-outline{border:1.5px solid rgba(17,26,34,.24);color:var(--ink);background:transparent}
+.btn-outline:hover{background:rgba(17,26,34,.06);border-color:var(--ink)}
+.section-dark .btn-outline{border-color:rgba(255,255,255,.24);color:var(--paper)}
+.section-dark .btn-outline:hover{background:rgba(255,255,255,.08);border-color:#fff}
+.note{display:flex;gap:8px;align-items:flex-start;font-size:11px;line-height:1.7;color:var(--muted-2);margin:18px 0 0}
+.note svg{width:13px;height:13px;flex:none;margin-top:3px;color:var(--red)}
+
+/* hero */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:128px 0 0;overflow:hidden;background:var(--paper)}
+.hero::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(17,26,34,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(17,26,34,.055) 1px,transparent 1px);background-size:54px 54px;-webkit-mask-image:radial-gradient(ellipse 82% 85% at 52% 42%,#000 18%,transparent 76%);mask-image:radial-gradient(ellipse 82% 85% at 52% 42%,#000 18%,transparent 76%)}
+.hero::after{content:"3MA";position:absolute;right:-3vw;bottom:-12vw;font-family:var(--cond);font-size:40vw;line-height:.7;font-weight:800;letter-spacing:-.06em;color:rgba(17,26,34,.035);pointer-events:none}
+.hero .wrap{position:relative;z-index:1;flex:1;display:flex;align-items:center}
+.hero-grid{display:grid;grid-template-columns:1.06fr .94fr;gap:54px;align-items:center;width:100%;padding-bottom:52px}
+.hero-badge{display:inline-flex;align-items:center;gap:9px;padding:7px 12px;border:1px solid rgba(17,26,34,.18);border-radius:99px;font-family:var(--cond);font-size:11px;font-weight:700;letter-spacing:1.6px;color:#4e483e;background:rgba(255,255,255,.4)}
+.hero-badge i{width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 0 4px rgba(232,72,46,.14);animation:pulse 2.4s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 9px rgba(232,72,46,0)}}
+.hero h1{font-family:var(--display);font-size:clamp(43px,5.7vw,78px);line-height:1.1;letter-spacing:-2.8px;font-weight:400;margin:22px 0 20px}
+.hero h1 .line{display:block;white-space:nowrap}
+.hero h1 em{font-style:normal;color:var(--red);position:relative}
+.hero h1 em::after{content:"";position:absolute;left:0;right:-2px;bottom:4px;height:10px;background:var(--red);opacity:.18;border-radius:99px;z-index:-1}
+.hero-lede{max-width:560px;font-size:15px;line-height:1.9;color:#5d574d;margin:0}
+.hero-lede strong{color:var(--ink);font-weight:900}
+.hero-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:28px}
+.hero-stats{display:flex;gap:34px;flex-wrap:wrap;margin-top:40px;padding-top:20px;border-top:1px solid var(--line);max-width:540px}
+.hero-stats b{display:block;font-family:var(--cond);font-size:33px;line-height:1;font-weight:700;color:var(--ink)}
+.hero-stats b span{color:var(--red);font-size:19px}
+.hero-stats small{display:block;margin-top:7px;font-family:var(--cond);font-size:9.5px;font-weight:600;letter-spacing:1.6px;color:var(--muted-2);text-transform:uppercase}
+
+/* hero terminal */
+.hero-visual{position:relative}
+.terminal{background:var(--ink);border-radius:18px;overflow:hidden;border:1px solid rgba(17,26,34,.25);box-shadow:0 34px 80px rgba(35,27,16,.22);transform:rotate(1deg);transition:transform .6s cubic-bezier(.2,.7,.3,1)}
+.hero-visual:hover .terminal{transform:rotate(0) translateY(-3px)}
+.terminal-bar{display:flex;align-items:center;gap:6px;padding:10px 13px;background:var(--ink-2);border-bottom:1px solid rgba(255,255,255,.08)}
+.terminal-bar i{width:7px;height:7px;border-radius:50%;background:#3a4954}
+.terminal-bar i:first-child{background:#e8482e}.terminal-bar i:nth-child(2){background:#d9a441}.terminal-bar i:nth-child(3){background:#0e9f6e}
+.terminal-bar span{margin-left:7px;font-family:var(--cond);font-size:10px;font-weight:600;letter-spacing:1.7px;color:#8d98a1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.terminal-bar b{margin-left:auto;font-family:var(--cond);font-size:9px;font-weight:700;letter-spacing:1.4px;color:#ff846f;border:1px solid rgba(232,72,46,.45);background:rgba(232,72,46,.1);padding:2px 6px;border-radius:4px}
+.terminal svg{display:block;width:100%;height:auto;background:#0d151c}
+.terminal-foot{display:flex;align-items:center;gap:14px;padding:11px 14px;border-top:1px solid rgba(255,255,255,.08);background:var(--ink-2);font-family:var(--cond);font-size:10px;font-weight:600;letter-spacing:1.2px;color:#8d98a1;flex-wrap:wrap}
+.terminal-foot i{width:16px;height:2px;border-radius:2px;display:inline-block;margin-right:4px;vertical-align:middle}
+.terminal-foot .r i{background:var(--red)}.terminal-foot .b i{background:var(--blue)}.terminal-foot .g i{background:var(--green)}
+.float-note{position:absolute;right:-18px;bottom:-26px;z-index:2;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 17px;box-shadow:0 18px 40px rgba(35,27,16,.16);min-width:196px}
+.float-note span{display:flex;align-items:center;gap:7px;font-family:var(--cond);font-size:9.5px;font-weight:700;letter-spacing:1.7px;color:var(--red);margin-bottom:6px}
+.float-note span i{width:6px;height:6px;border-radius:50%;background:var(--red)}
+.float-note strong{display:block;font-family:var(--display);font-size:22px;font-weight:400;letter-spacing:-.7px;line-height:1.15}
+.float-note small{display:block;margin-top:4px;font-size:10.5px;color:var(--muted)}
+.ticker{border-top:1px solid rgba(17,26,34,.16);border-bottom:1px solid rgba(17,26,34,.16);background:var(--ink);overflow:hidden;position:relative;z-index:2;margin-top:26px}
+.ticker-track{display:flex;width:max-content;animation:ticker 32s linear infinite}
+.ticker-group{display:flex;align-items:center}
+.ticker span{display:inline-flex;align-items:center;gap:20px;padding:12px 0 12px 24px;font-family:var(--cond);font-size:12.5px;font-weight:600;letter-spacing:2.2px;color:#aab3ba;white-space:nowrap}
+.ticker span::after{content:"◆";font-size:7px;color:var(--red)}
+@keyframes ticker{to{transform:translateX(-50%)}}
+
+/* concept */
+.ma-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;position:relative;z-index:1}
+.ma-card{background:#fffdf8;border:1px solid var(--line);border-radius:14px;padding:26px 24px 24px;position:relative;overflow:hidden;transition:.25s}
+.ma-card:hover{transform:translateY(-4px);box-shadow:0 18px 38px rgba(35,27,16,.09)}
+.ma-card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:var(--c)}
+.ma-card .ma-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:18px}
+.ma-card .ma-num{font-family:var(--cond);font-size:50px;line-height:.85;font-weight:700;color:var(--c);letter-spacing:-1px}
+.ma-card .ma-tag{font-family:var(--cond);font-size:9.5px;font-weight:700;letter-spacing:1.5px;color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:4px 8px;white-space:nowrap}
+.ma-card h3{font-family:var(--display);font-size:23px;font-weight:400;letter-spacing:-.8px;margin:0 0 8px}
+.ma-card p{font-size:12.5px;line-height:1.8;color:var(--muted);margin:0}
+.ma-card .ma-line{margin-top:18px;padding-top:13px;border-top:1px dashed var(--line);font-family:var(--cond);font-size:10px;font-weight:700;letter-spacing:1.4px;color:var(--c)}
+.concept-foot{display:grid;grid-template-columns:1.25fr .75fr;gap:20px;align-items:stretch;margin-top:22px;position:relative;z-index:1}
+.quote-panel{background:var(--ink);color:var(--paper);border-radius:14px;padding:26px 28px;display:flex;flex-direction:column;justify-content:center}
+.quote-panel p{margin:0;font-size:15px;line-height:1.8;color:#d8dee3}
+.quote-panel b{color:#fff;font-weight:900}
+.quote-panel span{display:block;margin-top:13px;font-family:var(--cond);font-size:9.5px;letter-spacing:1.8px;color:#8d98a1}
+.mini-figure{background:#fffdf8;border:1px solid var(--line);border-radius:14px;padding:10px;margin:0;display:flex;flex-direction:column}
+.mini-figure button{position:relative;border-radius:8px;overflow:hidden;display:block;background:#0d151c}
+.mini-figure img{width:100%;height:100%;object-fit:cover;aspect-ratio:16/8.4}
+.mini-figure figcaption{padding:9px 5px 3px;font-size:10.5px;line-height:1.55;color:var(--muted)}
+
+/* alignment */
+.align-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:24px;align-items:start;position:relative;z-index:1}
+.align-copy p{font-size:14px;line-height:1.9;color:#aeb8bf;margin:0 0 16px}
+.align-copy p b{color:#fff}
+.align-rows{display:grid;gap:11px;margin-top:24px}
+.align-row{border:1px solid var(--line-dark);border-radius:12px;padding:18px 19px;background:rgba(255,255,255,.035)}
+.align-row h3{display:flex;align-items:center;gap:8px;font-family:var(--display);font-size:20px;font-weight:400;letter-spacing:-.5px;margin:0 0 5px}
+.align-row h3 span{font-family:var(--cond);font-size:9.5px;font-weight:700;letter-spacing:1.5px;border-radius:4px;padding:3px 6px}
+.align-row.bull h3{color:#ff9a86}.align-row.bull h3 span{background:rgba(232,72,46,.16);color:#ff9a86;border:1px solid rgba(232,72,46,.3)}
+.align-row.bear h3{color:#7fc4ff}.align-row.bear h3 span{background:rgba(63,125,243,.16);color:#9ec5ff;border:1px solid rgba(63,125,243,.3)}
+.align-row p{font-size:12px;line-height:1.75;color:#9da8b0;margin:0}
+.align-visual{background:rgba(255,255,255,.035);border:1px solid var(--line-dark);border-radius:16px;padding:18px}
+.stack{display:grid;gap:8px;margin:8px 0 18px}
+.stack div{height:38px;border-radius:8px;display:flex;align-items:center;justify-content:space-between;padding:0 13px;font-family:var(--cond);font-size:11px;font-weight:700;letter-spacing:1.2px;color:#101820}
+.stack .s7{background:#ff846f}.stack .s20{background:#9ec5ff}.stack .s60{background:#7fe3bd}
+.stack-labels{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.stack-box{border:1px solid var(--line-dark);border-radius:11px;padding:13px}
+.stack-box h4{margin:0 0 9px;font-family:var(--cond);font-size:10px;font-weight:700;letter-spacing:1.5px;color:#8d98a1}
+.stack-box.bear .stack div:nth-child(1){background:#7fe3bd}
+.stack-box.bear .stack div:nth-child(2){background:#9ec5ff}
+.stack-box.bear .stack div:nth-child(3){background:#ff846f}
+.stack small{display:block;margin-top:4px;font-size:10px;color:#8d98a1;line-height:1.5}
+.align-check{margin-top:18px;padding:17px 18px;border-left:3px solid var(--red);background:rgba(232,72,46,.08);border-radius:0 9px 9px 0;font-size:12px;line-height:1.8;color:#c2cbd1}
+.align-check b{color:#fff}
+.align-shot{margin-top:24px;position:relative;z-index:1}
+
+/* cross */
+.cross-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;position:relative;z-index:1}
+.cross-card{border:1px solid var(--line);border-radius:15px;padding:25px 24px;background:#fffdf8;position:relative;overflow:hidden}
+.cross-card::after{content:"";position:absolute;right:-40px;bottom:-60px;width:150px;height:150px;border-radius:50%;border:1px solid rgba(17,26,34,.08)}
+.cross-card .cc-top{display:flex;align-items:center;gap:8px;margin-bottom:13px}
+.cross-card .cc-top i{width:9px;height:9px;border-radius:50%;background:var(--c);box-shadow:0 0 0 4px color-mix(in srgb,var(--c) 16%,transparent)}
+.cross-card .cc-top span{font-family:var(--cond);font-size:10px;font-weight:700;letter-spacing:1.8px;color:var(--muted)}
+.cross-card h3{font-family:var(--display);font-size:28px;font-weight:400;letter-spacing:-1px;margin:0 0 10px;color:var(--c)}
+.cross-card p{font-size:12.5px;line-height:1.8;color:var(--muted);margin:0}
+.cross-card .cc-rule{margin-top:18px;padding-top:13px;border-top:1px dashed var(--line);font-size:11.5px;line-height:1.7;color:#554e43}
+.cross-card .cc-rule b{color:var(--ink)}
+.cross-visual{margin-top:18px;display:grid;grid-template-columns:1.12fr .88fr;gap:16px;align-items:stretch;position:relative;z-index:1}
+.cross-figure{background:#fffdf8;border:1px solid var(--line);border-radius:14px;padding:10px;margin:0}
+.cross-figure button{display:block;border-radius:8px;overflow:hidden;position:relative;background:#0d151c}
+.cross-figure img{width:100%;aspect-ratio:16/9;object-fit:cover}
+.cross-figure figcaption{padding:9px 5px 2px;font-size:10.5px;color:var(--muted)}
+.cross-seq{background:var(--ink);border-radius:14px;padding:24px;color:var(--paper);display:flex;flex-direction:column;justify-content:center}
+.cross-seq h3{font-family:var(--cond);font-size:11px;font-weight:700;letter-spacing:1.8px;color:#ff846f;margin:0 0 14px}
+.cross-seq ol{margin:0;padding:0;list-style:none;display:grid;gap:11px}
+.cross-seq li{display:grid;grid-template-columns:29px 1fr;gap:9px;font-size:12px;line-height:1.65;color:#aeb8bf}
+.cross-seq li b{width:24px;height:24px;border-radius:50%;border:1px solid rgba(232,72,46,.45);background:rgba(232,72,46,.1);color:#ff846f;display:grid;place-items:center;font-family:var(--cond);font-size:10px}
+.cross-seq li strong{display:block;color:#fff;font-size:12.5px;margin-bottom:2px}
+
+/* signals */
+.signal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;position:relative;z-index:1}
+.signal-card{background:#fffdf8;border:1px solid var(--line);border-radius:15px;overflow:hidden;display:flex;flex-direction:column;transition:.25s}
+.signal-card:hover{transform:translateY(-4px);box-shadow:0 20px 44px rgba(35,27,16,.1)}
+.signal-media{position:relative;background:#0d151c;overflow:hidden}
+.signal-media button{display:block;width:100%;position:relative;background:#0d151c}
+.signal-media img{width:100%;aspect-ratio:16/9;object-fit:cover;transition:transform .5s}
+.signal-card:hover .signal-media img{transform:scale(1.025)}
+.zoom-badge{position:absolute;right:9px;bottom:9px;display:inline-flex;align-items:center;gap:4px;background:rgba(17,26,34,.82);color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:5px;padding:4px 7px;font-family:var(--cond);font-size:8.5px;font-weight:700;letter-spacing:1.1px;backdrop-filter:blur(6px)}
+.zoom-badge svg{width:10px;height:10px}
+.signal-body{padding:21px 21px 22px;display:flex;flex-direction:column;flex:1}
+.signal-body .sig-num{font-family:var(--cond);font-size:10px;font-weight:700;letter-spacing:2px;color:var(--red);margin-bottom:5px}
+.signal-body h3{font-family:var(--display);font-size:22px;font-weight:400;letter-spacing:-.7px;line-height:1.3;margin:0 0 8px}
+.signal-body p{font-size:12px;line-height:1.8;color:var(--muted);margin:0}
+.signal-body .sig-foot{margin-top:auto;padding-top:13px;font-family:var(--cond);font-size:9.5px;font-weight:600;letter-spacing:1.2px;color:var(--muted-2);border-top:1px dashed var(--line)}
+.signal-grid .signal-card:last-child .signal-media img{height:auto;min-height:0;aspect-ratio:16/9}
+.signal-flow{margin-top:24px;background:var(--ink);border-radius:15px;padding:24px 26px;position:relative;z-index:1;display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center}
+.signal-flow .sf-title{font-family:var(--display);font-size:21px;font-weight:400;letter-spacing:-.6px;line-height:1.3;color:#fff;white-space:nowrap}
+.signal-flow .sf-title span{display:block;font-family:var(--cond);font-size:9.5px;letter-spacing:1.7px;color:#ff846f;margin-top:5px}
+.sf-steps{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.sf-steps span{font-family:var(--cond);font-size:10.5px;font-weight:700;letter-spacing:.7px;color:#cbd3d9;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.04);border-radius:99px;padding:7px 11px;white-space:nowrap}
+.sf-steps i{color:#5e6b75;font-size:10px;font-style:normal}
+.sf-steps span.red{border-color:rgba(232,72,46,.5);background:rgba(232,72,46,.12);color:#ff9a86}
+
+/* chart gallery */
+.gallery{display:grid;grid-template-columns:1.15fr .85fr;gap:16px;position:relative;z-index:1}
+.gallery-col{display:grid;gap:16px;align-content:start}
+.gallery figure{margin:0;background:#fffdf8;border:1px solid var(--line);border-radius:14px;padding:9px;display:flex;flex-direction:column}
+.gallery button{display:block;border-radius:8px;overflow:hidden;position:relative;background:#0d151c}
+.gallery img{width:100%;object-fit:cover;transition:transform .5s}
+.gallery figure:hover img{transform:scale(1.02)}
+.gallery figcaption{padding:9px 5px 2px;font-size:10.5px;line-height:1.6;color:var(--muted)}
+.gallery figcaption b{color:var(--ink);font-weight:900}
+.reading-strip{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:26px;position:relative;z-index:1}
+.reading-strip div{padding:20px 18px;border-right:1px solid var(--line)}
+.reading-strip div:last-child{border-right:0}
+.reading-strip b{display:block;font-family:var(--cond);font-size:9.5px;font-weight:700;letter-spacing:1.6px;color:var(--red);margin-bottom:6px}
+.reading-strip p{margin:0;font-size:11.5px;line-height:1.7;color:var(--muted)}
+
+/* rules */
+.rules-layout{display:grid;grid-template-columns:1.02fr .98fr;gap:38px;align-items:start;position:relative;z-index:1}
+.rule-list{display:grid;counter-reset:rule}
+.rule{display:grid;grid-template-columns:44px 1fr;gap:15px;padding:19px 0;border-bottom:1px solid var(--line-dark)}
+.rule:first-child{border-top:1px solid var(--line-dark)}
+.rule .rn{font-family:var(--cond);font-size:27px;font-weight:700;line-height:.9;color:#ff846f;letter-spacing:.3px}
+.rule h3{font-size:15px;font-weight:900;letter-spacing:-.3px;margin:0 0 5px;color:#fff}
+.rule p{font-size:12px;line-height:1.8;color:#9da8b0;margin:0}
+.rule p b{color:#e9eef1;font-weight:700}
+.rules-side{position:sticky;top:98px;display:grid;gap:14px}
+.rules-figure{background:rgba(255,255,255,.04);border:1px solid var(--line-dark);border-radius:14px;padding:10px;margin:0}
+.rules-figure button{display:block;border-radius:8px;overflow:hidden;position:relative;background:#0d151c}
+.rules-figure img{width:100%;object-fit:cover}
+.rules-figure figcaption{padding:9px 5px 2px;font-size:10.5px;line-height:1.6;color:#8d98a1}
+.rules-quote{border:1px solid rgba(232,72,46,.35);background:rgba(232,72,46,.1);border-radius:13px;padding:18px 19px;font-size:12.5px;line-height:1.8;color:#c7d0d6}
+.rules-quote b{color:#fff}
+.rules-quote span{display:block;margin-top:8px;font-family:var(--cond);font-size:9px;letter-spacing:1.5px;color:#ff846f}
+
+/* routine */
+.routine{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:28px;position:relative;z-index:1}
+.routine div{padding:22px 19px;border-right:1px solid var(--line)}
+.routine div:last-child{border-right:0}
+.routine span{font-family:var(--cond);font-size:10px;font-weight:700;letter-spacing:1.8px;color:var(--red)}
+.routine h3{font-size:14px;font-weight:900;margin:10px 0 5px;letter-spacing:-.2px}
+.routine p{font-size:11.5px;line-height:1.7;color:var(--muted);margin:0}
+
+/* checklist / final */
+.checklist{background:var(--ink);color:var(--paper);border-radius:20px;padding:38px 40px;display:grid;grid-template-columns:1.03fr .97fr;gap:38px;position:relative;overflow:hidden}
+.checklist::before{content:"CHECK";position:absolute;right:-10px;bottom:-34px;font-family:var(--cond);font-size:160px;line-height:.7;font-weight:800;color:rgba(255,255,255,.035);pointer-events:none}
+.checklist-copy{position:relative;z-index:1}
+.checklist-copy h2{font-family:var(--display);font-size:clamp(28px,3.4vw,42px);font-weight:400;line-height:1.22;letter-spacing:-1.4px;margin:12px 0 13px}
+.checklist-copy p{font-size:12.5px;line-height:1.85;color:#aeb8bf;margin:0 0 19px}
+.checklist-copy .btn{margin-right:6px}
+.check-list{list-style:none;margin:0;padding:0;display:grid;align-content:start;position:relative;z-index:1}
+.check-list li{display:grid;grid-template-columns:22px 1fr;gap:10px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.1);font-size:12px;line-height:1.65;color:#c3ccd2}
+.check-list li:first-child{border-top:1px solid rgba(255,255,255,.1)}
+.check-list .c{width:18px;height:18px;border-radius:4px;border:1px solid rgba(232,72,46,.55);background:rgba(232,72,46,.12);display:grid;place-items:center;color:#ff846f;font-size:10px;font-weight:900;margin-top:2px}
+
+/* footer */
+footer{background:var(--paper-2);border-top:1px solid var(--line);padding:35px 0 27px}
+.foot-top{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.foot-brand{display:flex;align-items:center;gap:10px}
+.foot-brand .brand-mark{width:32px;height:32px;border-radius:8px;font-size:16px}
+.foot-brand b{display:block;font-family:var(--display);font-size:14px;letter-spacing:-.3px}
+.foot-brand span{display:block;font-family:var(--cond);font-size:9px;letter-spacing:1.5px;color:var(--muted-2);margin-top:2px}
+.foot-links{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}
+.foot-links a{font-size:11.5px;font-weight:700;color:#5d574d;padding:6px 8px;border-radius:5px}
+.foot-links a:hover{background:rgba(17,26,34,.06);color:var(--ink)}
+.foot-disc{margin-top:22px;padding-top:16px;border-top:1px solid var(--line);font-size:10.5px;line-height:1.85;color:var(--muted-2)}
+.foot-disc b{color:#5d574d}
+.foot-bottom{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:13px;font-family:var(--cond);font-size:9px;letter-spacing:1.2px;color:#978e80}
+
+/* lightbox */
+.lightbox{position:fixed;inset:0;z-index:500;background:rgba(9,14,18,.94);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:28px;opacity:0;visibility:hidden;transition:.25s}
+.lightbox.on{opacity:1;visibility:visible}
+.lb-stage{max-width:min(1180px,94vw);max-height:88vh;display:flex;flex-direction:column;gap:10px}
+.lb-stage img{max-width:100%;max-height:78vh;width:auto;height:auto;object-fit:contain;border-radius:8px;box-shadow:0 30px 90px rgba(0,0,0,.55);background:#0d151c}
+.lb-cap{font-size:11.5px;line-height:1.6;color:#c3ccd2;text-align:center;max-width:900px;margin-inline:auto}
+.lb-close,.lb-prev,.lb-next{position:absolute;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.2);color:#fff;transition:.2s;z-index:2}
+.lb-close:hover,.lb-prev:hover,.lb-next:hover{background:var(--red);border-color:var(--red)}
+.lb-close{top:18px;right:18px}
+.lb-prev{left:18px;top:50%;transform:translateY(-50%)}
+.lb-next{right:18px;top:50%;transform:translateY(-50%)}
+.lb-close svg,.lb-prev svg,.lb-next svg{width:19px;height:19px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,130%);z-index:600;background:var(--paper);color:var(--ink);font-size:12.5px;font-weight:900;padding:11px 18px;border-radius:99px;box-shadow:0 16px 40px rgba(0,0,0,.3);transition:.35s}
+.toast.on{transform:translate(-50%,0)}
+.to-top{position:fixed;right:18px;bottom:18px;z-index:200;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:#fff;opacity:0;visibility:hidden;transition:.25s}
+.to-top.on{opacity:1;visibility:visible}
+.to-top:hover{background:var(--red)}
+.to-top svg{width:16px;height:16px}
+
+/* responsive */
+@media(max-width:1020px){
+  .hero-grid{gap:34px}
+  .float-note{right:-6px}
+  .signal-grid{grid-template-columns:1fr 1fr}
+  .rules-side{position:static}
+}
+@media(max-width:900px){
+  .nav-links{display:none;position:fixed;top:76px;left:14px;right:14px;background:var(--paper);border:1px solid var(--line);border-radius:12px;box-shadow:0 24px 60px rgba(35,27,16,.2);padding:10px;flex-direction:column;align-items:stretch;gap:2px;max-height:calc(100vh - 92px);overflow:auto}
+  .nav-links.open{display:flex}
+  .nav-links a{padding:11px 12px;font-size:13.5px}
+  .nav-cta{display:none}
+  .menu-btn{display:grid}
+  .hero{padding-top:112px;min-height:auto}
+  .hero-grid{grid-template-columns:1fr;gap:42px;padding-bottom:44px}
+  .hero h1 .line{white-space:normal}
+  .hero-visual{max-width:650px;width:100%;margin-inline:auto}
+  .section{padding:82px 0}
+  .section-head{grid-template-columns:1fr;gap:16px;margin-bottom:34px}
+  .section-head p{max-width:640px}
+  .ma-grid{grid-template-columns:1fr}
+  .concept-foot{grid-template-columns:1fr}
+  .align-grid{grid-template-columns:1fr;gap:26px}
+  .cross-grid{grid-template-columns:1fr}
+  .cross-visual{grid-template-columns:1fr}
+  .gallery{grid-template-columns:1fr}
+  .gallery-col{grid-template-columns:1fr 1fr;align-items:start}
+  .rules-layout{grid-template-columns:1fr;gap:28px}
+  .signal-flow{grid-template-columns:1fr;gap:14px}
+  .checklist{grid-template-columns:1fr;padding:30px 26px;gap:24px}
+  .routine{grid-template-columns:1fr 1fr}
+  .routine div:nth-child(2){border-right:0}
+  .routine div:nth-child(1),.routine div:nth-child(2){border-bottom:1px solid var(--line)}
+  .reading-strip{grid-template-columns:1fr 1fr}
+  .reading-strip div:nth-child(2){border-right:0}
+  .reading-strip div:nth-child(1),.reading-strip div:nth-child(2){border-bottom:1px solid var(--line)}
+}
+@media(max-width:620px){
+  .wrap{width:calc(100% - 34px)}
+  .nav{height:68px}
+  .brand-mark{width:35px;height:35px;font-size:17px}
+  .brand-txt b{font-size:14px}
+  .brand-txt span{font-size:8.5px}
+  .hero{padding-top:98px}
+  .hero h1{font-size:clamp(40px,11.2vw,57px);letter-spacing:-2.2px}
+  .hero-lede{font-size:13.5px}
+  .hero-actions{flex-direction:column;align-items:stretch}
+  .hero-actions .btn{width:100%}
+  .hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:17px 16px;margin-top:31px}
+  .hero-stats b{font-size:28px}
+  .hero-stats small{font-size:8.5px;letter-spacing:1.2px}
+  .float-note{right:-2px;bottom:-18px;padding:11px 13px;min-width:162px}
+  .float-note strong{font-size:18px}
+  .float-note small{font-size:9.5px}
+  .terminal-bar span{font-size:8px;letter-spacing:1px}
+  .ticker span{font-size:10.5px;letter-spacing:1.6px;padding:10px 0 10px 18px;gap:15px}
+  .section{padding:68px 0}
+  .section-head h2{font-size:clamp(29px,8.8vw,41px);letter-spacing:-1.5px}
+  .section-head p{font-size:12.5px}
+  .ma-card{padding:22px 20px}
+  .ma-card .ma-num{font-size:42px}
+  .quote-panel{padding:22px}
+  .quote-panel p{font-size:13.5px}
+  .align-visual{padding:13px}
+  .stack-labels{grid-template-columns:1fr}
+  .signal-grid{grid-template-columns:1fr}
+  .signal-grid .signal-card:last-child .signal-media img{aspect-ratio:16/9;min-height:0;height:auto}
+  .signal-body{padding:18px}
+  .signal-body h3{font-size:20px}
+  .signal-flow{padding:20px}
+  .signal-flow .sf-title{font-size:19px}
+  .gallery-col{grid-template-columns:1fr}
+  .reading-strip{grid-template-columns:1fr}
+  .reading-strip div{border-right:0;border-bottom:1px solid var(--line);padding:17px 4px}
+  .reading-strip div:last-child{border-bottom:0}
+  .rule{grid-template-columns:36px 1fr;gap:10px;padding:16px 0}
+  .rule h3{font-size:14px}
+  .rules-side{position:static}
+  .routine{grid-template-columns:1fr}
+  .routine div{border-right:0;border-bottom:1px solid var(--line);padding:18px 4px}
+  .routine div:last-child{border-bottom:0}
+  .checklist{padding:25px 20px;border-radius:15px}
+  .checklist-copy h2{font-size:clamp(25px,7.8vw,33px)}
+  .checklist-copy .btn{width:100%;margin:0 0 7px}
+  .lightbox{padding:14px}
+  .lb-prev{left:8px}.lb-next{right:8px}
+  .lb-close{top:10px;right:10px}
+  .lb-stage img{max-height:70vh}
+  .foot-links{margin-left:0;width:100%}
+  .foot-bottom{display:block}
+  .foot-bottom span{display:block;margin-top:4px}
+  .to-top{right:12px;bottom:12px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">본문으로 건너뛰기</a>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<header class="header" id="header">
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="탑10 급등락 코인 공략 홈">
+      <span class="brand-mark">T10</span>
+      <span class="brand-txt"><b>급등락 코인 공략</b><span>3MA FIELD MANUAL</span></span>
+    </a>
+    <nav class="nav-links" id="navLinks" aria-label="주요 섹션">
+      <a href="#concept">3MA</a>
+      <a href="#alignment">배열</a>
+      <a href="#cross">크로스</a>
+      <a href="#signals">실전 신호</a>
+      <a href="#charts">차트 읽기</a>
+      <a href="#rules">원칙</a>
+      <a class="nav-cta" href="https://mjky1014-collab.github.io/" target="_blank" rel="noopener">모음목록 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="navLinks">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <span class="hero-badge"><i aria-hidden="true"></i> TOP 10 · CRYPTO FIELD MANUAL</span>
+          <h1>
+            <span class="line">급등락 코인은</span>
+            <span class="line">흐름을 <em>먼저</em> 본다.</span>
+          </h1>
+          <p class="hero-lede">
+            7일·20일·60일 이동평균선으로 추세를 읽고, <strong>골든크로스·정배열·S2·LL</strong>로 타점을 좁힙니다.
+            화려한 지표보다 먼저, 차트 위 세 개의 선과 일곱 가지 원칙을 익히는 실전 매뉴얼.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-red" href="#signals">실전 신호 6가지 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="btn btn-outline" href="#rules">트레이딩 원칙 보기</a>
+          </div>
+          <div class="hero-stats" aria-label="핵심 숫자">
+            <div><b>3<span>MA</span></b><small>7 · 20 · 60</small></div>
+            <div><b>6<span>+</span></b><small>Signal Setups</small></div>
+            <div><b>7</b><small>Trading Rules</small></div>
+            <div><b>1<span>P</span></b><small>Field Manual</small></div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="terminal">
+            <div class="terminal-bar" aria-hidden="true">
+              <i></i><i></i><i></i>
+              <span>GOYA / SMART CHART · 3MA</span>
+              <b>LIVE</b>
+            </div>
+            <svg viewBox="0 0 640 432" role="img" aria-label="7일, 20일, 60일 이동평균선이 정배열을 만든 상승 차트 예시">
+              <rect width="640" height="432" fill="#0d151c"/>
+              <g stroke="#22303b" stroke-width="1">
+                <path d="M46 70H606"/><path d="M46 130H606"/><path d="M46 190H606"/>
+                <path d="M46 250H606"/><path d="M46 310H606"/><path d="M46 370H606"/>
+                <path d="M110 34V386"/><path d="M196 34V386"/><path d="M282 34V386"/>
+                <path d="M368 34V386"/><path d="M454 34V386"/><path d="M540 34V386"/>
+              </g>
+              <g font-family="Arial, sans-serif" font-size="9" fill="#5e6b75">
+                <text x="10" y="73">0.026</text><text x="10" y="133">0.024</text><text x="10" y="193">0.022</text>
+                <text x="10" y="253">0.020</text><text x="10" y="313">0.018</text><text x="10" y="373">0.016</text>
+              </g>
+              <!-- candles -->
+              <g>
+                <g fill="#0e9f6e">
+                  <rect x="58" y="330" width="10" height="24" rx="1"/><rect x="80" y="314" width="10" height="31" rx="1"/>
+                  <rect x="102" y="322" width="10" height="22" rx="1"/><rect x="124" y="300" width="10" height="34" rx="1"/>
+                  <rect x="146" y="286" width="10" height="37" rx="1"/><rect x="190" y="268" width="10" height="31" rx="1"/>
+                  <rect x="212" y="252" width="10" height="38" rx="1"/><rect x="234" y="262" width="10" height="26" rx="1"/>
+                  <rect x="256" y="236" width="10" height="42" rx="1"/><rect x="278" y="220" width="10" height="40" rx="1"/>
+                  <rect x="322" y="196" width="10" height="44" rx="1"/><rect x="344" y="182" width="10" height="46" rx="1"/>
+                  <rect x="366" y="196" width="10" height="30" rx="1"/><rect x="410" y="166" width="10" height="45" rx="1"/>
+                  <rect x="432" y="150" width="10" height="48" rx="1"/><rect x="454" y="162" width="10" height="34" rx="1"/>
+                  <rect x="498" y="132" width="10" height="44" rx="1"/><rect x="520" y="116" width="10" height="50" rx="1"/>
+                  <rect x="542" y="128" width="10" height="36" rx="1"/><rect x="564" y="108" width="10" height="46" rx="1"/>
+                </g>
+                <g fill="#e8482e">
+                  <rect x="168" y="294" width="10" height="20" rx="1"/><rect x="300" y="250" width="10" height="18" rx="1"/>
+                  <rect x="388" y="202" width="10" height="22" rx="1"/><rect x="476" y="172" width="10" height="20" rx="1"/>
+                </g>
+                <g stroke="#0e9f6e" stroke-width="1">
+                  <path d="M63 324v30"/><path d="M107 316v30"/><path d="M237 256v34"/><path d="M457 156v42"/><path d="M569 102v54"/>
+                </g>
+              </g>
+              <!-- 3MA -->
+              <path d="M50 350C110 340 144 310 196 288S266 248 310 232s62-34 102-52 82-30 118-48" fill="none" stroke="#e8482e" stroke-width="2.8" stroke-linecap="round"/>
+              <path d="M50 358C116 350 160 326 216 306s74-34 118-48 80-30 118-46 58-18 90-28" fill="none" stroke="#3f7df3" stroke-width="2.8" stroke-linecap="round"/>
+              <path d="M50 370C130 366 188 352 250 338s92-26 144-38 86-18 156-30" fill="none" stroke="#1fbf88" stroke-width="2.8" stroke-linecap="round"/>
+              <!-- annotations -->
+              <g font-family="Arial, sans-serif" font-size="9.5" font-weight="700">
+                <rect x="464" y="62" width="64" height="23" rx="11.5" fill="#e8482e"/>
+                <text x="496" y="77.5" fill="#fff" text-anchor="middle">7 MA</text>
+                <rect x="512" y="94" width="68" height="23" rx="11.5" fill="#3f7df3"/>
+                <text x="546" y="109.5" fill="#fff" text-anchor="middle">20 MA</text>
+                <rect x="548" y="130" width="68" height="23" rx="11.5" fill="#1fbf88"/>
+                <text x="582" y="145.5" fill="#fff" text-anchor="middle">60 MA</text>
+              </g>
+              <circle cx="370" cy="214" r="15" fill="none" stroke="#ff846f" stroke-width="1.6" stroke-dasharray="3 3"/>
+              <path d="M385 206l52-24" stroke="#ff846f" stroke-width="1.2"/>
+              <text x="442" y="198" fill="#ff846f" font-family="Arial, sans-serif" font-size="10" font-weight="700">GOLDEN CROSS</text>
+              <rect x="48" y="34" width="156" height="25" rx="5" fill="#17232d" stroke="#2a3a46"/>
+              <text x="59" y="51" fill="#c3ccd2" font-family="Arial, sans-serif" font-size="9.5" letter-spacing="1">SAGAUUSDT · 4H</text>
+            </svg>
+            <div class="terminal-foot" aria-hidden="true">
+              <span class="r"><i></i>7 MA</span>
+              <span class="b"><i></i>20 MA</span>
+              <span class="g"><i></i>60 MA</span>
+              <span style="margin-left:auto">SMART LINE · GOYA</span>
+            </div>
+          </div>
+          <div class="float-note" aria-hidden="true">
+            <span><i></i> ALIGNMENT CHECK</span>
+            <strong>7 &gt; 20 &gt; 60</strong>
+            <small>정배열 · 눌림목 매수 유효 구간</small>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <div class="ticker-group">
+          <span>7 DAY MA</span><span>20 DAY MA</span><span>60 DAY MA</span><span>GOLDEN CROSS</span><span>BULLISH ALIGNMENT</span><span>S2 SIGNAL</span><span>LL SIGNAL</span><span>5% TAKE PROFIT</span>
+        </div>
+        <div class="ticker-group">
+          <span>7 DAY MA</span><span>20 DAY MA</span><span>60 DAY MA</span><span>GOLDEN CROSS</span><span>BULLISH ALIGNMENT</span><span>S2 SIGNAL</span><span>LL SIGNAL</span><span>5% TAKE PROFIT</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONCEPT -->
+  <section class="section section-paper" id="concept">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="kicker">01 / 3MA Basics</span>
+          <h2>이동평균선,<br>세 개면 <em>충분하다.</em></h2>
+        </div>
+        <p>가격의 평균을 선으로 이으면 <b>시장 심리의 방향</b>이 보입니다. 기간이 다른 세 개의 선을 겹쳐 잔파동을 걸러내고, 단기·중기·장기 흐름을 동시에 확인합니다.</p>
+      </div>
+
+      <div class="ma-grid">
+        <article class="ma-card reveal" style="--c:#e8482e">
+          <div class="ma-top"><span class="ma-num">07</span><span class="ma-tag">SHORT</span></div>
+          <h3>7일선 · 단기선</h3>
+          <p>최근 일주일의 평균 가격. 시장의 민감한 매수·매도 심리를 가장 빠르게 반영합니다.</p>
+          <div class="ma-line">가장 빠른 반응 · 추세 전환의 첫 신호</div>
+        </article>
+        <article class="ma-card reveal" style="--c:#3f7df3">
+          <div class="ma-top"><span class="ma-num">20</span><span class="ma-tag">MID</span></div>
+          <h3>20일선 · 생명선</h3>
+          <p>한 달간의 평균 가격. 추세의 지지와 저항을 결정짓는 핵심 기준선입니다.</p>
+          <div class="ma-line">지지·저항의 기준 · 추세 지속 판단</div>
+        </article>
+        <article class="ma-card reveal" style="--c:#0e9f6e">
+          <div class="ma-top"><span class="ma-num">60</span><span class="ma-tag">LONG</span></div>
+          <h3>60일선 · 수급선</h3>
+          <p>두 달간의 평균 가격. 대세 상승과 하락의 큰 뼈대를 만들고 쉽게 꺾이지 않습니다.</p>
+          <div class="ma-line">대세의 방향 · 강한 지지·저항 구간</div>
+        </article>
+      </div>
+
+      <div class="concept-foot">
+        <div class="quote-panel reveal">
+          <p>“선 하나로는 속임수를 걸러내기 어렵습니다. <b>7일·20일·60일을 함께 보는 순간</b>, 지금이 상승의 시작인지 아닌지가 훨씬 선명해집니다.”</p>
+          <span>3MA · CRYPTO TECHNICAL ANALYSIS</span>
+        </div>
+        <figure class="mini-figure reveal">
+          <button class="zoomable" type="button" data-full="assets/ma-roles.jpg" data-caption="7일·20일·60일 이동평균선의 역할을 정리한 자료. 단기선, 생명선, 수급선의 기준을 확인한다." aria-label="이동평균선 역할 이미지 크게 보기">
+            <img src="assets/ma-roles.jpg" alt="7일선, 20일선, 60일선의 역할을 설명한 슬라이드" width="1280" height="720" loading="lazy">
+            <span class="zoom-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6M11 8v6M8 11h6"/></svg>VIEW</span>
+          </button>
+          <figcaption><b>세 선의 역할</b> — 단기 반응, 생명선, 수급선을 구분해서 봅니다.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ALIGNMENT -->
+  <section class="section section-dark" id="alignment">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="kicker">02 / Alignment</span>
+          <h2>정배열이면 눌림,<br>역배열이면 <em>관망.</em></h2>
+        </div>
+        <p>세 선의 <b>위아래 순서</b>만 봐도 시장의 온도를 알 수 있습니다. 7일선이 가장 위면 상승, 60일선이 가장 위면 하락입니다.</p>
+      </div>
+
+      <div class="align-grid">
+        <div class="align-copy reveal">
+          <p><b>정배열(Bullish Alignment)</b>은 7일선이 20일선 위, 20일선이 60일선 위에 있는 상태입니다. 단기 매수세가 강하고 가격이 우상향하는 건강한 상승장입니다.</p>
+          <p><b>역배열(Bearish Alignment)</b>은 반대로 60일선이 가장 위에 있습니다. 매물대가 두터워 추가 하락 위험이 크고, 신규 진입보다 관망이 우선입니다.</p>
+          <div class="align-rows">
+            <div class="align-row bull">
+              <h3>정배열 <span>BULLISH</span></h3>
+              <p>7 &gt; 20 &gt; 60 · 상승 추세 · 눌림목 매수 유효 구간</p>
+            </div>
+            <div class="align-row bear">
+              <h3>역배열 <span>BEARISH</span></h3>
+              <p>60 &gt; 20 &gt; 7 · 하락 추세 · 관망 및 위험 관리 우선</p>
+            </div>
+          </div>
+          <div class="align-check"><b>3초 체크:</b> 7일선이 60일선 위에 있는가? 20일선이 그 사이에서 함께 우상향하는가? 두 질문에 모두 “예”일 때만 상승 추세로 판단합니다.</div>
+        </div>
+
+        <div class="align-visual reveal">
+          <div class="stack-labels">
+            <div class="stack-box">
+              <h4>BULLISH · 정배열</h4>
+              <div class="stack">
+                <div class="s7">7 MA <span>FAST</span></div>
+                <div class="s20">20 MA <span>MID</span></div>
+                <div class="s60">60 MA <span>SLOW</span></div>
+              </div>
+              <small>단기선이 위 · 상승 탄력</small>
+            </div>
+            <div class="stack-box bear">
+              <h4>BEARISH · 역배열</h4>
+              <div class="stack">
+                <div class="s60">60 MA <span>SLOW</span></div>
+                <div class="s20">20 MA <span>MID</span></div>
+                <div class="s7">7 MA <span>FAST</span></div>
+              </div>
+              <small>장기선이 위 · 하락 압력</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <figure class="mini-figure align-shot reveal">
+        <button class="zoomable" type="button" data-full="assets/alignment.jpg" data-caption="정배열과 역배열을 차트로 비교한 자료. 7일선·20일선·60일선의 위아래 순서가 핵심이다." aria-label="정배열과 역배열 비교 이미지 크게 보기">
+          <img src="assets/alignment.jpg" alt="정배열과 역배열을 비교한 차트 슬라이드" width="1280" height="720" loading="lazy">
+          <span class="zoom-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6M11 8v6M8 11h6"/></svg>VIEW</span>
+        </button>
+        <figcaption><b>정배열 vs 역배열</b> — 같은 차트도 선의 순서가 바뀌면 전혀 다른 국면이 됩니다.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- CROSS -->
+  <section class="section section-paper" id="cross">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="kicker">03 / Cross</span>
+          <h2>크로스는 신호,<br>확인은 <em>배열.</em></h2>
+        </div>
+        <p>단기선이 상위선을 뚫는 순간이 골든크로스, 아래로 이탈하는 순간이 데드크로스입니다. <b>크로스 하나만 보고 진입하지 않고</b> 배열과 위치를 함께 확인합니다.</p>
+      </div>
+
+      <div class="cross-grid">
+        <article class="cross-card reveal" style="--c:#e8482e">
+          <div class="cc-top"><i aria-hidden="true"></i><span>BUY SIGNAL</span></div>
+          <h3>골든크로스</h3>
+          <p>단기선이 상위 이동평균선을 상향 돌파하는 순간. 하락세나 박스권을 깨고 강한 상승 전환이 시작될 때 나타나는 대표적인 매수 타이밍입니다.</p>
+          <div class="cc-rule"><b>확인:</b> 7일선이 20일선을 위로 통과한 뒤, 20일선도 함께 우상향하는지 봅니다.</div>
+        </article>
+        <article class="cross-card reveal" style="--c:#3f7df3">
+          <div class="cc-top"><i aria-hidden="true"></i><span>EXIT SIGNAL</span></div>
+          <h3>데드크로스</h3>
+          <p>단기선이 상위선을 하향 이탈하는 순간. 상승 추세가 끝나고 하락 국면으로 전환됨을 알리는 신호로, 손절 또는 비중 축소가 권장됩니다.</p>
+          <div class="cc-rule"><b>영상 기준:</b> 스마트라인이 고야라인 위로 교차될 때를 데드크로스로 봅니다.</div>
+        </article>
+      </div>
+
+      <div class="cross-visual">
+        <figure class="cross-figure reveal">
+          <button class="zoomable" type="button" data-full="assets/cross.jpg" data-caption="골든크로스와 데드크로스의 개념을 정리한 자료. 단기선의 상향·하향 돌파를 기준으로 한다." aria-label="골든크로스와 데드크로스 이미지 크게 보기">
+            <img src="assets/cross.jpg" alt="골든크로스와 데드크로스 개념 슬라이드" width="1280" height="720" loading="lazy">
+            <span class="zoom-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6M11 8v6M8 11h6"/></svg>VIEW</span>
+          </button>
+          <figcaption><b>골든크로스 &amp; 데드크로스</b> — 방향이 바뀌는 첫 지점을 표시합니다.</figcaption>
+        </figure>
+        <div class="cross-seq reveal">
+          <h3>ORDER OF CONFIRMATION</h3>
+          <ol>
+            <li><b>1</b><div><strong>선의 순서</strong>7 &gt; 20 &gt; 60 정배열인지 확인</div></li>
+            <li><b>2</b><div><strong>크로스 발생</strong>단기선이 상위선을 실제로 돌파했는지 확인</div></li>
+            <li><b>3</b><div><strong>캔들 위치</strong>고야라인 위에서 캔들이 형성되는지 확인</div></li>
+            <li><b>4</b><div><strong>TP / SL</strong>진입과 동시에 익절·손절을 설정</div></li>
+          </ol>
+        </div>
+      </div>
+      <p class="note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg><span>크로스는 확정 신호가 아니라 가능성입니다. 횡보 구간에서는 잦은 거짓 신호가 나올 수 있으므로 60일선 방향과 거래량을 함께 보세요.</span></p>
+    </div>
+  </section>
+
+  <!-- SIGNALS -->
+  <section class="section section-paper-2" id="signals">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="kicker">04 / Signal Setups</span>
+          <h2>실전에서 쓰는<br>여섯 가지 <em>신호.</em></h2>
+        </div>
+        <p>교재에 나온 규칙을 그대로 옮겼습니다. 신호의 이름보다 <b>언제 진입하고 언제 쉬는지</b>가 더 중요합니다.</p>
+      </div>
+
+      <div class="signal-grid">
+        <article class="signal-card reveal">
+          <div class="signal-media">
+            <button class="zoomable" type="button" data-full="assets/surge-20.jpg" data-caption="20% 이상 상승 또는 하락한 코인만 공략한다는 원칙 슬라이드." aria-label="20퍼센트 급등락 원칙 이미지 크게 보기">
+              <img src="assets/surge-20.jpg" alt="20% 이상 상승 또는 하락한 코인만 공략한다는 원칙" width="1280" height="720" loading="lazy">
+              <span class="zoom-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6M11 8v6M8 11h6"/></svg>ZOOM</span>
+            </button>
+          </div>
+          <div class="signal-body">
+            <div class="sig-num">SIGNAL 01</div>
+            <h3>20% 이상 움직인 코인만 본다</h3>
+            <p>하루 2번, 상승·하락 상위 TOP10 중에서 20% 이상 급등락한 코인만 후보로 남깁니다. 변동성이 없으면 타점도, 수익 구간도 만들기 어렵습니다.</p>
+            <div class="sig-foot">UNIVERSE FILTER · 20%+ MOVE</div>
+          </div>
+        </article>
+
+        <article class="signal-card reveal">
+          <div class="signal-media">
+            <button class="zoomable" type="button" data-full="assets/ignore-ss.jpg" data-caption="고야라인 위에 SS가 표시되면 진입하지 않는다는 규칙." aria-label="SS 무시 규칙 이미지 크게 보기">
+              <img src="assets/ignore-ss.jpg" alt="고야라인 위 SS는 무시한다는 규칙 슬라이드" width="1280" height="720" loading="lazy">
+              <span class="zoom-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6M11 8v6M8 11h6"/></svg>ZOOM</span>
+            </button>
+          </div>
+          <div class="signal-body">
+            <div class="sig-num">SIGNAL 02</div>
+            <h3>고야 위 SS는 무시한다</h3>
+            <p>SS가 고야라인에 걸쳐 있거나 위에 표시되면 진입하지 않습니다. 신호가 좋아 보여도 위치가 나쁘면 기다립니다.</p>
+            <div class="sig-foot">LOCATION FILTER · SS / GOYA</div>
+          </div>
+        </article>
+
+        <article class="signal-card reveal">
+          <div class="signal-media">
+            <button class="zoomable" type="button" data-full="assets/dead-cross.jpg" data-caption="스마트라인이 고야라인 위로 교차될 때를 데드크로스로 보는 자료." aria-label="데드크로스 이미지 크게 보기">
+              <img src="assets/dead-cross.jpg" alt="스마트라인이 고야라인 위로 교차될 때를 설명하는 차트" width="1280" height="720" loading="lazy">
+              <span class="zoom-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6M11 8v6M8 11h6"/></svg>ZOOM</span>
+            </button>
+          </div>
+          <div class="signal-body">
+            <div class="sig-num">SIGNAL 03</div>
+            <h3>데드크로스 = 스마트라인 &gt; 고야</h3>
+            <p>스마트라인이 고야라인 위로 올라오는 순간을 데드크로스로 봅니다. 롱 포지션이라면 비중 축소를 검토합니다.</p>
+            <div class="sig-foot">EXIT CHECK · SMART / GOYA</div>
+          </div>
+        </article>
+
+        <article class="signal-card reveal">
+          <div class="signal-media">
+            <button class="zoomable" type="button" data-full="assets/s2-entry.jpg" data-caption="S2 시그널을 놓친 경우 진입을 고려하는 시점을 설명한 자료." aria-label="S2 놓친 경우 이미지 크게 보기">
+              <img src="assets/s2-entry.jpg" alt="S2 시그널을 놓친 경우 진입 시점을 설명한 차트" width="1280" height="720" loading="lazy">
+              <span class="zoom-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6M11 8v6M8 11h6"/></svg>ZOOM</span>
+            </button>
+          </div>
+          <div class="signal-body">
+            <div class="sig-num">SIGNAL 04</div>
+            <h3>S2를 놓쳤다면, 두 번째 자리</h3>
+            <p>고타임 데드크로스 이후 S2 시그널을 놓친 경우, 60일선이 지지되고 다시 상승하는 자리를 두 번째 진입 시점으로 봅니다.</p>
+            <div class="sig-foot">MISSED ENTRY · 60MA BOUNCE</div>
+          </div>
+        </article>
+
+        <article class="signal-card reveal">
+          <div class="signal-media">
+            <button class="zoomable" type="button" data-full="assets/ma60-bounce.jpg" data-caption="프리미엄 S2가 뜨지 않은 상태에서 60일선이 맞고 상승하는 차트 예시." aria-label="60일선 지지 이미지 크게 보기">
+              <img src="assets/ma60-bounce.jpg" alt="60일선이 지지되고 상승하는 차트 예시" width="1280" height="720" loading="lazy">
+              <span class="zoom-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6M11 8v6M8 11h6"/></svg>ZOOM</span>
+            </button>
+          </div>
+          <div class="signal-body">
+            <div class="sig-num">SIGNAL 05</div>
+            <h3>60일선에 맞고 올라서는 자리</h3>
+            <p>프리미엄 S2가 아직 뜨지 않았더라도, 가격이 60일선에 닿은 뒤 지지받고 상승 전환하면 진입 후보로 봅니다. 단, 스마트라인이 바로 아래에 있으면 진입하지 않습니다.</p>
+            <div class="sig-foot">SUPPORT ENTRY · 60MA + SMART LINE</div>
+          </div>
+        </article>
+
+        <article class="signal-card reveal">
+          <div class="signal-media">
+            <button class="zoomable" type="button" data-full="assets/ll-signal.jpg" data-caption="LL 시그널 이후 흰색 구간은 진입 시 수익 구간을 나타낸다. 최고점 이후 음봉이 나오면 숏을 고려한다." aria-label="LL 시그널 수익 구간 이미지 크게 보기">
+              <img src="assets/ll-signal.jpg" alt="LL 시그널 이후 수익 구간을 표시한 차트" width="1280" height="720" loading="lazy">
+              <span class="zoom-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6M11 8v6M8 11h6"/></svg>ZOOM</span>
+            </button>
+          </div>
+          <div class="signal-body">
+            <div class="sig-num">SIGNAL 06</div>
+            <h3>LL 최고점 이후, 5% 익절</h3>
+            <p>LL 시그널이 나온 뒤 최고점에서 음봉이 나오면 숏 진입을 고려하고 알람을 설정합니다. 롱 포지션은 LL 시그널이 나올 때까지 수익 구간을 유지하고, 권장 수익은 5% 익절입니다.</p>
+            <div class="sig-foot">LL SIGNAL · 5% TAKE PROFIT</div>
+          </div>
+        </article>
+      </div>
+
+      <div class="signal-flow reveal">
+        <div class="sf-title">신호에서 주문까지<span>TOP 10 ROUTINE</span></div>
+        <div class="sf-steps">
+          <span>TOP10 알림</span><i>→</i><span>SS 확인</span><i>→</i><span>프리미엄 S2</span><i>→</i><span class="red">진입</span><i>→</i><span>TP / SL</span><i>→</i><span>알림 제외</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHART READING -->
+  <section class="section section-paper" id="charts">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="kicker">05 / Chart Reading</span>
+          <h2>차트 위에서<br>이렇게 <em>읽는다.</em></h2>
+        </div>
+        <p>라벨을 외우는 것보다 <b>선과 캔들이 만나는 위치</b>를 보는 훈련이 먼저입니다. 실제 화면을 크게 열어 직접 확인해 보세요.</p>
+      </div>
+
+      <div class="gallery">
+        <div class="gallery-col">
+          <figure class="reveal">
+            <button class="zoomable" type="button" data-full="assets/chart-3ma.jpg" data-caption="3MA가 표시된 스마트 차트. 7일선, 20일선, 60일선의 배열과 캔들의 위치를 함께 본다." aria-label="3MA 차트 이미지 크게 보기">
+              <img src="assets/chart-3ma.jpg" alt="7일, 20일, 60일 이동평균선이 표시된 스마트 차트" width="1280" height="720" loading="lazy">
+              <span class="zoom-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6M11 8v6M8 11h6"/></svg>VIEW LARGE</span>
+            </button>
+            <figcaption><b>3MA 기본 화면</b> — 세 선의 간격과 기울기를 먼저 봅니다.</figcaption>
+          </figure>
+          <figure class="reveal">
+            <button class="zoomable" type="button" data-full="assets/smart-support.jpg" data-caption="스마트라인이 차트 아래에서 지지하고 있는 상황과 이후 캔들 형성 예시." aria-label="스마트라인 지지 이미지 크게 보기">
+              <img src="assets/smart-support.jpg" alt="스마트라인이 차트 아래에서 지지하는 상황을 표시한 차트" width="1280" height="720" loading="lazy">
+              <span class="zoom-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6M11 8v6M8 11h6"/></svg>VIEW LARGE</span>
+            </button>
+            <figcaption><b>스마트라인 지지</b> — 선이 받쳐주는 동안 캔들이 어떻게 형성되는지 확인합니다.</figcaption>
+          </figure>
+        </div>
+        <div class="gallery-col">
+          <figure class="reveal">
+            <button class="zoomable" type="button" data-full="assets/ma-labels.jpg" data-caption="3MA 라벨이 표시된 차트. 7일선, 20일선, 60일선을 색으로 구분한다." aria-label="3MA 라벨 차트 이미지 크게 보기">
+              <img src="assets/ma-labels.jpg" alt="3MA 라벨이 표시된 차트" width="1280" height="720" loading="lazy">
+              <span class="zoom-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6M11 8v6M8 11h6"/></svg>VIEW LARGE</span>
+            </button>
+            <figcaption><b>라벨 확인</b> — 7·20·60이 어디에 있는지 색으로 먼저 구분합니다.</figcaption>
+          </figure>
+          <figure class="reveal">
+            <button class="zoomable" type="button" data-full="assets/smart-zoom.jpg" data-caption="스마트라인 지지 구간을 확대한 화면. 캔들과 선의 간격을 자세히 본다." aria-label="스마트라인 확대 이미지 크게 보기">
+              <img src="assets/smart-zoom.jpg" alt="스마트라인 지지 구간을 확대한 차트" width="1280" height="720" loading="lazy">
+              <span class="zoom-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6M11 8v6M8 11h6"/></svg>VIEW LARGE</span>
+            </button>
+            <figcaption><b>확대해서 보기</b> — 지지선과 캔들의 반응을 클로즈업합니다.</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="reading-strip reveal">
+        <div><b>01 / ORDER</b><p>7일선이 가장 위, 60일선이 가장 아래인가.</p></div>
+        <div><b>02 / SLOPE</b><p>세 선이 모두 우상향인가, 한 선만 튀는가.</p></div>
+        <div><b>03 / LOCATION</b><p>캔들이 고야라인 위에 있는가.</p></div>
+        <div><b>04 / SUPPORT</b><p>스마트라인이 바로 아래에서 받쳐주는가.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RULES -->
+  <section class="section section-dark" id="rules">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="kicker">06 / Trading Rules</span>
+          <h2>일곱 가지 원칙,<br>수익보다 <em>생존.</em></h2>
+        </div>
+        <p>신호는 틀릴 수 있습니다. 원칙은 그 틀림을 감당할 수 있게 만듭니다. <b>진입 전에 확인하고, 진입과 동시에 손절을 정합니다.</b></p>
+      </div>
+
+      <div class="rules-layout">
+        <div class="rule-list">
+          <div class="rule reveal"><span class="rn">01</span><div><h3>상승 LONG은 고야라인 위에서</h3><p>롱 진입 전, 캔들이 <b>고야라인 위</b>에 위치하는지 반드시 확인합니다. 위치가 아니면 신호가 좋아도 진입하지 않습니다.</p></div></div>
+          <div class="rule reveal"><span class="rn">02</span><div><h3>시그널 확인 후 진입</h3><p>스마트 시그널 LL, 프리미엄 시그널 L1·L2·L3 중 하나를 확인합니다. <b>RSI가 L일 때</b> 가장 이상적입니다.</p></div></div>
+          <div class="rule reveal"><span class="rn">03</span><div><h3>진입과 동시에 TP / SL</h3><p>익절과 손절은 주문과 동시에 설정합니다. 무명선 라인에서 살짝 위, 손절각이 부담되면 <b>캔들의 저항라인</b>을 기준으로 잡습니다.</p></div></div>
+          <div class="rule reveal"><span class="rn">04</span><div><h3>20% 이상 급등락만 공략</h3><p>변동성이 부족한 코인은 제외합니다. 하루 두 번, 상승·하락 상위 TOP10에서 <b>20% 이상 움직인 코인</b>만 후보로 남깁니다.</p></div></div>
+          <div class="rule reveal"><span class="rn">05</span><div><h3>SS 위치가 나쁘면 쉰다</h3><p>SS가 고야라인에 걸쳐 있거나 위에 있으면 진입하지 않습니다. <b>S2가 떠도 바로 아래에 스마트라인이 있으면</b> 진입을 보류합니다.</p></div></div>
+          <div class="rule reveal"><span class="rn">06</span><div><h3>LL 최고점 이후 음봉은 숏 후보</h3><p>LL 시그널 최고점 이후 캔들이 음봉으로 나오면 숏 진입을 고려하고, <b>알람을 설정해 두고</b> 다음 캔들을 확인합니다.</p></div></div>
+          <div class="rule reveal"><span class="rn">07</span><div><h3>권장 수익은 5% 익절</h3><p>욕심을 줄이고 계획한 수익에 도달하면 정리합니다. <b>수익 구간은 LL 시그널이 나올 때까지</b> 유지하는 것이 기본입니다.</p></div></div>
+        </div>
+
+        <aside class="rules-side reveal">
+          <figure class="rules-figure">
+            <button class="zoomable" type="button" data-full="assets/basic-rules.jpg" data-caption="트레이딩의 기본 원칙: 고야라인 위 캔들 확인, 시그널 확인 후 진입, 진입 시 익절과 손절 설정." aria-label="트레이딩 기본 원칙 이미지 크게 보기">
+              <img src="assets/basic-rules.jpg" alt="트레이딩의 기본 원칙 세 가지를 정리한 슬라이드" width="1280" height="720" loading="lazy">
+              <span class="zoom-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6M11 8v6M8 11h6"/></svg>VIEW</span>
+            </button>
+            <figcaption><b>기본 원칙 3</b> — 위치, 시그널, TP/SL. 이 세 가지가 먼저입니다.</figcaption>
+          </figure>
+          <div class="rules-quote">“원칙이 수익을 만든다.”<br>신호를 맞히는 것보다 <b>틀렸을 때 작게 잃는 것</b>이 오래 살아남는 방법입니다.<span>BASIC RULES FOR SUCCESSFUL TRADING</span></div>
+        </aside>
+      </div>
+
+      <div class="routine reveal">
+        <div><span>ROUTINE 01</span><h3>TOP10 알림 등록</h3><p>하루 두 번, 상승·하락 상위 TOP10 코인을 확인합니다.</p></div>
+        <div><span>ROUTINE 02</span><h3>SS · 고야 확인</h3><p>SS가 고야 위에 있으면 제외. 위치가 좋은 코인만 남깁니다.</p></div>
+        <div><span>ROUTINE 03</span><h3>프리미엄 S2 진입</h3><p>S2와 60일선 지지를 함께 확인하고 진입합니다.</p></div>
+        <div><span>ROUTINE 04</span><h3>TP / SL · 알림 제외</h3><p>익절·손절 후 해당 코인은 알림 목록에서 제외합니다.</p></div>
+      </div>
+      <p class="note" style="color:#8d98a1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg><span>위 내용은 자료에 소개된 매매 규칙을 정리한 것입니다. 특정 종목의 매수·매도 추천이 아니며, 모든 투자 판단과 책임은 본인에게 있습니다.</span></p>
+    </div>
+  </section>
+
+  <!-- CHECKLIST -->
+  <section class="section section-paper" id="checklist">
+    <div class="wrap">
+      <div class="checklist reveal">
+        <div class="checklist-copy">
+          <span class="kicker">07 / Before You Enter</span>
+          <h2>주문 버튼을 누르기 전,<br>이것만은 확인하세요.</h2>
+          <p>차트가 아무리 좋아 보여도 아래 항목이 하나라도 비어 있으면 오늘은 쉬는 편이 낫습니다. 체크리스트를 복사해 매매 노트에 붙여두세요.</p>
+          <button class="btn btn-red" id="copyChecklist" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg>
+            체크리스트 복사
+          </button>
+          <a class="btn btn-outline" href="https://mjky1014-collab.github.io/" target="_blank" rel="noopener">모음목록으로</a>
+        </div>
+        <ul class="check-list">
+          <li><span class="c">✓</span><span>20% 이상 급등락한 코인인가?</span></li>
+          <li><span class="c">✓</span><span>7일선이 20일선 위, 20일선이 60일선 위인가?</span></li>
+          <li><span class="c">✓</span><span>캔들이 고야라인 위에 있는가?</span></li>
+          <li><span class="c">✓</span><span>SS가 고야 위에 있지 않은가?</span></li>
+          <li><span class="c">✓</span><span>S2 바로 아래에 스마트라인이 있지 않은가?</span></li>
+          <li><span class="c">✓</span><span>TP와 SL을 동시에 입력했는가?</span></li>
+          <li><span class="c">✓</span><span>감정이 아닌 원칙으로 진입했는가?</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <span class="brand-mark">T10</span>
+        <div><b>탑10 급등락 코인 공략</b><span>3MA FIELD MANUAL · 2026</span></div>
+      </div>
+      <div class="foot-links">
+        <a href="#concept">3MA</a>
+        <a href="#alignment">배열</a>
+        <a href="#cross">크로스</a>
+        <a href="#signals">실전 신호</a>
+        <a href="#rules">원칙</a>
+        <a href="https://mjky1014-collab.github.io/" target="_blank" rel="noopener">모음목록 ↗</a>
+      </div>
+    </div>
+    <p class="foot-disc"><b>정보성 페이지 안내.</b> 본 페이지는 “탑10 급등락 코인 공략 및 트레이딩 원칙” 자료의 차트 용어와 매매 규칙을 요약한 교육용 콘텐츠입니다. 특정 종목·상품의 매수·매도 추천 또는 수익 보장이 아니며, 디지털 자산 거래와 레버리지 사용에는 원금 손실 위험이 있습니다. 모든 투자 판단과 책임은 이용자 본인에게 있습니다.</p>
+    <div class="foot-bottom">
+      <span>© 2026 TOP10 CRYPTO FIELD MANUAL</span>
+      <span>SOURCE · 탑10 급등락 코인 공략 및 트레이딩 원칙 / 차트 캡처</span>
+    </div>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="이미지 크게 보기" aria-hidden="true">
+  <button class="lb-close" id="lbClose" type="button" aria-label="닫기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+  <button class="lb-prev" id="lbPrev" type="button" aria-label="이전 이미지"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button>
+  <button class="lb-next" id="lbNext" type="button" aria-label="다음 이미지"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
+  <div class="lb-stage"><img id="lbImg" src="" alt=""><div class="lb-cap" id="lbCap"></div></div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite">복사되었습니다</div>
+<a class="to-top" id="toTop" href="#top" aria-label="맨 위로 이동"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5m0 0-6 6m6-6 6 6"/></svg></a>
+
+<script>
+(function(){
+  'use strict';
+  const $ = (s, el = document) => el.querySelector(s);
+  const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+
+  const header = $('#header');
+  const progress = $('#progress');
+  const toTop = $('#toTop');
+  function onScroll(){
+    const y = window.scrollY || document.documentElement.scrollTop;
+    header.classList.toggle('scrolled', y > 20);
+    toTop.classList.toggle('on', y > 650);
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.width = (max > 0 ? Math.min(100, y / max * 100) : 0) + '%';
+  }
+  addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  const menuBtn = $('#menuBtn');
+  const navLinks = $('#navLinks');
+  menuBtn.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+    menuBtn.setAttribute('aria-label', open ? '메뉴 닫기' : '메뉴 열기');
+  });
+  $$('#navLinks a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+  }));
+
+  const revealEls = $$('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+    }, { threshold: .07, rootMargin: '0px 0px -5% 0px' });
+    revealEls.forEach((el, i) => { el.style.transitionDelay = Math.min(i % 4 * 50, 150) + 'ms'; io.observe(el); });
+  } else revealEls.forEach(el => el.classList.add('on'));
+
+  const sections = ['concept','alignment','cross','signals','charts','rules'].map(id => document.getElementById(id)).filter(Boolean);
+  const navAnchors = $$('#navLinks a[href^="#"]');
+  if ('IntersectionObserver' in window) {
+    const spy = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        navAnchors.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+      });
+    }, { rootMargin: '-42% 0px -52% 0px', threshold: 0 });
+    sections.forEach(s => spy.observe(s));
+  }
+
+  /* lightbox */
+  const lb = $('#lightbox');
+  const lbImg = $('#lbImg');
+  const lbCap = $('#lbCap');
+  const zoomables = $$('.zoomable');
+  let lbIndex = -1;
+  function openLb(i){
+    lbIndex = i;
+    const btn = zoomables[i];
+    lbImg.src = btn.dataset.full;
+    lbImg.alt = btn.querySelector('img')?.alt || '';
+    lbCap.textContent = btn.dataset.caption || '';
+    lb.classList.add('on');
+    lb.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    $('#lbClose').focus();
+  }
+  function closeLb(){
+    lb.classList.remove('on');
+    lb.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (lbIndex >= 0) zoomables[lbIndex].focus();
+  }
+  function moveLb(dir){
+    if (!zoomables.length) return;
+    openLb((lbIndex + dir + zoomables.length) % zoomables.length);
+  }
+  zoomables.forEach((btn, i) => btn.addEventListener('click', () => openLb(i)));
+  $('#lbClose').addEventListener('click', closeLb);
+  $('#lbPrev').addEventListener('click', () => moveLb(-1));
+  $('#lbNext').addEventListener('click', () => moveLb(1));
+  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+  addEventListener('keydown', e => {
+    if (!lb.classList.contains('on')) return;
+    if (e.key === 'Escape') closeLb();
+    if (e.key === 'ArrowLeft') moveLb(-1);
+    if (e.key === 'ArrowRight') moveLb(1);
+  });
+
+  /* checklist copy */
+  const checklist = [
+    '탑10 급등락 코인 진입 전 체크리스트',
+    '1. 20% 이상 급등락한 코인인가?',
+    '2. 7일선 > 20일선 > 60일선 정배열인가?',
+    '3. 캔들이 고야라인 위에 있는가?',
+    '4. SS가 고야 위에 있지 않은가?',
+    '5. S2 바로 아래에 스마트라인이 있지 않은가?',
+    '6. TP와 SL을 동시에 입력했는가?',
+    '7. 감정이 아닌 원칙으로 진입했는가?'
+  ].join('\n');
+  const toast = $('#toast');
+  let toastTimer;
+  function showToast(msg){
+    toast.textContent = msg;
+    toast.classList.add('on');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('on'), 2200);
+  }
+  $('#copyChecklist').addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(checklist); }
+    catch(e){
+      const ta = document.createElement('textarea');
+      ta.value = checklist; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); } catch(err) {}
+      ta.remove();
+    }
+    showToast('체크리스트가 복사되었습니다');
+  });
+})();
+</script>
+</body>
+</html>
