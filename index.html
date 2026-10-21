@@ -975,7 +975,9 @@ function repoHTML(r) {
   const color = LANG_COLORS[r.language] || '#8b98b0';
   const date = new Date(r.updated_at);
   const dateStr = isNaN(date) ? '' : date.getFullYear() + '.' + String(date.getMonth() + 1).padStart(2, '0') + '.' + String(date.getDate()).padStart(2, '0');
-  const pagesUrl = 'https://' + GH_USER + '.github.io/' + r.name + '/';
+  const pagesUrl = (r.name.toLowerCase() === (GH_USER + '.github.io').toLowerCase())
+    ? 'https://' + GH_USER + '.github.io/'
+    : 'https://' + GH_USER + '.github.io/' + r.name + '/';
   return `
   <div class="repo">
     <span class="repo-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4.5A1.5 1.5 0 0 1 5.5 3H19a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H5.5A1.5 1.5 0 0 1 4 19.5v-15Z"/><path d="M8 3v18M12 7h4M12 11h3"/></svg></span>
@@ -1011,7 +1013,7 @@ async function loadRepos() {
       if (!res.ok) throw new Error('HTTP ' + res.status);
       const data = await res.json();
       if (!Array.isArray(data)) throw new Error('invalid');
-      repos = data.filter(r => !r.fork);
+      repos = data.filter(r => !r.fork && r.name.toLowerCase() !== (GH_USER + '.github.io').toLowerCase());
       try { sessionStorage.setItem('mj_repos_v2', JSON.stringify({ t: Date.now(), data: repos })); } catch (e) {}
     } catch (e) {
       repos = FALLBACK_REPOS;
