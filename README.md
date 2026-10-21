@@ -5,6 +5,7 @@ MJ(`mjky1014-collab`)가 만든 모든 작업물을 한 페이지에 모아, 클
 - **모음목록 (루트 사이트):** `https://mjky1014-collab.github.io/`
 - **수퍼사이클 가이드:** `https://mjky1014-collab.github.io/super/`
 - **코인노트 통합장부:** `https://mjky1014-collab.github.io/super/memo.html`
+- **EX 시작 가이드:** `https://mjky1014-collab.github.io/ex/`
 
 ---
 
@@ -15,12 +16,17 @@ MJ(`mjky1014-collab`)가 만든 모든 작업물을 한 페이지에 모아, 클
 | 모음목록 랜딩페이지 | 이 저장소(`mjky1014-collab.github.io`) 루트 | GitHub Pages |
 | 수퍼사이클 가이드 | `super` 저장소 | GitHub Pages |
 | 코인노트 통합장부 | `super` 저장소의 `memo.html` | GitHub Pages |
+| EX 시작 가이드 | 이 저장소의 `ex/` | GitHub Pages |
 
 로컬 원본 파일도 함께 보관되어 있습니다.
 
 ```
 .
 ├─ index.html                 # 모음목록 랜딩페이지 (배포 대상)
+├─ ex-guide/                  # EX 시작 가이드 로컬 원본
+│  ├─ index.html
+│  ├─ cover.svg
+│  └─ pdf/                    # 매뉴얼 PDF 12개
 ├─ 수퍼사이클_가이드/          # 가이드 로컬 원본
 ├─ 코인노트_통합장부.html       # 장부 로컬 원본
 ├─ notion/
