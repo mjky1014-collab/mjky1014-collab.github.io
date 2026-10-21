@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXT CHART 신호등 가이드 | 박서연 웨비나</title>
+<meta name="description" content="실시간 호가·온체인·청산 데이터를 결합한 GOYA 알고리즘. NEXT Signal 텔레그램부터 스마트 차트, 2x isolated 주문 설정까지 2026 박서연 웨비나의 핵심을 정리했습니다.">
+<meta name="theme-color" content="#09090b">
+<meta property="og:type" content="website">
+<meta property="og:title" content="NEXT CHART 신호등 가이드 | Signal Playbook">
+<meta property="og:description" content="신호등이 켜지면, 차트가 먼저 움직인다. 2시간 21분 웨비나의 핵심만 60초와 한 페이지로.">
+<meta property="og:image" content="https://mjky1014-collab.github.io/next/cover.svg">
+<meta property="og:url" content="https://mjky1014-collab.github.io/next/">
+<link rel="canonical" href="https://mjky1014-collab.github.io/next/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2309090b'/%3E%3Ccircle cx='32' cy='32' r='17' fill='%23ff6a1a'/%3E%3Ccircle cx='32' cy='32' r='7' fill='%2309090b'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#09090b;
+  --ink-2:#111114;
+  --ink-3:#18181c;
+  --paper:#f4f1eb;
+  --paper-2:#eae5dc;
+  --text:#f7f4ef;
+  --text-dark:#171411;
+  --muted:#a6a19a;
+  --muted-dark:#6d675f;
+  --orange:#ff6a1a;
+  --orange-2:#ff8d43;
+  --orange-3:#d94e00;
+  --green:#22d98b;
+  --red:#ff4d5e;
+  --amber:#ffb020;
+  --line:rgba(255,255,255,.12);
+  --line-soft:rgba(255,255,255,.07);
+  --line-dark:rgba(23,20,17,.14);
+  --radius:20px;
+  --max:1200px;
+  --display:'Barlow Condensed','Arial Narrow',sans-serif;
+  --sans:'Noto Sans KR','Pretendard','Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:92px}
+body{
+  margin:0;background:var(--ink);color:var(--text);line-height:1.65;overflow-x:hidden;
+  font-family:var(--sans);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  word-break:keep-all;overflow-wrap:break-word;
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+::selection{background:var(--orange);color:#190b03}
+:focus-visible{outline:2px solid var(--orange);outline-offset:4px;border-radius:4px}
+section[id]{scroll-margin-top:92px}
+.wrap{width:min(var(--max),calc(100% - 48px));margin-inline:auto}
+.skip{position:absolute;left:-9999px;top:0;z-index:300;background:var(--orange);color:#190b03;padding:10px 18px;border-radius:0 0 10px 0;font-weight:900}
+.skip:focus{left:0}
+.scroll-progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--orange);z-index:210;box-shadow:0 0 12px rgba(255,106,26,.5)}
+
+/* ── header ── */
+.site-header{position:fixed;top:0;left:0;right:0;z-index:200;transition:background .3s,border-color .3s,backdrop-filter .3s;border-bottom:1px solid transparent}
+.site-header.scrolled{background:rgba(9,9,11,.82);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom-color:var(--line-soft)}
+.nav{display:flex;align-items:center;height:78px;gap:22px}
+.brand{display:inline-flex;align-items:center;gap:11px;flex:none}
+.brand-mark{
+  width:39px;height:39px;border-radius:11px;display:grid;place-items:center;flex:none;
+  background:var(--orange);color:#190b03;font-family:var(--display);font-size:25px;font-weight:800;line-height:1;
+  box-shadow:0 8px 24px rgba(255,106,26,.24)
+}
+.brand-txt{display:flex;flex-direction:column;line-height:1.05}
+.brand-txt b{font-size:14.5px;font-weight:900;letter-spacing:-.2px}
+.brand-txt span{font-family:var(--display);font-size:9.5px;font-weight:600;letter-spacing:2.5px;color:var(--muted);margin-top:3px}
+.nav-links{display:flex;align-items:center;gap:2px;margin-left:auto}
+.nav-links a{font-size:13px;font-weight:700;color:#b9b4ad;padding:9px 12px;border-radius:8px;transition:.2s}
+.nav-links a:hover,.nav-links a.active{color:#fff;background:rgba(255,255,255,.06)}
+.nav-cta{
+  display:inline-flex;align-items:center;gap:8px;margin-left:6px;padding:10px 16px;border-radius:9px;
+  background:var(--orange);color:#190b03;font-size:12.5px;font-weight:900;letter-spacing:-.2px;
+  transition:.22s;white-space:nowrap;box-shadow:0 6px 20px rgba(255,106,26,.2)
+}
+.nav-cta:hover{background:var(--orange-2);transform:translateY(-1px)}
+.nav-cta svg{width:13px;height:13px}
+.menu-toggle{display:none;width:40px;height:40px;border:1px solid var(--line);border-radius:9px;place-items:center;color:#e7e2db;margin-left:auto}
+.menu-toggle svg{width:18px;height:18px}
+
+/* ── shared ── */
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--display);font-size:12px;font-weight:700;letter-spacing:2.4px;color:#c8c3bc;text-transform:uppercase}
+.eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 5px rgba(255,106,26,.12);animation:pulse 2.4s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 9px rgba(255,106,26,0)}}
+.kicker{display:inline-flex;align-items:center;gap:11px;font-family:var(--display);font-size:12px;font-weight:700;letter-spacing:2.8px;color:var(--orange);text-transform:uppercase}
+.kicker::before{content:"";width:28px;height:1px;background:var(--orange);flex:none}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 24px;border-radius:10px;
+  font-size:13.5px;font-weight:900;letter-spacing:-.2px;transition:.24s;white-space:nowrap
+}
+.btn svg{width:15px;height:15px;flex:none}
+.btn-primary{background:var(--orange);color:#190b03;box-shadow:0 12px 32px rgba(255,106,26,.22)}
+.btn-primary:hover{background:var(--orange-2);transform:translateY(-2px);box-shadow:0 16px 38px rgba(255,106,26,.32)}
+.btn-ghost{background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.18);color:#f4f0e9}
+.btn-ghost:hover{background:rgba(255,255,255,.09);transform:translateY(-2px)}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-dark:hover{background:#27272b;transform:translateY(-2px)}
+.section{padding:112px 0;position:relative;overflow:hidden}
+.section-dark{background:var(--ink);color:var(--text)}
+.section-paper{background:var(--paper);color:var(--text-dark)}
+.section-head{display:grid;grid-template-columns:1fr .68fr;gap:48px;align-items:end;margin-bottom:52px;position:relative;z-index:1}
+.section-head h2{font-size:clamp(32px,4.3vw,57px);line-height:1.11;letter-spacing:-2.4px;font-weight:900;margin:14px 0 0}
+.section-head p{margin:0 0 4px;color:#aaa59e;font-size:14.5px;line-height:1.85;max-width:470px}
+.section-paper .section-head p{color:var(--muted-dark)}
+.section-head p b{color:#fff;font-weight:700}
+.section-paper .section-head p b{color:var(--text-dark)}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.7,.3,1),transform .8s cubic-bezier(.2,.7,.3,1)}
+.reveal.on{opacity:1;transform:none}
+
+/* ── hero ── */
+.hero{
+  position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:center;
+  padding:142px 0 0;overflow:hidden;
+  background:
+    radial-gradient(ellipse at 82% 24%,rgba(255,106,26,.15),transparent 46%),
+    radial-gradient(ellipse at 8% 78%,rgba(255,106,26,.055),transparent 42%),
+    var(--ink)
+}
+.hero::before{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.55;
+  background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:64px 64px;
+  -webkit-mask-image:radial-gradient(ellipse 75% 65% at 55% 42%,#000 15%,transparent 78%);
+  mask-image:radial-gradient(ellipse 75% 65% at 55% 42%,#000 15%,transparent 78%)
+}
+.hero::after{
+  content:"NEXT";position:absolute;right:-1.5vw;bottom:-7vw;z-index:0;pointer-events:none;
+  font-family:var(--display);font-size:34vw;font-weight:800;line-height:.7;letter-spacing:-.06em;
+  color:rgba(255,255,255,.022)
+}
+.hero .wrap{position:relative;z-index:1;flex:1;display:flex;align-items:center}
+.hero-grid{display:grid;grid-template-columns:1.04fr .96fr;gap:58px;align-items:center;width:100%}
+.hero h1{font-size:clamp(40px,5.4vw,78px);line-height:1.06;letter-spacing:-3px;font-weight:900;margin:24px 0 24px;max-width:760px}
+.hero h1 .hero-line{display:block;white-space:nowrap}
+.hero h1 em{font-style:normal;color:var(--orange);position:relative;white-space:nowrap}
+.hero h1 em::after{content:"";position:absolute;left:1%;right:1%;bottom:3px;height:8px;background:var(--orange);opacity:.16;border-radius:99px}
+.hero-lede{max-width:600px;color:#b8b3ac;font-size:clamp(14.5px,1.35vw,17px);line-height:1.85;margin:0}
+.hero-lede strong{color:#fff;font-weight:700}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:31px}
+.hero-stats{display:flex;gap:32px;flex-wrap:wrap;margin-top:44px;padding-top:24px;border-top:1px solid var(--line);max-width:560px}
+.hero-stats div{min-width:74px}
+.hero-stats b{display:block;font-family:var(--display);font-size:34px;line-height:1;font-weight:700;letter-spacing:.2px;color:#fff}
+.hero-stats b span{color:var(--orange)}
+.hero-stats small{display:block;margin-top:8px;font-family:var(--display);font-size:9.5px;font-weight:600;letter-spacing:1.9px;color:#77736d;text-transform:uppercase}
+
+/* hero visual */
+.hero-visual{position:relative;perspective:1400px;padding:10px 0}
+.chart-frame{
+  position:relative;border-radius:18px;overflow:hidden;background:#101013;border:1px solid rgba(255,255,255,.16);
+  box-shadow:0 42px 100px rgba(0,0,0,.58),0 0 0 1px rgba(255,106,26,.06);
+  transform:rotate(-1.5deg);transition:transform .65s cubic-bezier(.2,.7,.3,1)
+}
+.hero-visual:hover .chart-frame{transform:rotate(0) translateY(-4px)}
+.chart-top{display:flex;align-items:center;gap:6px;padding:10px 14px;background:#17171b;border-bottom:1px solid rgba(255,255,255,.09)}
+.chart-top i{width:7px;height:7px;border-radius:50%;background:#35353b}
+.chart-top i:first-child{background:#ff5f57}.chart-top i:nth-child(2){background:#febc2e}.chart-top i:nth-child(3){background:#28c840}
+.chart-top span{margin-left:8px;font-family:var(--display);font-size:10px;font-weight:600;letter-spacing:1.7px;color:#77736d;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chart-top b{margin-left:auto;font-family:var(--display);font-size:9px;letter-spacing:1.5px;color:var(--orange);font-weight:700;white-space:nowrap}
+.chart-frame img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;object-position:left top;filter:saturate(1.03) contrast(1.02)}
+.signal-float{
+  position:absolute;z-index:2;min-width:188px;padding:14px 16px;border-radius:12px;
+  background:rgba(17,17,20,.9);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  box-shadow:0 20px 50px rgba(0,0,0,.45)
+}
+.signal-float.one{top:4%;right:-26px;border-color:rgba(34,217,139,.32)}
+.signal-float.two{bottom:4%;left:-28px;border-color:rgba(255,176,32,.3)}
+.signal-float .sig-top{display:flex;align-items:center;gap:7px;font-family:var(--display);font-size:9.5px;font-weight:700;letter-spacing:1.7px;color:#97928b;margin-bottom:7px}
+.signal-float .sig-top i{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 12px rgba(34,217,139,.7)}
+.signal-float.two .sig-top i{background:var(--amber);box-shadow:0 0 12px rgba(255,176,32,.7)}
+.signal-float strong{display:block;font-size:14px;letter-spacing:-.2px;color:#fff;line-height:1.3}
+.signal-float strong span{color:var(--green)}
+.signal-float.two strong span{color:var(--amber)}
+.signal-float small{display:block;font-family:var(--display);font-size:9px;letter-spacing:1.2px;color:#6e6a64;margin-top:5px}
+
+/* marquee */
+.marquee{border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);background:rgba(255,255,255,.018);overflow:hidden;position:relative;z-index:2;margin-top:64px}
+.marquee-track{display:flex;width:max-content;animation:marquee 30s linear infinite}
+.marquee-group{display:flex;align-items:center}
+.marquee span{display:inline-flex;align-items:center;gap:24px;font-family:var(--display);font-size:13px;font-weight:600;letter-spacing:2.4px;color:#8a857e;padding:13px 0 13px 26px;white-space:nowrap}
+.marquee span::after{content:"◆";font-size:7px;color:var(--orange);opacity:.75}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+/* ── film ── */
+.film-grid{display:grid;grid-template-columns:1.52fr .72fr;gap:28px;align-items:start;position:relative;z-index:1}
+.video-card{position:relative;border-radius:19px;overflow:hidden;background:#000;border:1px solid var(--line);box-shadow:0 30px 80px rgba(0,0,0,.4)}
+.video-card video{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:#000}
+.video-overlay{position:absolute;inset:0;display:grid;place-items:center;background:radial-gradient(ellipse at center,rgba(0,0,0,.1),rgba(0,0,0,.52));transition:opacity .35s,visibility .35s;pointer-events:none}
+.video-overlay.hidden{opacity:0;visibility:hidden}
+.play-btn{pointer-events:auto;display:flex;flex-direction:column;align-items:center;gap:10px}
+.play-circle{width:78px;height:78px;border-radius:50%;display:grid;place-items:center;background:var(--orange);color:#190b03;box-shadow:0 14px 44px rgba(255,106,26,.45);transition:transform .25s,background .25s}
+.play-btn:hover .play-circle{transform:scale(1.07);background:var(--orange-2)}
+.play-circle svg{width:25px;height:25px;margin-left:3px}
+.play-btn small{font-family:var(--display);font-size:10px;font-weight:700;letter-spacing:2px;color:#fff;background:rgba(0,0,0,.48);border:1px solid rgba(255,255,255,.16);padding:4px 10px;border-radius:99px;backdrop-filter:blur(7px)}
+.video-caption{display:flex;justify-content:space-between;gap:14px;padding:14px 4px 0;font-family:var(--display);font-size:10px;font-weight:600;letter-spacing:1.5px;color:#7c7872}
+.video-caption b{color:#c5c0b9;font-weight:600}
+.video-tools{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:11px}
+.video-expand{display:inline-flex;align-items:center;gap:7px;padding:9px 13px;border:1px solid rgba(255,106,26,.4);border-radius:8px;background:rgba(255,106,26,.08);color:var(--orange);font-size:11.5px;font-weight:900;transition:.2s}
+.video-expand:hover{background:var(--orange);color:#190b03}
+.video-expand svg{width:13px;height:13px}
+.video-open{font-size:11px;font-weight:700;color:#8d8881;padding:5px 2px}
+.video-open:hover{color:#fff}
+.video-modal{position:fixed;inset:0;z-index:520;background:rgba(6,6,8,.96);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:26px;opacity:0;visibility:hidden;transition:.25s}
+.video-modal.on{opacity:1;visibility:visible}
+.vm-stage{width:min(1080px,94vw);display:flex;flex-direction:column;gap:10px}
+.vm-stage video{width:100%;max-height:82vh;aspect-ratio:16/9;object-fit:contain;background:#000;border-radius:10px;box-shadow:0 30px 90px rgba(0,0,0,.6)}
+.vm-stage p{display:flex;justify-content:space-between;gap:12px;margin:0;font-family:var(--display);font-size:10px;font-weight:600;letter-spacing:1.5px;color:#8d8881}
+.vm-stage p span{color:#5f5b55}
+.vm-close{position:absolute;top:18px;right:18px;z-index:2;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.2);color:#fff;transition:.2s}
+.vm-close:hover{background:var(--orange);border-color:var(--orange);color:#190b03}
+.vm-close svg{width:19px;height:19px}
+.lightbox{position:fixed;inset:0;z-index:530;background:rgba(6,6,8,.95);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:26px;opacity:0;visibility:hidden;transition:.25s}
+.lightbox.on{opacity:1;visibility:visible}
+.lb-stage{width:min(1180px,94vw);max-height:88vh;display:flex;flex-direction:column;gap:10px}
+.lb-stage img{max-width:100%;max-height:79vh;width:auto;height:auto;object-fit:contain;border-radius:8px;background:#0d151c;box-shadow:0 30px 90px rgba(0,0,0,.6)}
+.lb-cap{font-size:11.5px;line-height:1.6;color:#c9c4bd;text-align:center;max-width:900px;margin-inline:auto}
+.lb-close,.lb-prev,.lb-next{position:absolute;z-index:2;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.2);color:#fff;transition:.2s}
+.lb-close:hover,.lb-prev:hover,.lb-next:hover{background:var(--orange);border-color:var(--orange);color:#190b03}
+.lb-close{top:18px;right:18px}
+.lb-prev{left:18px;top:50%;transform:translateY(-50%)}
+.lb-next{right:18px;top:50%;transform:translateY(-50%)}
+.lb-close svg,.lb-prev svg,.lb-next svg{width:19px;height:19px}
+.chapter-list{padding:24px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.025)}
+.chapter-list h3{font-family:var(--display);font-size:12px;font-weight:700;letter-spacing:2.3px;color:var(--orange);margin:0 0 14px}
+.chapter-list ol{list-style:none;margin:0;padding:0;display:grid}
+.chapter-list li{display:grid;grid-template-columns:46px 1fr;gap:6px;align-items:start;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.08);font-size:12px;color:#b7b2ab;line-height:1.55}
+.chapter-list li:last-child{border-bottom:0;padding-bottom:0}
+.chapter-list li b{font-family:var(--display);font-size:11px;font-weight:700;letter-spacing:1px;color:#7f7a73;padding-top:1px}
+.chapter-list li span{min-width:0}
+.chapter-list li em{font-style:normal;color:#6f6b65;font-size:10.5px;display:block;margin-top:2px}
+
+/* ── signal ── */
+.signal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;position:relative;z-index:1}
+.signal-card{min-height:258px;padding:27px 26px;border-radius:17px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid var(--line-dark);background:#fff;position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s}
+.signal-card:hover{transform:translateY(-4px);box-shadow:0 22px 50px rgba(20,15,10,.1)}
+.signal-card::after{content:"";position:absolute;right:-30px;bottom:-46px;width:150px;height:150px;border-radius:50%;border:1px solid rgba(23,20,17,.07)}
+.signal-card.dark{background:var(--ink);color:var(--text);border-color:rgba(255,255,255,.1)}
+.signal-card.dark::after{border-color:rgba(255,255,255,.08)}
+.signal-card.orange{background:var(--orange);color:#190b03;border-color:transparent}
+.signal-card.orange::after{border-color:rgba(25,11,3,.14)}
+.signal-light{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;margin-bottom:24px;position:relative;flex:none}
+.signal-light::before{content:"";width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.72)}
+.signal-light.green{background:var(--green);box-shadow:0 0 0 7px rgba(34,217,139,.13),0 0 30px rgba(34,217,139,.3)}
+.signal-light.red{background:var(--red);box-shadow:0 0 0 7px rgba(255,77,94,.13),0 0 30px rgba(255,77,94,.3)}
+.signal-light.amber{background:var(--amber);box-shadow:0 0 0 7px rgba(255,176,32,.13),0 0 30px rgba(255,176,32,.3)}
+.signal-card h3{font-family:var(--display);font-size:28px;font-weight:700;letter-spacing:.4px;line-height:1;margin:0 0 8px}
+.signal-card .sig-label{font-family:var(--display);font-size:10px;font-weight:700;letter-spacing:2px;color:#8a847c;margin-bottom:18px}
+.signal-card.dark .sig-label{color:#807b74}
+.signal-card.orange .sig-label{color:rgba(25,11,3,.6)}
+.signal-card p{font-size:12.5px;line-height:1.75;color:#6e685f;margin:0}
+.signal-card.dark p{color:#aaa59e}
+.signal-card.orange p{color:rgba(25,11,3,.72)}
+.signal-card .sig-meta{display:flex;align-items:center;gap:7px;margin-top:20px;font-family:var(--display);font-size:10px;font-weight:600;letter-spacing:1.4px;color:#8a847c}
+.signal-card.dark .sig-meta{color:#77736d}
+.signal-card.orange .sig-meta{color:rgba(25,11,3,.6)}
+.signal-card .sig-meta i{width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.6}
+.shot-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:16px;margin-top:32px;align-items:stretch}
+.shot{background:#fff;border:1px solid var(--line-dark);border-radius:15px;overflow:hidden;box-shadow:0 18px 44px rgba(20,15,10,.07);display:flex;flex-direction:column;margin:0}
+.shot img{width:100%;height:auto;object-fit:cover;background:#f4f1eb}
+.shot figcaption{padding:13px 15px 15px;border-top:1px solid var(--line-dark);font-size:11.5px;line-height:1.65;color:var(--muted-dark)}
+.shot figcaption b{color:var(--text-dark);font-weight:700}
+.section-dark .shot{background:#111114;border-color:rgba(255,255,255,.1);box-shadow:0 18px 44px rgba(0,0,0,.3)}
+.section-dark .shot figcaption{border-top-color:rgba(255,255,255,.1);color:#8f8a83}
+.section-dark .shot figcaption b{color:#e7e2db}
+
+/* ── algorithm ── */
+.algo-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:48px;align-items:center;position:relative;z-index:1}
+.algo-visual{position:relative}
+.algo-visual img{width:100%;border-radius:17px;border:1px solid var(--line);box-shadow:0 30px 70px rgba(0,0,0,.35)}
+.algo-visual .img-tag{position:absolute;left:14px;bottom:14px;font-family:var(--display);font-size:9px;font-weight:700;letter-spacing:1.8px;color:#d6d0c8;background:rgba(9,9,11,.78);border:1px solid rgba(255,255,255,.16);padding:5px 9px;border-radius:5px;backdrop-filter:blur(8px)}
+.algo-list{display:grid}
+.algo-item{display:grid;grid-template-columns:46px 1fr;gap:15px;padding:22px 0;border-bottom:1px solid rgba(255,255,255,.1)}
+.algo-item:first-child{border-top:1px solid rgba(255,255,255,.1)}
+.algo-item .num{font-family:var(--display);font-size:29px;font-weight:700;line-height:.9;color:var(--orange);letter-spacing:.5px}
+.algo-item h3{font-size:17px;font-weight:900;letter-spacing:-.5px;margin:0 0 7px;color:#fff}
+.algo-item p{font-size:12.5px;line-height:1.75;color:#9e9992;margin:0}
+.algo-quote{margin-top:26px;padding:20px 22px;border-left:2px solid var(--orange);border-radius:0 10px 10px 0;background:rgba(255,106,26,.065);font-size:12px;line-height:1.8;color:#aaa59e}
+.algo-quote b{color:#f3eee8;font-weight:700}
+.checks-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;position:relative;z-index:1}
+.check-card{border:1px solid var(--line);border-radius:15px;padding:24px 23px;background:rgba(255,255,255,.035);display:flex;flex-direction:column}
+.check-card .cn{font-family:var(--display);font-size:10px;font-weight:700;letter-spacing:2px;color:var(--orange);margin-bottom:14px}
+.check-card h3{font-size:17px;font-weight:900;letter-spacing:-.5px;margin:0 0 9px;color:#fff}
+.check-card p{font-size:12.5px;line-height:1.8;color:#9e9992;margin:0}
+.check-card .cf{margin-top:auto;padding-top:17px;font-family:var(--display);font-size:9.5px;font-weight:600;letter-spacing:1.2px;color:#7f7a73;border-top:1px solid rgba(255,255,255,.09)}
+.check-band{display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center;margin-top:16px;padding:18px 22px;border:1px solid rgba(255,106,26,.24);border-radius:12px;background:rgba(255,106,26,.055);position:relative;z-index:1}
+.cb-title{font-family:var(--display);font-size:19px;font-weight:700;letter-spacing:.3px;color:#fff;white-space:nowrap}
+.cb-title span{display:block;font-family:var(--display);font-size:8.5px;font-weight:600;letter-spacing:1.5px;color:var(--orange);margin-top:3px}
+.cb-steps{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.cb-steps span{font-family:var(--display);font-size:10.5px;font-weight:700;letter-spacing:1px;color:#c9c4bd;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.05);border-radius:99px;padding:6px 11px;white-space:nowrap}
+.cb-steps span.red{background:var(--orange);color:#190b03;border-color:var(--orange)}
+.cb-steps i{font-style:normal;color:#5f5b55;font-size:10px}
+.smart-band{display:grid;grid-template-columns:1.12fr .88fr;gap:38px;align-items:center;margin-top:56px;padding:18px;border:1px solid var(--line);border-radius:20px;background:rgba(255,255,255,.022);position:relative;z-index:1}
+.smart-band figure{margin:0;border-radius:13px;overflow:hidden;border:1px solid rgba(255,255,255,.1);background:#000}
+.smart-band img{width:100%;display:block}
+.smart-copy{padding:12px 22px 12px 0}
+.smart-copy .kicker{font-size:10.5px}
+.smart-copy h3{font-size:clamp(23px,2.4vw,31px);line-height:1.2;letter-spacing:-1px;margin:12px 0 12px;font-weight:900}
+.smart-copy p{font-size:13px;line-height:1.8;color:#a6a19a;margin:0}
+.smart-copy .mini-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:18px}
+.mini-tag{font-family:var(--display);font-size:9.5px;font-weight:600;letter-spacing:1.2px;color:#b8b3ac;border:1px solid rgba(255,255,255,.16);border-radius:4px;padding:4px 7px}
+
+/* ── setup ── */
+.setup-shots{display:grid;grid-template-columns:1.35fr .65fr;gap:16px;margin-bottom:38px;position:relative;z-index:1}
+.setup-side{display:grid;gap:16px}
+.setup-side .shot{flex:1}
+.setup-side .shot img{height:100%;object-fit:cover}
+.shot-zoom{position:relative;display:block;width:100%;overflow:hidden;background:#0d151c}
+.shot-zoom img{width:100%;display:block;transition:transform .5s}
+.shot-zoom:hover img{transform:scale(1.025)}
+.zoom-badge{position:absolute;right:9px;bottom:9px;display:inline-flex;align-items:center;gap:4px;background:rgba(9,9,11,.8);color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:4px;padding:4px 7px;font-family:var(--display);font-size:8px;font-weight:700;letter-spacing:1.1px;backdrop-filter:blur(6px);pointer-events:none}
+.zoom-badge svg{width:10px;height:10px}
+.order-compare{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:26px;position:relative;z-index:1}
+.order-mode{border:1px solid var(--line-dark);border-radius:12px;padding:20px 20px 18px;background:#fff}
+.order-mode .om-k{font-family:var(--display);font-size:9px;font-weight:700;letter-spacing:1.6px;color:var(--orange-3)}
+.order-mode h3{font-size:16px;font-weight:900;letter-spacing:-.4px;margin:8px 0 7px}
+.order-mode p{font-size:12px;line-height:1.8;color:var(--muted-dark);margin:0}
+.order-mode .om-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:12px}
+.order-mode .om-tags span{font-family:var(--display);font-size:9px;font-weight:600;letter-spacing:1px;color:#6e685f;border:1px solid var(--line-dark);border-radius:4px;padding:3px 6px}
+.setup-steps{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line-dark);border-bottom:1px solid var(--line-dark);position:relative;z-index:1}
+.setup-step{padding:23px 22px 25px;border-right:1px solid var(--line-dark);border-bottom:1px solid var(--line-dark);min-width:0}
+.setup-step:nth-child(3n){border-right:0}
+.setup-step:nth-child(4),.setup-step:nth-child(5),.setup-step:nth-child(6){border-bottom:0}
+.setup-step .n{font-family:var(--display);font-size:10px;font-weight:700;letter-spacing:2px;color:var(--orange)}
+.setup-step h3{font-size:14.5px;font-weight:900;letter-spacing:-.4px;margin:12px 0 7px}
+.setup-step p{font-size:11.5px;line-height:1.75;color:var(--muted-dark);margin:0}
+.order-ticket{margin-top:24px;border:1px solid var(--line-dark);border-radius:13px;background:#fff;padding:20px 22px;position:relative;z-index:1}
+.ot-head{display:flex;justify-content:space-between;gap:14px;align-items:baseline;flex-wrap:wrap;padding-bottom:12px;border-bottom:1px solid var(--line-dark)}
+.ot-head span{font-family:var(--display);font-size:9.5px;font-weight:700;letter-spacing:1.6px;color:var(--orange-3)}
+.ot-head b{font-size:12px;font-weight:900;color:var(--ink)}
+.ot-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+.ot-grid div{border:1px solid var(--line-dark);border-radius:7px;padding:10px 11px;background:var(--paper)}
+.ot-grid span{display:block;font-family:var(--display);font-size:8.5px;font-weight:700;letter-spacing:1.3px;color:var(--muted-dark);margin-bottom:3px}
+.ot-grid b{display:block;font-size:11.5px;font-weight:900;color:var(--ink);letter-spacing:-.2px}
+.order-ticket > p{font-size:11px;line-height:1.7;color:var(--muted-dark);margin:12px 0 0}
+.order-ticket > p b{color:var(--ink)}
+.setup-note{display:flex;gap:9px;align-items:flex-start;margin-top:20px;font-size:11px;line-height:1.7;color:#817a71}
+.setup-note svg{width:13px;height:13px;flex:none;margin-top:3px;color:var(--orange)}
+
+/* ── record ── */
+.record-grid{display:grid;grid-template-columns:1.18fr .82fr;gap:16px;position:relative;z-index:1}
+.record-side{display:grid;gap:16px}
+.record-side .shot{flex:1}
+.record-side .shot img{height:100%;object-fit:cover;object-position:top}
+.record-wide{margin-top:16px;position:relative;z-index:1}
+.record-wide .shot img{max-height:420px;object-fit:cover;object-position:top}
+.record-stamp{position:absolute;top:14px;right:14px;font-family:var(--display);font-size:9px;font-weight:700;letter-spacing:1.7px;color:#fff;background:rgba(9,9,11,.72);border:1px solid rgba(255,255,255,.18);padding:5px 9px;border-radius:4px;backdrop-filter:blur(7px);z-index:2}
+.disclaimer{margin-top:24px;font-size:11px;line-height:1.8;color:#77726c;max-width:980px;position:relative;z-index:1}
+.disclaimer b{color:#a6a19a;font-weight:700}
+.mistakes-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;position:relative;z-index:1}
+.mistake-card{display:grid;grid-template-columns:48px 1fr;gap:15px;padding:23px 22px;border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.03)}
+.mistake-card .mn{font-family:var(--display);font-size:28px;font-weight:700;line-height:.9;color:var(--orange)}
+.mistake-card h3{font-size:15.5px;font-weight:900;letter-spacing:-.3px;margin:0 0 6px;color:#fff}
+.mistake-card p{font-size:12px;line-height:1.8;color:#9e9992;margin:0}
+.journal-panel{display:grid;grid-template-columns:1fr .9fr;gap:34px;align-items:center;margin-top:18px;padding:30px 32px;border:1px solid rgba(255,106,26,.26);border-radius:16px;background:rgba(255,106,26,.055);position:relative;z-index:1}
+.journal-copy .kicker{font-size:10.5px}
+.journal-copy h3{font-size:clamp(23px,2.5vw,31px);line-height:1.2;letter-spacing:-1px;font-weight:900;margin:12px 0 11px;color:#fff}
+.journal-copy p{font-size:12.5px;line-height:1.8;color:#aaa59e;margin:0 0 18px;max-width:390px}
+.journal-copy p b{color:#fff}
+.journal-copy .btn{padding:11px 17px;font-size:12px}
+.journal-fields{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.journal-fields div{border:1px solid rgba(255,255,255,.12);border-radius:8px;background:rgba(255,255,255,.035);padding:11px 12px;min-height:56px}
+.journal-fields b{display:block;font-family:var(--display);font-size:8.5px;font-weight:700;letter-spacing:1.4px;color:#7f7a73;margin-bottom:3px}
+.journal-fields span{display:block;font-size:11.5px;color:#c9c4bd;line-height:1.5}
+
+/* ── start ── */
+.start-panel{background:var(--ink);color:var(--text);border-radius:24px;padding:50px;display:grid;grid-template-columns:1fr 1fr;gap:44px;position:relative;overflow:hidden;box-shadow:0 34px 90px rgba(30,20,10,.16)}
+.start-panel::before{content:"";position:absolute;width:520px;height:520px;right:-170px;top:-220px;border-radius:50%;background:radial-gradient(circle,rgba(255,106,26,.2),transparent 66%);pointer-events:none}
+.start-panel::after{content:"START";position:absolute;right:-12px;bottom:-40px;font-family:var(--display);font-size:190px;line-height:.7;font-weight:800;color:rgba(255,255,255,.025);pointer-events:none}
+.start-copy{position:relative;z-index:1}
+.start-copy .kicker{font-size:10.5px}
+.start-copy h2{font-size:clamp(30px,3.6vw,46px);line-height:1.12;letter-spacing:-2px;font-weight:900;margin:14px 0 16px}
+.start-copy p{font-size:13px;line-height:1.8;color:#aaa59e;margin:0;max-width:390px}
+.start-checks{list-style:none;margin:0;padding:0;display:grid;align-content:start;position:relative;z-index:1}
+.start-checks li{display:grid;grid-template-columns:34px 1fr;gap:12px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.1)}
+.start-checks li:first-child{border-top:1px solid rgba(255,255,255,.1)}
+.start-checks .c{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(255,106,26,.4);background:rgba(255,106,26,.09);color:var(--orange);font-family:var(--display);font-size:11px;font-weight:700}
+.start-checks b{display:block;font-size:13.5px;font-weight:900;letter-spacing:-.2px;margin-bottom:3px}
+.start-checks span{display:block;font-size:11.5px;line-height:1.65;color:#8d8881}
+.start-links{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;position:relative;z-index:1;margin-top:4px}
+.link-card{display:flex;flex-direction:column;gap:6px;min-height:112px;padding:16px 15px;border:1px solid rgba(255,255,255,.13);border-radius:11px;background:rgba(255,255,255,.035);transition:.22s;position:relative;overflow:hidden}
+.link-card:hover{background:rgba(255,106,26,.1);border-color:rgba(255,106,26,.45);transform:translateY(-2px)}
+.link-card .lc-k{font-family:var(--display);font-size:9px;font-weight:700;letter-spacing:1.6px;color:#858078}
+.link-card strong{font-size:13px;font-weight:900;letter-spacing:-.2px;color:#f6f2ec}
+.link-card small{margin-top:auto;font-size:10px;line-height:1.5;color:#7f7a73}
+.link-card .arrow{position:absolute;right:12px;top:13px;color:#6f6a63;font-size:14px;transition:.2s}
+.link-card:hover .arrow{color:var(--orange);transform:translate(2px,-2px)}
+.link-card.code{cursor:default}
+.link-card.code:hover{transform:none;background:rgba(255,255,255,.035);border-color:rgba(255,255,255,.13)}
+.copy-btn{align-self:flex-start;margin-top:8px;font-family:var(--display);font-size:9px;font-weight:700;letter-spacing:1.1px;color:var(--orange);border:1px solid rgba(255,106,26,.35);background:rgba(255,106,26,.08);border-radius:4px;padding:3px 8px;transition:.2s}
+.copy-btn:hover{background:var(--orange);color:#190b03}
+.start-foot{grid-column:1/-1;position:relative;z-index:1;font-size:10px;line-height:1.7;color:#6f6a63;border-top:1px solid rgba(255,255,255,.1);padding-top:14px;margin-top:2px}
+
+/* ── final ── */
+.final{position:relative;background:var(--orange);color:#190b03;padding:86px 0;overflow:hidden}
+.final::before{content:"SIGNAL";position:absolute;left:-1vw;bottom:-7vw;font-family:var(--display);font-size:24vw;font-weight:800;line-height:.7;letter-spacing:-.04em;color:rgba(25,11,3,.075);pointer-events:none}
+.final .wrap{position:relative;z-index:1;display:flex;align-items:flex-end;justify-content:space-between;gap:34px}
+.final h2{font-size:clamp(38px,6vw,78px);line-height:1.01;letter-spacing:-3.4px;font-weight:900;margin:0;max-width:760px}
+.final h2 span{display:block;opacity:.62}
+.final-side{flex:none;max-width:300px}
+.final-side p{font-size:12.5px;line-height:1.75;color:rgba(25,11,3,.72);margin:0 0 18px}
+.final-actions{display:flex;gap:8px;flex-wrap:wrap}
+.final .btn{border:1px solid rgba(25,11,3,.2)}
+.final .btn-dark:hover{background:#2a1408}
+
+/* ── footer ── */
+footer{background:var(--ink);color:#8c877f;border-top:1px solid var(--line-soft);padding:40px 0 30px}
+.foot-top{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.foot-brand{display:flex;align-items:center;gap:10px}
+.foot-brand .brand-mark{width:31px;height:31px;border-radius:9px;font-size:20px;box-shadow:none}
+.foot-brand b{display:block;font-size:13px;font-weight:900;color:#e8e3dc}
+.foot-brand span{display:block;font-family:var(--display);font-size:9px;font-weight:600;letter-spacing:1.7px;color:#6f6a63;margin-top:2px}
+.foot-links{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}
+.foot-links a{font-size:11.5px;font-weight:700;color:#918c84;padding:7px 9px;border-radius:6px;transition:.2s}
+.foot-links a:hover{color:#fff;background:rgba(255,255,255,.05)}
+.foot-disclaimer{margin-top:24px;padding-top:18px;border-top:1px solid var(--line-soft);font-size:10.5px;line-height:1.85;color:#6f6a63}
+.foot-disclaimer b{color:#a29d95;font-weight:700}
+.foot-bottom{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:16px;font-family:var(--display);font-size:9.5px;font-weight:600;letter-spacing:1.2px;color:#5f5b55}
+
+/* ── toast / top ── */
+.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,140%);z-index:300;display:flex;align-items:center;gap:8px;background:#f7f4ef;color:#171411;font-size:12.5px;font-weight:900;padding:11px 18px;border-radius:99px;box-shadow:0 16px 44px rgba(0,0,0,.45);transition:transform .4s cubic-bezier(.2,.9,.3,1.15)}
+.toast.show{transform:translate(-50%,0)}
+.toast svg{width:14px;height:14px;color:var(--orange-3)}
+.to-top{position:fixed;right:20px;bottom:22px;z-index:150;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#fff;backdrop-filter:blur(12px);opacity:0;visibility:hidden;transform:translateY(8px);transition:.25s}
+.to-top.on{opacity:1;visibility:visible;transform:none}
+.to-top:hover{background:var(--orange);color:#190b03;border-color:var(--orange)}
+.to-top svg{width:16px;height:16px}
+
+/* ── responsive ── */
+@media(max-width:1050px){
+  .hero-grid{gap:38px}
+  .signal-float.one{right:-8px}
+  .signal-float.two{left:-8px}
+  .start-links{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:900px){
+  .nav-links{display:none;position:fixed;top:78px;left:16px;right:16px;padding:12px;background:#0d0d10;border:1px solid var(--line);border-radius:14px;box-shadow:0 24px 60px rgba(0,0,0,.78);flex-direction:column;align-items:stretch;gap:2px;max-height:calc(100vh - 94px);overflow:auto}
+  .nav-links.open{display:flex}
+  .nav-links a{padding:12px 13px;font-size:14px}
+  .nav-cta{display:none}
+  .menu-toggle{display:grid}
+  .hero{padding-top:122px;min-height:auto}
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .hero h1{max-width:760px}
+  .hero-visual{max-width:680px;width:100%;margin-inline:auto}
+  .hero-stats{max-width:none}
+  .marquee{margin-top:46px}
+  .section{padding:86px 0}
+  .section-head{grid-template-columns:1fr;gap:18px;margin-bottom:38px}
+  .section-head p{max-width:620px}
+  .film-grid{grid-template-columns:1fr;gap:20px}
+  .chapter-list{display:grid;grid-template-columns:1fr 1fr;gap:0 24px}
+  .chapter-list h3{grid-column:1/-1}
+  .signal-grid{grid-template-columns:1fr;gap:10px}
+  .signal-card{min-height:0;padding:24px}
+  .signal-light{margin-bottom:18px}
+  .shot-grid{grid-template-columns:1fr}
+  .algo-grid{grid-template-columns:1fr;gap:30px}
+  .checks-grid{grid-template-columns:1fr;gap:10px}
+  .check-band{grid-template-columns:1fr;gap:12px;padding:16px 18px}
+  .smart-band{grid-template-columns:1fr;gap:20px;padding:14px}
+  .smart-copy{padding:4px 10px 12px}
+  .setup-shots{grid-template-columns:1fr}
+  .setup-side{grid-template-columns:1fr 1fr}
+  .setup-steps{grid-template-columns:1fr 1fr}
+  .setup-step:nth-child(3n){border-right:1px solid var(--line-dark)}
+  .setup-step:nth-child(2n){border-right:0}
+  .setup-step:nth-child(4),.setup-step:nth-child(5),.setup-step:nth-child(6){border-bottom:1px solid var(--line-dark)}
+  .setup-step:nth-child(5),.setup-step:nth-child(6){border-bottom:0}
+  .record-grid{grid-template-columns:1fr}
+  .record-side{grid-template-columns:1fr 1fr}
+  .mistakes-grid{grid-template-columns:1fr}
+  .journal-panel{grid-template-columns:1fr;gap:22px;padding:24px}
+  .start-panel{grid-template-columns:1fr;gap:28px;padding:34px 26px}
+  .start-copy p{max-width:none}
+  .final .wrap{display:block}
+  .final-side{max-width:420px;margin-top:26px}
+}
+@media(max-width:620px){
+  .wrap{width:calc(100% - 36px)}
+  .nav{height:70px}
+  .brand-mark{width:35px;height:35px;font-size:22px}
+  .brand-txt b{font-size:13px}
+  .brand-txt span{font-size:8.5px}
+  .hero{padding-top:108px}
+  .hero h1{font-size:clamp(39px,10.6vw,56px);letter-spacing:-2.5px}
+  .hero h1 .hero-line{white-space:normal}
+  .hero-lede{font-size:14px}
+  .hero-actions{flex-direction:column;align-items:stretch}
+  .hero-actions .btn{width:100%}
+  .hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:18px 20px;margin-top:34px}
+  .hero-stats b{font-size:29px}
+  .hero-stats small{font-size:8.5px;letter-spacing:1.5px}
+  .signal-float{min-width:148px;padding:10px 12px}
+  .signal-float.one{top:1%;right:-6px}
+  .signal-float.two{bottom:1%;left:-6px}
+  .signal-float strong{font-size:11.5px}
+  .signal-float .sig-top{font-size:8px;letter-spacing:1.2px}
+  .signal-float small{font-size:8px}
+  .chart-top span{font-size:8px;letter-spacing:1px}
+  .marquee span{font-size:11px;letter-spacing:1.8px;padding:11px 0 11px 20px;gap:18px}
+  .section{padding:70px 0}
+  .section-head h2{font-size:clamp(29px,8.6vw,40px);letter-spacing:-1.8px}
+  .section-head p{font-size:13px}
+  .chapter-list{grid-template-columns:1fr;padding:20px}
+  .chapter-list h3{grid-column:auto}
+  .video-caption{font-size:8.5px;letter-spacing:1px}
+  .play-circle{width:62px;height:62px}
+  .play-circle svg{width:21px;height:21px}
+  .shot figcaption{font-size:11px}
+  .algo-item{grid-template-columns:38px 1fr;gap:11px;padding:19px 0}
+  .algo-item .num{font-size:24px}
+  .algo-item h3{font-size:15.5px}
+  .algo-item p{font-size:12px}
+  .smart-copy h3{font-size:23px}
+  .setup-side{grid-template-columns:1fr}
+  .setup-steps{grid-template-columns:1fr}
+  .setup-step{border-right:0;border-bottom:1px solid var(--line-dark);padding:22px 4px 24px}
+  .setup-step:nth-child(2n),.setup-step:nth-child(3n){border-right:0}
+  .setup-step:nth-child(5),.setup-step:nth-child(6){border-bottom:1px solid var(--line-dark)}
+  .setup-step:last-child{border-bottom:0}
+  .setup-step:nth-child(2){border-right:0}
+  .order-compare{grid-template-columns:1fr}
+  .ot-grid{grid-template-columns:1fr 1fr}
+  .video-modal{padding:12px}
+  .vm-stage video{max-height:70vh}
+  .vm-close{top:10px;right:10px}
+  .lightbox{padding:12px}
+  .lb-prev{left:8px}.lb-next{right:8px}.lb-close{top:10px;right:10px}
+  .lb-stage img{max-height:70vh}
+  .record-side{grid-template-columns:1fr}
+  .start-links{grid-template-columns:1fr}
+  .start-panel{padding:28px 20px;border-radius:18px}
+  .start-copy h2{font-size:clamp(27px,8vw,36px)}
+  .start-checks li{grid-template-columns:30px 1fr;gap:9px}
+  .final{padding:64px 0}
+  .final h2{font-size:clamp(36px,10.5vw,56px);letter-spacing:-2.6px}
+  .final-side{max-width:none}
+  .final-actions{flex-direction:column;align-items:stretch}
+  .final-actions .btn{width:100%}
+  .foot-links{margin-left:0;width:100%}
+  .foot-bottom{display:block}
+  .foot-bottom span{display:block;margin-top:5px}
+  .to-top{right:14px;bottom:14px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">본문으로 건너뛰기</a>
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+<header class="site-header" id="siteHeader">
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="NEXT CHART 가이드 홈">
+      <span class="brand-mark">N</span>
+      <span class="brand-txt"><b>NEXT CHART 신호등</b><span>SIGNAL PLAYBOOK</span></span>
+    </a>
+    <nav class="nav-links" id="navLinks" aria-label="주요 섹션">
+      <a href="#film">하이라이트</a>
+      <a href="#signal">신호등</a>
+      <a href="#checks">사전 체크</a>
+      <a href="#setup">실전 셋업</a>
+      <a href="#mistakes">실수</a>
+      <a href="#start">시작하기</a>
+      <a class="nav-cta" href="https://mjky1014-collab.github.io/" target="_blank" rel="noopener">모음목록 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+    </nav>
+    <button class="menu-toggle" id="menuToggle" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="navLinks">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <span class="eyebrow"><span class="dot" aria-hidden="true"></span> 2026 NEXT CHART 신호등 · 박서연 웨비나</span>
+          <h1><span class="hero-line">신호등이 켜지면,</span><span class="hero-line">차트가 먼저 <em>움직인다.</em></span></h1>
+          <p class="hero-lede">
+            실시간 호가·온체인·청산 데이터를 겹쳐 만든 <strong>GOYA 알고리즘</strong>.<br>
+            텔레그램 NEXT Signal부터 스마트 차트, 2x isolated 주문 설정까지 —<br>
+            2시간 21분 웨비나의 핵심만 한 페이지에 담았습니다.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#film">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5-11-6.5Z"/></svg>
+              60초 하이라이트
+            </a>
+            <a class="btn btn-ghost" href="#start">시작 가이드 보기</a>
+          </div>
+          <div class="hero-stats" aria-label="핵심 숫자">
+            <div><b>3</b><small>Data Layers</small></div>
+            <div><b>3</b><small>Pre-Trade Checks</small></div>
+            <div><b>2<span>x</span></b><small>Isolated 예시</small></div>
+            <div><b>4</b><small>Common Mistakes</small></div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="chart-frame">
+            <div class="chart-top" aria-hidden="true">
+              <i></i><i></i><i></i>
+              <span>NEXT CHART / SIGNAL DASHBOARD</span>
+              <b>LIVE SIGNAL</b>
+            </div>
+            <img src="assets/hero-dashboard.jpg" alt="NEXT CHART 신호등 대시보드. ADAUSDT 차트와 현재 신호 상태가 보인다." width="1200" height="672" fetchpriority="high">
+          </div>
+          <div class="signal-float one" aria-hidden="true">
+            <div class="sig-top"><i></i> NEXT SIGNAL · SAMPLE</div>
+            <strong>NIL/USDT <span>LONG</span></strong>
+            <small>ENTRY 0.04854 · TARGET 0.04903</small>
+          </div>
+          <div class="signal-float two" aria-hidden="true">
+            <div class="sig-top"><i></i> SIGNAL WAIT</div>
+            <strong>다음 신호를 <span>기다리는 중</span></strong>
+            <small>CHECK THE CHART · 02:11</small>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <div class="marquee-group">
+          <span>NEXT SIGNAL</span><span>GREEN LIGHT / RED LIGHT</span><span>GOYA ALGORITHM</span><span>SMART CHART</span><span>0 / 0.5 STEP</span><span>2X ISOLATED</span>
+        </div>
+        <div class="marquee-group">
+          <span>NEXT SIGNAL</span><span>GREEN LIGHT / RED LIGHT</span><span>GOYA ALGORITHM</span><span>SMART CHART</span><span>0 / 0.5 STEP</span><span>2X ISOLATED</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILM -->
+  <section class="section section-dark" id="film">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="kicker">01 / Highlight</span>
+          <h2>2시간 21분,<br>60초로 먼저.</h2>
+        </div>
+        <p>NEXT CHART의 신호가 어떤 화면으로 도착하고, 어떤 순서로 판단하는지 영상으로 확인하세요. 원본 웨비나의 핵심 장면만 짧게 이어 붙였습니다.</p>
+      </div>
+
+      <div class="film-grid">
+        <div class="reveal">
+          <div class="video-card">
+            <video id="teaser" controls preload="metadata" playsinline poster="assets/video-poster.jpg" aria-label="NEXT CHART 60초 하이라이트 영상">
+              <source src="video/teaser.mp4" type="video/mp4">
+              브라우저가 video 태그를 지원하지 않습니다. <a href="video/teaser.mp4">영상 파일 열기</a>
+            </video>
+            <div class="video-overlay" id="videoOverlay">
+              <button class="play-btn" id="playBtn" type="button" aria-label="하이라이트 영상 재생">
+                <span class="play-circle"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5-11-6.5Z"/></svg></span>
+                <small>PLAY HIGHLIGHT · 60 SEC</small>
+              </button>
+            </div>
+          </div>
+          <div class="video-caption"><span><b>NEXT CHART</b> · SIGNAL HIGHLIGHT</span><span>원본 2:21:30 / 60 SEC CUT</span></div>
+          <div class="video-tools">
+            <button class="video-expand" id="videoExpand" type="button">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m13-5h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3m13 5h3a2 2 0 0 0 2-2v-3"/></svg>
+              영상 크게 보기
+            </button>
+            <a class="video-open" href="video/teaser.mp4" target="_blank" rel="noopener">새 탭에서 열기 ↗</a>
+          </div>
+        </div>
+
+        <aside class="chapter-list reveal">
+          <h3>IN THIS FILM</h3>
+          <ol>
+            <li><b>00:02</b><span>NEXT Signal 텔레그램<em>Green Light · Red Light</em></span></li>
+            <li><b>00:07</b><span>즉시 진입 vs 고가 진입<em>주문 방식 비교</em></span></li>
+            <li><b>00:20</b><span>신호등 &amp; 반대 시그널<em>방향 전환 체크</em></span></li>
+            <li><b>00:36</b><span>0.5단계 / 1.8% 예시<em>영상 속 전략 화면</em></span></li>
+            <li><b>00:48</b><span>2x isolated 세팅<em>TP/SL 함께 설정</em></span></li>
+            <li><b>01:30</b><span>Smart Chart<em>채널·라인·추세</em></span></li>
+            <li><b>01:50</b><span>GOYA Algorithm<em>3 Data Layers</em></span></li>
+          </ol>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIGNAL -->
+  <section class="section section-paper" id="signal">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="kicker">02 / Signal</span>
+          <h2>초록불, 빨간불,<br>그리고 기다림.</h2>
+        </div>
+        <p>NEXT CHART는 차트 위에 신호를 덧그립니다. 색만 보는 것이 아니라 <b>어떤 데이터가 그 색을 만들었는지</b> 확인하는 것이 핵심입니다.</p>
+      </div>
+
+      <div class="signal-grid">
+        <article class="signal-card dark reveal">
+          <div>
+            <span class="signal-light green" aria-hidden="true"></span>
+            <h3>GREEN LIGHT</h3>
+            <div class="sig-label">LONG SIGNAL</div>
+            <p>상승 신호가 감지되면 롱 진입 후보로 표시됩니다. 텔레그램 알림에는 코인, 진입가, 타겟가가 함께 도착합니다.</p>
+          </div>
+          <div class="sig-meta"><i></i> ENTRY / TARGET</div>
+        </article>
+
+        <article class="signal-card orange reveal">
+          <div>
+            <span class="signal-light red" aria-hidden="true"></span>
+            <h3>RED LIGHT</h3>
+            <div class="sig-label">SHORT SIGNAL</div>
+            <p>하락 신호는 숏 진입 후보. 반대 시그널이 나오면 기존 포지션을 정리하고 방향을 전환하는 예시도 영상에서 다룹니다.</p>
+          </div>
+          <div class="sig-meta"><i></i> REVERSE CHECK</div>
+        </article>
+
+        <article class="signal-card reveal">
+          <div>
+            <span class="signal-light amber" aria-hidden="true"></span>
+            <h3>SIGNAL WAIT</h3>
+            <div class="sig-label">NO ENTRY</div>
+            <p>신호가 겹치지 않거나 조건이 맞지 않으면 대기. 좋은 신호를 기다리는 것도 전략의 일부입니다.</p>
+          </div>
+          <div class="sig-meta"><i></i> STAY IN CASH</div>
+        </article>
+      </div>
+
+      <div class="shot-grid">
+        <figure class="shot reveal">
+          <img src="assets/signal-green.png" alt="신호등 차트 대시보드. 코인 목록과 현재 신호, 이전 신호가 표시된다." width="2060" height="672" loading="lazy">
+          <figcaption><b>실시간 신호등 대시보드</b> — 코인명·현재 신호·이전 신호를 한 화면에서 확인합니다.</figcaption>
+        </figure>
+        <figure class="shot reveal">
+          <img src="assets/signal-wait.jpg" alt="신호대기 상태의 신호등 차트 화면." width="1072" height="507" loading="lazy">
+          <figcaption><b>신호대기 화면</b> — 현재 신호가 없을 때도 이전 신호와 타임스탬프를 함께 봅니다.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHECKS -->
+  <section class="section section-dark" id="checks">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="kicker">03 / Pre-Trade Checks</span>
+          <h2>신호를 믿기 전,<br>세 가지 질문.</h2>
+        </div>
+        <p>신호등은 출발점입니다. 초록불이 켜져도 <b>시간대·반대 신호·손절 거리</b>가 맞지 않으면 진입하지 않습니다. 이 세 가지는 주문 버튼보다 먼저 확인합니다.</p>
+      </div>
+
+      <div class="checks-grid">
+        <article class="check-card reveal">
+          <span class="cn">CHECK 01</span>
+          <h3>시간대가 같은가?</h3>
+          <p>1분봉 신호와 1시간봉 추세가 반대라면 신호는 쉽게 뒤집힙니다. 내가 보는 시간대의 추세와 신호가 같은 방향인지 먼저 맞춥니다.</p>
+          <div class="cf">1M · 5M · 15M · 1H</div>
+        </article>
+        <article class="check-card reveal">
+          <span class="cn">CHECK 02</span>
+          <h3>반대 신호는 없는가?</h3>
+          <p>초록불 직전에 빨간불이 있었는지, 가까운 저항이나 스마트라인이 길을 막고 있지는 않은지 확인합니다. 반대 근거가 강하면 대기합니다.</p>
+          <div class="cf">REVERSE SIGNAL · S/R · SMART LINE</div>
+        </article>
+        <article class="check-card reveal">
+          <span class="cn">CHECK 03</span>
+          <h3>손절 거리가 감당 가능한가?</h3>
+          <p>손절까지의 거리와 수량을 곱하면 최대 손실이 됩니다. 계좌에서 감당할 수 없는 크기라면 수량을 줄이거나 진입하지 않습니다.</p>
+          <div class="cf">RISK = DISTANCE × SIZE</div>
+        </article>
+      </div>
+
+      <div class="check-band reveal">
+        <div class="cb-title">3-SECOND RULE<span>주문 전 마지막 확인</span></div>
+        <div class="cb-steps"><span>방향</span><i>→</i><span>반대 신호</span><i>→</i><span>손절 거리</span><i>→</i><span class="red">주문</span></div>
+      </div>
+
+      <div class="smart-band reveal">
+        <figure>
+          <img src="assets/smart-chart.jpg" alt="Smart Chart 화면. 스마트 채널, 스마트 라인, 추세 표시가 차트 위에 겹쳐져 있다." width="1112" height="535" loading="lazy">
+        </figure>
+        <div class="smart-copy">
+          <span class="kicker">Chart Hygiene</span>
+          <h3>차트에는<br>필요한 것만.</h3>
+          <p>스마트 채널·스마트 라인·추세·3MA까지. 레이어를 너무 많이 켜면 신호가 아니라 소음이 보입니다. 내 매매에 필요한 두세 개만 남기고 같은 화면으로 반복해서 봅니다.</p>
+          <div class="mini-tags"><span class="mini-tag">SMART LINE</span><span class="mini-tag">TREND</span><span class="mini-tag">3MA</span><span class="mini-tag">S/R</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SETUP -->
+  <section class="section section-paper" id="setup">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="kicker">04 / Execution</span>
+          <h2>신호를 주문으로<br>바꾸는 순서.</h2>
+        </div>
+        <p>영상에서는 텔레그램 신호를 받은 뒤 거래소에서 어떤 주문을 넣는지 화면으로 보여줍니다. 아래는 그 흐름을 정리한 것입니다.</p>
+      </div>
+
+      <div class="setup-shots">
+        <figure class="shot reveal">
+          <button class="shot-zoom" type="button" data-full="assets/order-entry.jpg" data-caption="즉시 진입과 고가 진입 주문 방식을 비교한 화면. 시장가와 지정가의 차이를 확인한다." aria-label="즉시 진입과 고가 진입 비교 이미지 크게 보기">
+            <img src="assets/order-entry.jpg" alt="NEXT Signal의 즉시 진입과 고가 진입 주문 방식을 비교한 화면." width="1112" height="600" loading="lazy">
+            <span class="zoom-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6M11 8v6M8 11h6"/></svg>VIEW LARGE</span>
+          </button>
+          <figcaption><b>즉시 진입 vs 고가 진입</b> — 시장가로 바로 들어가는 방식과 지정가로 기다리는 방식을 나란히 비교합니다.</figcaption>
+        </figure>
+        <div class="setup-side">
+          <figure class="shot reveal">
+            <button class="shot-zoom" type="button" data-full="assets/leverage.jpg" data-caption="거래소에서 2배 격리 모드와 TP/SL을 설정하는 화면. 영상의 예시 설정이다." aria-label="2배 격리 설정 이미지 크게 보기">
+              <img src="assets/leverage.jpg" alt="거래소에서 2배 격리 모드와 TP/SL을 설정하는 화면." width="1112" height="600" loading="lazy">
+              <span class="zoom-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6M11 8v6M8 11h6"/></svg>VIEW LARGE</span>
+            </button>
+            <figcaption><b>2x isolated</b> — 영상의 예시 설정. TP/SL을 함께 지정합니다.</figcaption>
+          </figure>
+          <figure class="shot reveal">
+            <button class="shot-zoom" type="button" data-full="assets/strategy.jpg" data-caption="0.5단계 전략 차트. 1.8% 익절 라인이 표시되어 있다." aria-label="0.5단계 전략 차트 이미지 크게 보기">
+              <img src="assets/strategy.jpg" alt="0.5단계 전략 차트. 1.8% 익절 라인이 표시되어 있다." width="1112" height="600" loading="lazy">
+              <span class="zoom-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6M11 8v6M8 11h6"/></svg>VIEW LARGE</span>
+            </button>
+            <figcaption><b>0.5단계 예시</b> — 1.8% 구간을 표시한 차트 화면.</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="order-compare reveal">
+        <article class="order-mode">
+          <span class="om-k">MARKET ORDER</span>
+          <h3>즉시 진입</h3>
+          <p>신호가 확인되면 시장가로 바로 진입합니다. 놓칠 위험은 줄지만, 체결가가 신호 가격보다 불리할 수 있습니다.</p>
+          <div class="om-tags"><span>빠른 체결</span><span>슬리피지 주의</span></div>
+        </article>
+        <article class="order-mode">
+          <span class="om-k">LIMIT ORDER</span>
+          <h3>고가 진입</h3>
+          <p>지정가로 눌림을 기다립니다. 체결가가 유리할 수 있지만, 신호가 지나가면 진입 기회를 놓칠 수 있습니다.</p>
+          <div class="om-tags"><span>가격 유리</span><span>미체결 위험</span></div>
+        </article>
+      </div>
+
+      <div class="setup-steps reveal">
+        <div class="setup-step"><span class="n">STEP 01</span><h3>신호 확인</h3><p>NEXT Signal 알림에서 코인, 방향, 진입가, 타겟가를 확인합니다.</p></div>
+        <div class="setup-step"><span class="n">STEP 02</span><h3>시간대 확인</h3><p>신호가 나온 시간대와 내 차트의 추세가 같은 방향인지 확인합니다.</p></div>
+        <div class="setup-step"><span class="n">STEP 03</span><h3>주문 방식 선택</h3><p>즉시 진입은 시장가, 고가 진입은 지정가. 상황에 맞게 하나를 고릅니다.</p></div>
+        <div class="setup-step"><span class="n">STEP 04</span><h3>수량·레버리지</h3><p>영상의 예시는 2배 격리. 손절까지의 거리로 최대 손실을 먼저 계산합니다.</p></div>
+        <div class="setup-step"><span class="n">STEP 05</span><h3>TP / SL 입력</h3><p>진입과 동시에 익절가와 손절가를 입력합니다. 손절 없는 주문은 만들지 않습니다.</p></div>
+        <div class="setup-step"><span class="n">STEP 06</span><h3>반대 신호 대응</h3><p>추세가 바뀌면 반대 시그널과 리버스 기능을 확인하고 비중을 줄입니다.</p></div>
+      </div>
+
+      <div class="order-ticket reveal">
+        <div class="ot-head"><span>ORDER TICKET · EXAMPLE</span><b>주문 전에 숫자로 확인</b></div>
+        <div class="ot-grid">
+          <div><span>ENTRY</span><b>신호 진입가</b></div>
+          <div><span>STOP</span><b>무효화되는 가격</b></div>
+          <div><span>TARGET</span><b>익절 목표가</b></div>
+          <div><span>MAX LOSS</span><b>거리 × 수량</b></div>
+        </div>
+        <p>네 칸이 모두 채워지지 않으면 주문하지 않습니다. 특히 <b>MAX LOSS</b>가 계좌에서 감당 가능한 금액인지 먼저 확인하세요.</p>
+      </div>
+
+      <p class="setup-note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>
+        <span>영상에 등장한 설정 예시이며 투자 권유가 아닙니다. 레버리지는 수익뿐 아니라 손실도 같은 배수로 확대합니다.</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- MISTAKES -->
+  <section class="section section-dark" id="mistakes">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="kicker">05 / Common Mistakes</span>
+          <h2>신호보다 먼저<br>고치는 <em>습관.</em></h2>
+        </div>
+        <p>신호를 아는 것과 계좌를 지키는 것은 다릅니다. 영상에서 강조한 규칙을 어기는 순간은 대부분 아래 네 가지입니다.</p>
+      </div>
+
+      <div class="mistakes-grid">
+        <article class="mistake-card reveal">
+          <span class="mn">01</span>
+          <div><h3>신호만 보고 바로 진입</h3><p>시간대와 반대 신호를 확인하지 않고 초록불만 보고 들어갑니다. 신호는 방향일 뿐, 진입 근거 전체가 아닙니다.</p></div>
+        </article>
+        <article class="mistake-card reveal">
+          <span class="mn">02</span>
+          <div><h3>손절 없이 익절만 설정</h3><p>목표가만 걸어두고 손절을 비워둡니다. 틀렸을 때 얼마를 잃을지 모르는 주문은 주문이 아니라 도박입니다.</p></div>
+        </article>
+        <article class="mistake-card reveal">
+          <span class="mn">03</span>
+          <div><h3>신호가 지나간 뒤 추격</h3><p>이미 급등한 뒤에 뒤늦게 따라 들어갑니다. 늦은 진입은 손절 거리를 넓히고 손익비를 무너뜨립니다.</p></div>
+        </article>
+        <article class="mistake-card reveal">
+          <span class="mn">04</span>
+          <div><h3>결과만 기억하고 기록은 안 함</h3><p>수익 난 날만 기억하고 과정을 남기지 않습니다. 기록이 없으면 같은 실수를 반복해도 원인을 찾을 수 없습니다.</p></div>
+        </article>
+      </div>
+
+      <div class="journal-panel reveal">
+        <div class="journal-copy">
+          <span class="kicker">Trade Journal</span>
+          <h3>한 줄 기록이<br>다음 주문을 바꿉니다.</h3>
+          <p>진입 이유, 손절 위치, 결과를 같은 형식으로 남기세요. 잘한 매매보다 <b>반복 가능한 매매</b>를 찾는 것이 목적입니다.</p>
+          <button class="btn btn-primary" type="button" data-copy="[NEXT CHART 기록 템플릿]&#10;날짜 / 코인 / 시간대&#10;신호: GREEN or RED&#10;진입 이유:&#10;진입가 / 손절가 / 목표가:&#10;수량 / 최대 손실:&#10;결과:&#10;복기:">기록 템플릿 복사</button>
+        </div>
+        <div class="journal-fields" aria-label="기록 항목 예시">
+          <div><b>DATE</b><span>2026.10.22</span></div>
+          <div><b>PAIR</b><span>BTCUSDT</span></div>
+          <div><b>SIGNAL</b><span>GREEN LIGHT</span></div>
+          <div><b>TIMEFRAME</b><span>15M / 1H</span></div>
+          <div><b>ENTRY</b><span>—</span></div>
+          <div><b>STOP / TARGET</b><span>— / —</span></div>
+          <div><b>RESULT</b><span>—</span></div>
+          <div><b>REVIEW</b><span>한 줄 복기</span></div>
+        </div>
+      </div>
+
+      <p class="disclaimer"><b>READ THIS.</b> 위 내용은 2026 NEXT CHART 웨비나에서 소개된 규칙을 요약한 것입니다. 특정 종목의 매수·매도 추천이 아니며, 과거 기록은 미래 수익을 보장하지 않습니다. 디지털 자산 거래는 원금 손실 위험이 있습니다.</p>
+    </div>
+  </section>
+
+  <!-- START -->
+  <section class="section section-paper" id="start">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="kicker">06 / Start</span>
+          <h2>오늘부터 적용하는<br>5단계.</h2>
+        </div>
+        <p>신호를 받는 것에서 끝내지 말고, 시간대·차트·주문·기록까지 한 흐름으로 연결하세요. 처음이라면 아래 순서대로 천천히 따라오세요.</p>
+      </div>
+
+      <div class="start-panel reveal">
+        <div class="start-copy">
+          <span class="kicker">START CHECKLIST</span>
+          <h2>준비가 끝나면,<br>신호는 더 선명해집니다.</h2>
+          <p>이 페이지는 영상의 공개 화면과 설명을 정리한 가이드입니다. 외부 접속 주소 대신, 지금 바로 적용할 수 있는 순서와 체크리스트를 담았습니다.</p>
+        </div>
+        <ol class="start-checks">
+          <li><span class="c">01</span><div><b>신호 형식 익히기</b><span>Green Light·Red Light·대기의 차이를 먼저 구분합니다.</span></div></li>
+          <li><span class="c">02</span><div><b>시간대 맞추기</b><span>내가 보는 차트의 추세와 신호 방향이 같은지 확인합니다.</span></div></li>
+          <li><span class="c">03</span><div><b>차트 레이어 정리</b><span>스마트라인·추세·3MA 등 필요한 두세 개만 남깁니다.</span></div></li>
+          <li><span class="c">04</span><div><b>주문·손절 설정</b><span>진입과 동시에 TP/SL을 입력하고 최대 손실을 확인합니다.</span></div></li>
+          <li><span class="c">05</span><div><b>기록과 복기</b><span>진입 이유와 결과를 한 줄로 남겨 다음 주문에 반영합니다.</span></div></li>
+        </ol>
+
+        <div class="start-links">
+          <a class="link-card" href="#signal">
+            <span class="lc-k">SIGNAL</span><strong>신호등 읽기</strong><small>초록불·빨간불·대기</small><span class="arrow">→</span>
+          </a>
+          <a class="link-card" href="#checks">
+            <span class="lc-k">CHECK</span><strong>사전 체크 3</strong><small>시간대·반대 신호·손절</small><span class="arrow">→</span>
+          </a>
+          <a class="link-card" href="#setup">
+            <span class="lc-k">ORDER</span><strong>실전 셋업</strong><small>주문 방식과 TP/SL</small><span class="arrow">→</span>
+          </a>
+          <a class="link-card" href="#mistakes">
+            <span class="lc-k">REVIEW</span><strong>실수 피하기</strong><small>자주 반복하는 4가지</small><span class="arrow">→</span>
+          </a>
+        </div>
+        <p class="start-foot">본 페이지는 특정 거래소 가입이나 매매를 권유하지 않습니다. 디지털 자산 거래에는 원금 손실 위험이 있으며, 모든 판단과 책임은 이용자 본인에게 있습니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL -->
+  <section class="final">
+    <div class="wrap">
+      <h2>신호를 읽는 힘은,<br><span>기다림에서 시작됩니다.</span></h2>
+      <div class="final-side">
+        <p>이 페이지의 체크리스트로 오늘의 차트를 다시 확인하고, 60초 하이라이트로 전체 흐름을 다시 잡아보세요.</p>
+        <div class="final-actions">
+          <a class="btn btn-dark" href="https://mjky1014-collab.github.io/" target="_blank" rel="noopener">모음목록으로 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+          <a class="btn" href="#film" style="background:rgba(25,11,3,.08);color:#190b03">영상 다시 보기</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <span class="brand-mark">N</span>
+        <div><b>NEXT CHART 신호등</b><span>SIGNAL PLAYBOOK · 2026</span></div>
+      </div>
+      <div class="foot-links">
+        <a href="#film">하이라이트</a>
+        <a href="#signal">신호등</a>
+        <a href="#checks">사전 체크</a>
+        <a href="#setup">실전 셋업</a>
+        <a href="#mistakes">실수</a>
+        <a href="#start">시작하기</a>
+        <a href="https://mjky1014-collab.github.io/" target="_blank" rel="noopener">모음목록 ↗</a>
+      </div>
+    </div>
+    <p class="foot-disclaimer">
+      <b>정보성 페이지 안내.</b> 본 페이지는 2026-넥스트차트 박서연 웨비나의 공개 화면과 설명을 요약한 정보성 콘텐츠입니다. 특정 종목·상품의 매수·매도 추천 또는 수익 보장이 아니며, 디지털 자산 거래와 레버리지 사용에는 원금 손실 위험이 있습니다. 모든 투자 판단과 책임은 이용자 본인에게 있습니다. 외부 거래소 링크는 제공하지 않으며, 필요한 경우 해당 서비스의 공식 약관과 수수료를 직접 확인하세요.
+    </p>
+    <div class="foot-bottom">
+      <span>© 2026 NEXT CHART SIGNAL PLAYBOOK</span>
+      <span>SOURCE · 2026-넥스트차트 박서연 웨비나 / SCREEN CAPTURES</span>
+    </div>
+  </div>
+</footer>
+
+<div class="video-modal" id="videoModal" role="dialog" aria-modal="true" aria-label="하이라이트 영상 크게 보기" aria-hidden="true">
+  <button class="vm-close" id="videoClose" type="button" aria-label="영상 닫기">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+  </button>
+  <div class="vm-stage">
+    <video id="modalVideo" controls playsinline preload="metadata" poster="assets/video-poster.jpg">
+      <source src="video/teaser.mp4" type="video/mp4">
+      브라우저가 video 태그를 지원하지 않습니다. <a href="video/teaser.mp4">영상 파일 열기</a>
+    </video>
+    <p>NEXT CHART · 60초 하이라이트 <span>ESC로 닫기</span></p>
+  </div>
+</div>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="이미지 크게 보기" aria-hidden="true">
+  <button class="lb-close" id="lbClose" type="button" aria-label="닫기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+  <button class="lb-prev" id="lbPrev" type="button" aria-label="이전 이미지"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button>
+  <button class="lb-next" id="lbNext" type="button" aria-label="다음 이미지"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
+  <div class="lb-stage"><img id="lbImg" src="" alt=""><div class="lb-cap" id="lbCap"></div></div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg>
+  <span id="toastMsg">복사되었습니다</span>
+</div>
+<a class="to-top" id="toTop" href="#top" aria-label="맨 위로 이동">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5m0 0-6 6m6-6 6 6"/></svg>
+</a>
+
+<script>
+(function(){
+  'use strict';
+
+  const $ = (sel, el = document) => el.querySelector(sel);
+  const $$ = (sel, el = document) => [...el.querySelectorAll(sel)];
+
+  /* header / progress / top */
+  const header = $('#siteHeader');
+  const progress = $('#scrollProgress');
+  const toTop = $('#toTop');
+  function onScroll(){
+    const y = window.scrollY || document.documentElement.scrollTop;
+    header.classList.toggle('scrolled', y > 24);
+    toTop.classList.toggle('on', y > 700);
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.width = (max > 0 ? Math.min(100, (y / max) * 100) : 0) + '%';
+  }
+  addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* mobile menu */
+  const menuToggle = $('#menuToggle');
+  const navLinks = $('#navLinks');
+  menuToggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', String(open));
+    menuToggle.setAttribute('aria-label', open ? '메뉴 닫기' : '메뉴 열기');
+  });
+  $$('#navLinks a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+  }));
+  addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      navLinks.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  /* video overlay */
+  const teaser = $('#teaser');
+  const overlay = $('#videoOverlay');
+  const playBtn = $('#playBtn');
+  function hideOverlay(){ overlay.classList.add('hidden'); }
+  function showOverlay(){ overlay.classList.remove('hidden'); }
+  playBtn.addEventListener('click', async () => {
+    hideOverlay();
+    try { await teaser.play(); } catch(e) { /* native controls remain */ }
+  });
+  teaser.addEventListener('play', hideOverlay);
+  teaser.addEventListener('pause', () => { if (!teaser.ended) showOverlay(); });
+  teaser.addEventListener('ended', showOverlay);
+
+  /* video modal */
+  const videoModal = $('#videoModal');
+  const modalVideo = $('#modalVideo');
+  const videoExpand = $('#videoExpand');
+  function openVideoModal(){
+    videoModal.classList.add('on');
+    videoModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    try { modalVideo.currentTime = 0; } catch(e) {}
+    modalVideo.play().catch(() => {});
+    $('#videoClose').focus();
+  }
+  function closeVideoModal(){
+    videoModal.classList.remove('on');
+    videoModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    modalVideo.pause();
+    videoExpand.focus();
+  }
+  videoExpand.addEventListener('click', openVideoModal);
+  $('#videoClose').addEventListener('click', closeVideoModal);
+  videoModal.addEventListener('click', e => { if (e.target === videoModal) closeVideoModal(); });
+  addEventListener('keydown', e => {
+    if (e.key === 'Escape' && videoModal.classList.contains('on')) closeVideoModal();
+  });
+
+  /* image lightbox */
+  const lightbox = $('#lightbox');
+  const lbImg = $('#lbImg');
+  const lbCap = $('#lbCap');
+  const zoomables = $$('.shot-zoom');
+  let lbIndex = -1;
+  function openLb(i){
+    if (!zoomables.length) return;
+    lbIndex = i;
+    const btn = zoomables[i];
+    lbImg.src = btn.dataset.full;
+    lbImg.alt = btn.querySelector('img')?.alt || '';
+    lbCap.textContent = btn.dataset.caption || '';
+    lightbox.classList.add('on');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    $('#lbClose').focus();
+  }
+  function closeLb(){
+    lightbox.classList.remove('on');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (lbIndex >= 0) zoomables[lbIndex].focus();
+  }
+  function moveLb(dir){
+    if (!zoomables.length) return;
+    openLb((lbIndex + dir + zoomables.length) % zoomables.length);
+  }
+  zoomables.forEach((btn, i) => btn.addEventListener('click', () => openLb(i)));
+  $('#lbClose').addEventListener('click', closeLb);
+  $('#lbPrev').addEventListener('click', () => moveLb(-1));
+  $('#lbNext').addEventListener('click', () => moveLb(1));
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLb(); });
+  addEventListener('keydown', e => {
+    if (!lightbox.classList.contains('on')) return;
+    if (e.key === 'Escape') closeLb();
+    if (e.key === 'ArrowLeft') moveLb(-1);
+    if (e.key === 'ArrowRight') moveLb(1);
+  });
+
+  /* toast + copy */
+  const toast = $('#toast');
+  const toastMsg = $('#toastMsg');
+  let toastTimer = null;
+  function showToast(msg){
+    toastMsg.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2000);
+  }
+  async function copyText(text, msg){
+    try { await navigator.clipboard.writeText(text); }
+    catch(e){
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch(err) {}
+      ta.remove();
+    }
+    showToast(msg || '복사되었습니다');
+  }
+  $$('[data-copy]').forEach(btn => {
+    btn.addEventListener('click', () => copyText(btn.dataset.copy, '복사되었습니다'));
+  });
+
+  /* reveal */
+  const revealEls = $$('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('on');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
+    revealEls.forEach((el, i) => {
+      el.style.transitionDelay = Math.min(i % 4 * 55, 165) + 'ms';
+      io.observe(el);
+    });
+  } else {
+    revealEls.forEach(el => el.classList.add('on'));
+  }
+
+  /* nav active */
+  const sections = ['film','signal','checks','setup','mistakes','start'].map(id => document.getElementById(id)).filter(Boolean);
+  const navAnchors = $$('#navLinks a[href^="#"]');
+  if ('IntersectionObserver' in window && sections.length) {
+    const spy = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const id = entry.target.id;
+        navAnchors.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+      });
+    }, { rootMargin: '-42% 0px -52% 0px', threshold: 0 });
+    sections.forEach(s => spy.observe(s));
+  }
+})();
+</script>
+</body>
+</html>
