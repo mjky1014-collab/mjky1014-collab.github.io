@@ -31,6 +31,12 @@
   --red-2:#c93520;
   --blue:#3f7df3;
   --green:#0e9f6e;
+  --ma7:#ffffff;
+  --ma20:#22c55e;
+  --ma60:#e8482e;
+  --ma7-ink:#16222d;
+  --ma20-ink:#06351f;
+  --ma60-ink:#ffffff;
   --gold:#c98a00;
   --line:#dcd2c1;
   --line-soft:rgba(17,26,34,.12);
@@ -138,7 +144,7 @@ section[id]{scroll-margin-top:86px}
 .terminal svg{display:block;width:100%;height:auto;background:#0d151c}
 .terminal-foot{display:flex;align-items:center;gap:14px;padding:11px 14px;border-top:1px solid rgba(255,255,255,.08);background:var(--ink-2);font-family:var(--cond);font-size:10px;font-weight:600;letter-spacing:1.2px;color:#8d98a1;flex-wrap:wrap}
 .terminal-foot i{width:16px;height:2px;border-radius:2px;display:inline-block;margin-right:4px;vertical-align:middle}
-.terminal-foot .r i{background:var(--red)}.terminal-foot .b i{background:var(--blue)}.terminal-foot .g i{background:var(--green)}
+.terminal-foot .r i{background:var(--ma7);border:1px solid rgba(255,255,255,.45)}.terminal-foot .b i{background:var(--ma20)}.terminal-foot .g i{background:var(--ma60)}
 .float-note{position:absolute;right:-18px;bottom:-26px;z-index:2;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 17px;box-shadow:0 18px 40px rgba(35,27,16,.16);min-width:196px}
 .float-note span{display:flex;align-items:center;gap:7px;font-family:var(--cond);font-size:9.5px;font-weight:700;letter-spacing:1.7px;color:var(--red);margin-bottom:6px}
 .float-note span i{width:6px;height:6px;border-radius:50%;background:var(--red)}
@@ -155,13 +161,13 @@ section[id]{scroll-margin-top:86px}
 .ma-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;position:relative;z-index:1}
 .ma-card{background:#fffdf8;border:1px solid var(--line);border-radius:14px;padding:26px 24px 24px;position:relative;overflow:hidden;transition:.25s}
 .ma-card:hover{transform:translateY(-4px);box-shadow:0 18px 38px rgba(35,27,16,.09)}
-.ma-card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:var(--c)}
+.ma-card::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:var(--c);border-bottom:1px solid rgba(17,26,34,.16)}
 .ma-card .ma-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:18px}
-.ma-card .ma-num{font-family:var(--cond);font-size:50px;line-height:.85;font-weight:700;color:var(--c);letter-spacing:-1px}
+.ma-card .ma-num{font-family:var(--cond);font-size:50px;line-height:.85;font-weight:700;color:var(--c-ink,var(--c));letter-spacing:-1px}
 .ma-card .ma-tag{font-family:var(--cond);font-size:9.5px;font-weight:700;letter-spacing:1.5px;color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:4px 8px;white-space:nowrap}
 .ma-card h3{font-family:var(--display);font-size:23px;font-weight:400;letter-spacing:-.8px;margin:0 0 8px}
 .ma-card p{font-size:12.5px;line-height:1.8;color:var(--muted);margin:0}
-.ma-card .ma-line{margin-top:18px;padding-top:13px;border-top:1px dashed var(--line);font-family:var(--cond);font-size:10px;font-weight:700;letter-spacing:1.4px;color:var(--c)}
+.ma-card .ma-line{margin-top:18px;padding-top:13px;border-top:1px dashed var(--line);font-family:var(--cond);font-size:10px;font-weight:700;letter-spacing:1.4px;color:var(--c-ink,var(--c))}
 .concept-foot{display:grid;grid-template-columns:1.25fr .75fr;gap:20px;align-items:stretch;margin-top:22px;position:relative;z-index:1}
 .quote-panel{background:var(--ink);color:var(--paper);border-radius:14px;padding:26px 28px;display:flex;flex-direction:column;justify-content:center}
 .quote-panel p{margin:0;font-size:15px;line-height:1.8;color:#d8dee3}
@@ -180,19 +186,19 @@ section[id]{scroll-margin-top:86px}
 .align-row{border:1px solid var(--line-dark);border-radius:12px;padding:18px 19px;background:rgba(255,255,255,.035)}
 .align-row h3{display:flex;align-items:center;gap:8px;font-family:var(--display);font-size:20px;font-weight:400;letter-spacing:-.5px;margin:0 0 5px}
 .align-row h3 span{font-family:var(--cond);font-size:9.5px;font-weight:700;letter-spacing:1.5px;border-radius:4px;padding:3px 6px}
-.align-row.bull h3{color:#ff9a86}.align-row.bull h3 span{background:rgba(232,72,46,.16);color:#ff9a86;border:1px solid rgba(232,72,46,.3)}
-.align-row.bear h3{color:#7fc4ff}.align-row.bear h3 span{background:rgba(63,125,243,.16);color:#9ec5ff;border:1px solid rgba(63,125,243,.3)}
+.align-row.bull h3{color:#7ee2a8}.align-row.bull h3 span{background:rgba(34,197,94,.16);color:#8ff0b5;border:1px solid rgba(34,197,94,.35)}
+.align-row.bear h3{color:#ff9a86}.align-row.bear h3 span{background:rgba(232,72,46,.16);color:#ff9a86;border:1px solid rgba(232,72,46,.32)}
 .align-row p{font-size:12px;line-height:1.75;color:#9da8b0;margin:0}
 .align-visual{background:rgba(255,255,255,.035);border:1px solid var(--line-dark);border-radius:16px;padding:18px}
 .stack{display:grid;gap:8px;margin:8px 0 18px}
 .stack div{height:38px;border-radius:8px;display:flex;align-items:center;justify-content:space-between;padding:0 13px;font-family:var(--cond);font-size:11px;font-weight:700;letter-spacing:1.2px;color:#101820}
-.stack .s7{background:#ff846f}.stack .s20{background:#9ec5ff}.stack .s60{background:#7fe3bd}
+.stack .s7{background:var(--ma7);color:var(--ma7-ink);border:1px solid rgba(22,34,45,.7)}
+.stack .s20{background:var(--ma20);color:var(--ma20-ink)}
+.stack .s60{background:var(--ma60);color:var(--ma60-ink)}
 .stack-labels{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .stack-box{border:1px solid var(--line-dark);border-radius:11px;padding:13px}
 .stack-box h4{margin:0 0 9px;font-family:var(--cond);font-size:10px;font-weight:700;letter-spacing:1.5px;color:#8d98a1}
-.stack-box.bear .stack div:nth-child(1){background:#7fe3bd}
-.stack-box.bear .stack div:nth-child(2){background:#9ec5ff}
-.stack-box.bear .stack div:nth-child(3){background:#ff846f}
+
 .stack small{display:block;margin-top:4px;font-size:10px;color:#8d98a1;line-height:1.5}
 .align-check{margin-top:18px;padding:17px 18px;border-left:3px solid var(--red);background:rgba(232,72,46,.08);border-radius:0 9px 9px 0;font-size:12px;line-height:1.8;color:#c2cbd1}
 .align-check b{color:#fff}
@@ -220,6 +226,11 @@ section[id]{scroll-margin-top:86px}
 .cross-seq li{display:grid;grid-template-columns:29px 1fr;gap:9px;font-size:12px;line-height:1.65;color:#aeb8bf}
 .cross-seq li b{width:24px;height:24px;border-radius:50%;border:1px solid rgba(232,72,46,.45);background:rgba(232,72,46,.1);color:#ff846f;display:grid;place-items:center;font-family:var(--cond);font-size:10px}
 .cross-seq li strong{display:block;color:#fff;font-size:12.5px;margin-bottom:2px}
+.cross-seq.steps-row{display:block;margin-top:16px;padding:20px 22px}
+.cross-seq.steps-row ol{grid-template-columns:repeat(4,1fr);gap:14px}
+.cross-seq.steps-row li{grid-template-columns:29px 1fr;align-items:start}
+@media(max-width:900px){.cross-seq.steps-row ol{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.cross-seq.steps-row ol{grid-template-columns:1fr}}
 
 /* signals */
 .signal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;position:relative;z-index:1}
@@ -293,10 +304,151 @@ section[id]{scroll-margin-top:86px}
 .checklist-copy h2{font-family:var(--display);font-size:clamp(28px,3.4vw,42px);font-weight:400;line-height:1.22;letter-spacing:-1.4px;margin:12px 0 13px}
 .checklist-copy p{font-size:12.5px;line-height:1.85;color:#aeb8bf;margin:0 0 19px}
 .checklist-copy .btn{margin-right:6px}
+.checklist .btn-outline{border-color:rgba(255,255,255,.3);color:#fff;background:transparent}
+.checklist .btn-outline:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.55)}
+.checklist-goya{position:absolute;right:24px;bottom:12px;display:flex;align-items:flex-end;gap:6px;z-index:1;pointer-events:none}
+.checklist-goya .goya{width:94px;animation:goyaFloat 4.4s ease-in-out infinite;transform-origin:50% 100%}
+.checklist-goya .goya-bubble{position:relative;left:auto;bottom:auto;transform:none;margin-bottom:32px;max-width:120px;padding:7px 9px;font-size:10px;animation:goyaBubble 4.6s ease-in-out infinite}
+.checklist-goya .goya-bubble::after{left:auto;right:14px;bottom:-6px;transform:rotate(45deg)}
+@media(max-width:900px){.checklist-goya{display:none}}
 .check-list{list-style:none;margin:0;padding:0;display:grid;align-content:start;position:relative;z-index:1}
 .check-list li{display:grid;grid-template-columns:22px 1fr;gap:10px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.1);font-size:12px;line-height:1.65;color:#c3ccd2}
 .check-list li:first-child{border-top:1px solid rgba(255,255,255,.1)}
 .check-list .c{width:18px;height:18px;border-radius:4px;border:1px solid rgba(232,72,46,.55);background:rgba(232,72,46,.12);display:grid;place-items:center;color:#ff846f;font-size:10px;font-weight:900;margin-top:2px}
+
+/* MA color system + teaching charts */
+.ma-legend{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;font-family:var(--cond);font-size:10.5px;font-weight:700;letter-spacing:1.3px;color:var(--muted)}
+.ma-legend span{display:inline-flex;align-items:center;gap:7px}
+.ma-legend i{width:24px;height:3px;border-radius:3px;display:inline-block;background:var(--c)}
+.ma-legend .lg7{--c:var(--ma7)}
+.ma-legend .lg20{--c:var(--ma20)}
+.ma-legend .lg60{--c:var(--ma60)}
+.ma-legend .lg7 i{border:1px solid rgba(17,26,34,.5);height:4px}
+.section-dark .ma-legend{color:#aab5bd}
+.section-dark .ma-legend .lg7 i{border-color:rgba(255,255,255,.55)}
+.ma-legend .legend-note{margin-left:auto;color:var(--muted-2);font-family:var(--cond);font-size:9px;letter-spacing:1.4px}
+.section-dark .ma-legend .legend-note{color:#7f8b94}
+
+.chart-duo{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:26px;position:relative;z-index:1}
+.chart-panel{margin:0;background:#0d151c;border:1px solid rgba(255,255,255,.12);border-radius:14px;overflow:hidden;min-width:0;box-shadow:0 16px 34px rgba(20,15,8,.12)}
+.chart-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:13px 15px 12px;border-bottom:1px solid rgba(255,255,255,.08)}
+.chart-head h3{font-family:var(--display);font-size:15px;font-weight:400;letter-spacing:-.4px;color:#f4f6f7;margin:0}
+.chart-head .chart-tag{font-family:var(--cond);font-size:8.5px;font-weight:700;letter-spacing:1.5px;padding:5px 8px;border-radius:99px;white-space:nowrap}
+.chart-tag.bull{background:rgba(34,197,94,.14);border:1px solid rgba(34,197,94,.4);color:#8ff0b5}
+.chart-tag.bear{background:rgba(232,72,46,.14);border:1px solid rgba(232,72,46,.42);color:#ff9a86}
+.chart-panel svg{display:block;width:100%;height:auto;background:#0d151c}
+.chart-cap{padding:10px 15px 13px;font-size:11px;line-height:1.65;color:#aab5bd;border-top:1px solid rgba(255,255,255,.06);margin:0}
+.chart-cap b{color:#fff}
+.chart-panel .ma-legend{padding:10px 15px 0;font-size:9px;letter-spacing:1px;color:#aab5bd}
+.chart-panel .ma-legend span{gap:5px}
+.chart-panel .ma-legend i{width:16px;height:2px}
+.chart-panel .ma-legend .lg7 i{border-color:rgba(255,255,255,.4)}
+.chart-panel .ma-legend .legend-note{display:none}
+.chart-annotation{font-family:Arial,sans-serif;font-size:9px;font-weight:700;letter-spacing:.4px}
+.chart-grid-line{stroke:#24323d;stroke-width:1}
+.chart-axis{font-family:Arial,sans-serif;font-size:8px;fill:#5e6b75}
+.chart-white-line{fill:none;stroke:#fff;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.chart-green-line{fill:none;stroke:#22c55e;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.chart-red-line{fill:none;stroke:#e8482e;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.chart-cross-ring{fill:none;stroke:#7ee2a8;stroke-width:1.5;stroke-dasharray:3 3}
+
+/* Goya mascot */
+.goya{display:block;position:relative;user-select:none;pointer-events:none}
+.goya img{display:block;width:100%;height:auto;filter:drop-shadow(0 14px 16px rgba(17,26,34,.18))}
+.goya-wrap{position:relative;z-index:2}
+.goya-wrap .goya-bubble{position:absolute;left:52%;bottom:62%;width:max-content;max-width:210px;background:#fffdf8;border:1px solid var(--line);border-radius:12px;padding:9px 12px;box-shadow:0 12px 28px rgba(35,27,16,.1);font-size:10.5px;line-height:1.55;font-weight:800;color:var(--ink);animation:goyaBubble 4s ease-in-out infinite}
+.goya-bubble::after{content:"";position:absolute;left:12px;bottom:-6px;width:10px;height:10px;background:#fffdf8;border-right:1px solid var(--line);border-bottom:1px solid var(--line);transform:rotate(45deg)}
+.goya-bubble b{color:var(--red)}
+.goya-hero{position:absolute;left:-26px;bottom:-24px;width:148px;z-index:3;transform-origin:50% 100%;animation:goyaFloat 4.2s ease-in-out infinite}
+.goya-hero .goya-bubble{left:88%;bottom:48%;max-width:190px}
+.goya-strategy{width:150px;flex:0 0 150px;animation:goyaPoint 3.6s ease-in-out infinite;transform-origin:50% 100%}
+.goya-practice{width:168px;flex:0 0 168px;animation:goyaBreathe 4.6s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes goyaFloat{0%,100%{transform:translateY(0) rotate(-1.5deg)}50%{transform:translateY(-9px) rotate(1deg)}}
+@keyframes goyaPoint{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-5px) rotate(2.5deg)}}
+@keyframes goyaBreathe{0%,100%{transform:scale(1)}50%{transform:scale(1.035)}}
+@keyframes goyaBubble{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-4px) rotate(.5deg)}}
+
+/* TOP coin strategy */
+.strategy-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:30px;align-items:center;position:relative;z-index:1}
+.strategy-copy .ma-legend{margin-bottom:14px}
+.strategy-steps{display:grid;gap:11px;margin-top:18px}
+.strategy-step{display:grid;grid-template-columns:42px 1fr;gap:13px;padding:15px 16px;background:#fffdf8;border:1px solid var(--line);border-radius:12px;position:relative;transition:.25s}
+.strategy-step:hover{transform:translateX(3px);border-color:#c9bca6;box-shadow:0 12px 26px rgba(35,27,16,.07)}
+.strategy-step .num{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;background:var(--ink);color:#fff;font-family:var(--cond);font-size:16px;font-weight:700;letter-spacing:-.5px}
+.strategy-step:nth-child(1) .num{background:var(--ma20);color:var(--ma20-ink)}
+.strategy-step:nth-child(3) .num{background:var(--ma60);color:#fff}
+.strategy-step h3{font-size:13px;font-weight:900;margin:0 0 4px;letter-spacing:-.2px}
+.strategy-step p{font-size:11.5px;line-height:1.68;color:var(--muted);margin:0}
+.strategy-step p b{color:var(--ink)}
+.strategy-visual{position:relative}
+.strategy-figure{margin:0;background:#fffdf8;border:1px solid var(--line);border-radius:14px;padding:9px;box-shadow:0 18px 40px rgba(35,27,16,.09)}
+.strategy-figure button,.practice-figure button{display:block;width:100%;position:relative;border-radius:8px;overflow:hidden;background:#0d151c}
+.strategy-figure img,.practice-figure img{display:block;width:100%;height:auto;border-radius:8px}
+.strategy-figure figcaption{padding:9px 4px 3px;font-size:10.5px;line-height:1.65;color:var(--muted)}
+.strategy-goya{display:flex;align-items:flex-end;gap:10px;margin-top:14px;position:relative;z-index:2}
+.strategy-goya .goya{width:112px;flex:0 0 112px;animation:goyaPoint 3.6s ease-in-out infinite;transform-origin:50% 100%}
+.strategy-goya .goya-bubble{position:relative;left:auto;bottom:auto;transform:none;margin-bottom:56px;max-width:190px;animation:goyaBubble 4.4s ease-in-out infinite}
+.strategy-goya .goya-bubble::after{left:auto;right:16px;bottom:-6px;transform:rotate(45deg)}
+
+/* Demo / low leverage */
+.practice-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:28px;align-items:start;position:relative;z-index:1}
+.practice-figure{margin:0;background:#fffdf8;border:1px solid var(--line);border-radius:14px;padding:9px;box-shadow:0 18px 40px rgba(35,27,16,.09)}
+.practice-figure figcaption{padding:9px 4px 3px;font-size:10.5px;line-height:1.65;color:var(--muted)}
+.practice-copy{padding-top:4px}
+.practice-lead{font-size:13px;line-height:1.85;color:var(--muted);margin:0 0 14px}
+.practice-lead b{color:var(--ink)}
+.practice-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin-top:18px;position:relative;z-index:1}
+.practice-step{background:#fffdf8;border:1px solid var(--line);border-radius:11px;padding:14px 12px;position:relative;min-height:142px;transition:.25s}
+.practice-step:hover{transform:translateY(-3px);box-shadow:0 14px 28px rgba(35,27,16,.07)}
+.practice-step .pn{font-family:var(--cond);font-size:9px;font-weight:700;letter-spacing:1.4px;color:var(--red)}
+.practice-step h3{font-size:11.5px;font-weight:900;margin:8px 0 5px;line-height:1.35;letter-spacing:-.2px}
+.practice-step p{font-size:10.5px;line-height:1.62;color:var(--muted);margin:0}
+.practice-step:nth-child(2){border-color:rgba(34,197,94,.45);background:linear-gradient(180deg,rgba(34,197,94,.08),#fffdf8 55%)}
+.practice-note{display:flex;gap:12px;align-items:flex-start;margin-top:14px;padding:13px 15px;border-radius:11px;background:rgba(232,72,46,.07);border:1px solid rgba(232,72,46,.2);font-size:11px;line-height:1.7;color:#6d4a3d;position:relative;z-index:1}
+.practice-note b{color:var(--red-2)}
+.practice-goya{display:flex;align-items:flex-end;gap:6px;margin-top:16px;position:relative;z-index:2}
+.practice-goya .goya-bubble{position:relative;left:auto;bottom:auto;transform:none;margin-bottom:74px;max-width:200px;animation:goyaBubble 4.8s ease-in-out infinite}
+.practice-goya .goya-bubble::after{left:12px;bottom:-6px;transform:rotate(45deg)}
+
+/* rule additions */
+.rule-tags{display:flex;align-items:center;flex-wrap:wrap;gap:5px;margin-top:8px}
+.rule-tags span{font-family:var(--cond);font-size:9px;font-weight:700;letter-spacing:.6px;padding:3px 7px;border-radius:5px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:#dbe2e7}
+.rule-tags .plus{background:none;border:0;color:#6f7b84;padding:0 1px}
+.rule-tags .eq{background:rgba(34,197,94,.14);border-color:rgba(34,197,94,.4);color:#8ff0b5}
+.hl{color:#fff;background:linear-gradient(transparent 58%,rgba(232,72,46,.32) 58%);padding:0 2px;font-weight:900;border-radius:2px}
+.rule-callout{display:inline-flex;align-items:center;gap:7px;margin-top:8px;padding:5px 9px;border-radius:6px;background:rgba(232,72,46,.1);border:1px solid rgba(232,72,46,.25);font-family:var(--cond);font-size:9px;font-weight:700;letter-spacing:1px;color:#ff9a86}
+.rule-callout i{width:20px;height:2px;background:var(--ma60);display:inline-block}
+.rules-confluence{padding:20px 20px 18px;background:#fffdf8;border:1px solid var(--line);border-radius:14px}
+.rc-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-bottom:12px;border-bottom:1px dashed var(--line)}
+.rc-head span{font-family:var(--cond);font-size:9.5px;font-weight:700;letter-spacing:1.8px;color:var(--red)}
+.rc-head b{font-family:var(--cond);font-size:20px;font-weight:700;color:var(--ink);letter-spacing:-.5px}
+.rc-stack{display:grid;gap:8px;margin:14px 0}
+.rc-row{display:grid;grid-template-columns:78px 1fr 24px;align-items:center;gap:10px;padding:11px 12px;border:1px solid var(--line);border-radius:9px;background:#fff}
+.rc-row .rc-k{font-family:var(--cond);font-size:9px;font-weight:700;letter-spacing:1.2px;color:var(--muted)}
+.rc-row b{font-size:12.5px;letter-spacing:-.2px;color:var(--ink)}
+.rc-row i{width:20px;height:20px;border-radius:50%;background:rgba(34,197,94,.12);color:#0b6b3a;display:grid;place-items:center;font-style:normal;font-weight:900;font-size:11px}
+.rc-result{padding:11px 13px;border-radius:9px;background:var(--ink);color:#fff;font-size:11.5px;font-weight:800;text-align:center;line-height:1.5}
+.rules-confluence figcaption{padding:10px 2px 0;font-size:10.5px;line-height:1.65;color:var(--muted)}
+
+@media(max-width:1020px){
+  .strategy-grid,.practice-grid{grid-template-columns:1fr}
+  .practice-steps{grid-template-columns:repeat(3,1fr)}
+  .goya-hero{width:118px;left:-10px}
+}
+@media(max-width:760px){
+  .chart-duo{grid-template-columns:1fr}
+  .practice-steps{grid-template-columns:1fr 1fr}
+  .chart-head h3{font-size:14px}
+}
+@media(max-width:620px){
+  .practice-steps{grid-template-columns:1fr}
+  .practice-step{min-height:0}
+  .goya-hero{display:none}
+  .strategy-goya,.practice-goya{transform:scale(.86);transform-origin:left bottom}
+  .ma-legend .legend-note{display:none}
+  .strategy-step{grid-template-columns:38px 1fr;padding:13px 13px}
+  .strategy-step .num{width:34px;height:34px}
+}
 
 /* footer */
 footer{background:var(--paper-2);border-top:1px solid var(--line);padding:35px 0 27px}
@@ -445,8 +597,10 @@ footer{background:var(--paper-2);border-top:1px solid var(--line);padding:35px 0
       <a href="#alignment">배열</a>
       <a href="#cross">크로스</a>
       <a href="#signals">실전 신호</a>
+      <a href="#strategy">공략법</a>
       <a href="#charts">차트 읽기</a>
       <a href="#rules">원칙</a>
+      <a href="#practice">연습</a>
       <a class="nav-cta" href="https://mjky1014-collab.github.io/" target="_blank" rel="noopener">모음목록 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
     </nav>
     <button class="menu-btn" id="menuBtn" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="navLinks">
@@ -524,21 +678,21 @@ footer{background:var(--paper-2);border-top:1px solid var(--line);padding:35px 0
                 </g>
               </g>
               <!-- 3MA -->
-              <path d="M50 350C110 340 144 310 196 288S266 248 310 232s62-34 102-52 82-30 118-48" fill="none" stroke="#e8482e" stroke-width="2.8" stroke-linecap="round"/>
-              <path d="M50 358C116 350 160 326 216 306s74-34 118-48 80-30 118-46 58-18 90-28" fill="none" stroke="#3f7df3" stroke-width="2.8" stroke-linecap="round"/>
-              <path d="M50 370C130 366 188 352 250 338s92-26 144-38 86-18 156-30" fill="none" stroke="#1fbf88" stroke-width="2.8" stroke-linecap="round"/>
+              <path d="M50 350C110 340 144 310 196 288S266 248 310 232s62-34 102-52 82-30 118-48" fill="none" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round"/>
+              <path d="M50 358C116 350 160 326 216 306s74-34 118-48 80-30 118-46 58-18 90-28" fill="none" stroke="#22c55e" stroke-width="2.8" stroke-linecap="round"/>
+              <path d="M50 370C130 366 188 352 250 338s92-26 144-38 86-18 156-30" fill="none" stroke="#e8482e" stroke-width="2.8" stroke-linecap="round"/>
               <!-- annotations -->
               <g font-family="Arial, sans-serif" font-size="9.5" font-weight="700">
-                <rect x="464" y="62" width="64" height="23" rx="11.5" fill="#e8482e"/>
-                <text x="496" y="77.5" fill="#fff" text-anchor="middle">7 MA</text>
-                <rect x="512" y="94" width="68" height="23" rx="11.5" fill="#3f7df3"/>
-                <text x="546" y="109.5" fill="#fff" text-anchor="middle">20 MA</text>
-                <rect x="548" y="130" width="68" height="23" rx="11.5" fill="#1fbf88"/>
+                <rect x="464" y="62" width="64" height="23" rx="11.5" fill="#ffffff"/>
+                <text x="496" y="77.5" fill="#16222d" text-anchor="middle">7 MA</text>
+                <rect x="512" y="94" width="68" height="23" rx="11.5" fill="#22c55e"/>
+                <text x="546" y="109.5" fill="#06351f" text-anchor="middle">20 MA</text>
+                <rect x="548" y="130" width="68" height="23" rx="11.5" fill="#e8482e"/>
                 <text x="582" y="145.5" fill="#fff" text-anchor="middle">60 MA</text>
               </g>
-              <circle cx="370" cy="214" r="15" fill="none" stroke="#ff846f" stroke-width="1.6" stroke-dasharray="3 3"/>
-              <path d="M385 206l52-24" stroke="#ff846f" stroke-width="1.2"/>
-              <text x="442" y="198" fill="#ff846f" font-family="Arial, sans-serif" font-size="10" font-weight="700">GOLDEN CROSS</text>
+              <circle cx="370" cy="214" r="15" fill="none" stroke="#7ee2a8" stroke-width="1.6" stroke-dasharray="3 3"/>
+              <path d="M385 206l52-24" stroke="#7ee2a8" stroke-width="1.2"/>
+              <text x="442" y="198" fill="#7ee2a8" font-family="Arial, sans-serif" font-size="10" font-weight="700">GOLDEN CROSS</text>
               <rect x="48" y="34" width="156" height="25" rx="5" fill="#17232d" stroke="#2a3a46"/>
               <text x="59" y="51" fill="#c3ccd2" font-family="Arial, sans-serif" font-size="9.5" letter-spacing="1">SAGAUUSDT · 4H</text>
             </svg>
@@ -553,6 +707,10 @@ footer{background:var(--paper-2);border-top:1px solid var(--line);padding:35px 0
             <span><i></i> ALIGNMENT CHECK</span>
             <strong>7 &gt; 20 &gt; 60</strong>
             <small>정배열 · 눌림목 매수 유효 구간</small>
+          </div>
+          <div class="goya-wrap goya-hero">
+            <img class="goya" src="assets/goya-mascot.png" alt="고야 캐릭터가 3MA 색상 규칙을 안내합니다" width="228" height="238" loading="eager">
+            <div class="goya-bubble">7일은 <b style="color:#16222d;background:#fff;border:1px solid #dcd2c1;border-radius:3px;padding:0 2px">흰색</b>, 20일은 <b style="color:#128a4a">초록</b>, 60일은 <b style="color:#d43a22">빨강</b>!</div>
           </div>
         </div>
       </div>
@@ -581,19 +739,19 @@ footer{background:var(--paper-2);border-top:1px solid var(--line);padding:35px 0
       </div>
 
       <div class="ma-grid">
-        <article class="ma-card reveal" style="--c:#e8482e">
+        <article class="ma-card reveal" style="--c:var(--ma7);--c-ink:var(--ma7-ink)">
           <div class="ma-top"><span class="ma-num">07</span><span class="ma-tag">SHORT</span></div>
           <h3>7일선 · 단기선</h3>
           <p>최근 일주일의 평균 가격. 시장의 민감한 매수·매도 심리를 가장 빠르게 반영합니다.</p>
           <div class="ma-line">가장 빠른 반응 · 추세 전환의 첫 신호</div>
         </article>
-        <article class="ma-card reveal" style="--c:#3f7df3">
+        <article class="ma-card reveal" style="--c:var(--ma20);--c-ink:var(--ma20-ink)">
           <div class="ma-top"><span class="ma-num">20</span><span class="ma-tag">MID</span></div>
           <h3>20일선 · 생명선</h3>
           <p>한 달간의 평균 가격. 추세의 지지와 저항을 결정짓는 핵심 기준선입니다.</p>
           <div class="ma-line">지지·저항의 기준 · 추세 지속 판단</div>
         </article>
-        <article class="ma-card reveal" style="--c:#0e9f6e">
+        <article class="ma-card reveal" style="--c:var(--ma60);--c-ink:#a32615">
           <div class="ma-top"><span class="ma-num">60</span><span class="ma-tag">LONG</span></div>
           <h3>60일선 · 수급선</h3>
           <p>두 달간의 평균 가격. 대세 상승과 하락의 큰 뼈대를 만들고 쉽게 꺾이지 않습니다.</p>
@@ -669,13 +827,108 @@ footer{background:var(--paper-2);border-top:1px solid var(--line);padding:35px 0
         </div>
       </div>
 
-      <figure class="mini-figure align-shot reveal">
-        <button class="zoomable" type="button" data-full="assets/alignment.jpg" data-caption="정배열과 역배열을 차트로 비교한 자료. 7일선·20일선·60일선의 위아래 순서가 핵심이다." aria-label="정배열과 역배열 비교 이미지 크게 보기">
-          <img src="assets/alignment.jpg" alt="정배열과 역배열을 비교한 차트 슬라이드" width="1280" height="720" loading="lazy">
-          <span class="zoom-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6M11 8v6M8 11h6"/></svg>VIEW</span>
-        </button>
-        <figcaption><b>정배열 vs 역배열</b> — 같은 차트도 선의 순서가 바뀌면 전혀 다른 국면이 됩니다.</figcaption>
-      </figure>
+      <div class="ma-legend reveal" style="margin-top:26px">
+        <span class="lg7"><i></i>7일선</span>
+        <span class="lg20"><i></i>20일선</span>
+        <span class="lg60"><i></i>60일선</span>
+        <span class="legend-note">COLOR SYSTEM · 7 WHITE / 20 GREEN / 60 RED</span>
+      </div>
+
+      <div class="chart-duo reveal">
+        <figure class="chart-panel">
+          <div class="chart-head"><h3>정배열 · 상승</h3><span class="chart-tag bull">BULLISH</span></div>
+          <svg viewBox="0 0 560 250" role="img" aria-label="7일선이 20일선과 60일선 위에 있는 정배열 상승 차트">
+            <rect width="560" height="250" fill="#0d151c"/>
+            <g class="chart-grid-line">
+              <path d="M28 60H532"/><path d="M28 100H532"/><path d="M28 140H532"/><path d="M28 180H532"/>
+              <path d="M108 34V218"/><path d="M188 34V218"/><path d="M268 34V218"/><path d="M348 34V218"/><path d="M428 34V218"/><path d="M508 34V218"/>
+            </g>
+            <g fill="#0e9f6e">
+              <rect x="40" y="190" width="8" height="18" rx="1"/><rect x="76" y="180" width="8" height="22" rx="1"/>
+              <rect x="112" y="186" width="8" height="12" rx="1"/><rect x="148" y="168" width="8" height="24" rx="1"/>
+              <rect x="184" y="158" width="8" height="20" rx="1"/><rect x="220" y="146" width="8" height="24" rx="1"/>
+              <rect x="256" y="152" width="8" height="12" rx="1"/><rect x="292" y="132" width="8" height="26" rx="1"/>
+              <rect x="328" y="122" width="8" height="20" rx="1"/><rect x="364" y="128" width="8" height="12" rx="1"/>
+              <rect x="400" y="108" width="8" height="26" rx="1"/><rect x="436" y="98" width="8" height="18" rx="1"/>
+              <rect x="472" y="104" width="8" height="12" rx="1"/><rect x="508" y="86" width="8" height="22" rx="1"/>
+            </g>
+            <g fill="#e8482e">
+              <rect x="94" y="176" width="8" height="10" rx="1"/><rect x="166" y="170" width="8" height="10" rx="1"/>
+              <rect x="238" y="142" width="8" height="10" rx="1"/><rect x="310" y="128" width="8" height="10" rx="1"/>
+              <rect x="382" y="114" width="8" height="10" rx="1"/><rect x="454" y="100" width="8" height="10" rx="1"/>
+              <rect x="490" y="92" width="8" height="10" rx="1"/>
+            </g>
+            <g stroke="#0e9f6e" stroke-width="1">
+              <path d="M44 184v30"/><path d="M80 174v32"/><path d="M116 180v24"/><path d="M152 162v36"/>
+              <path d="M188 152v32"/><path d="M224 140v36"/><path d="M260 146v24"/><path d="M296 126v38"/>
+              <path d="M332 116v32"/><path d="M368 122v24"/><path d="M404 102v38"/><path d="M440 92v30"/>
+              <path d="M476 98v24"/><path d="M512 80v34"/>
+            </g>
+            <g stroke="#e8482e" stroke-width="1">
+              <path d="M98 170v22"/><path d="M170 164v22"/><path d="M242 136v22"/><path d="M314 122v22"/>
+              <path d="M386 108v22"/><path d="M458 94v22"/><path d="M494 86v22"/>
+            </g>
+            <path class="chart-red-line" d="M28 214C100 210 180 202 250 188S370 164 440 150S510 136 532 130"/>
+            <path class="chart-green-line" d="M28 208C90 200 150 188 210 170S320 142 390 124S480 102 532 86"/>
+            <path class="chart-white-line" d="M28 202C80 190 130 176 180 158S270 134 330 112S440 84 532 58"/>
+            <g class="chart-annotation">
+              <rect x="28" y="30" width="46" height="15" rx="4" fill="#ffffff"/><text x="51" y="41" fill="#16222d" text-anchor="middle">7 MA</text>
+              <rect x="80" y="30" width="52" height="15" rx="4" fill="#22c55e"/><text x="106" y="41" fill="#06351f" text-anchor="middle">20 MA</text>
+              <rect x="138" y="30" width="52" height="15" rx="4" fill="#e8482e"/><text x="164" y="41" fill="#fff" text-anchor="middle">60 MA</text>
+            </g>
+            <text x="532" y="238" class="chart-annotation" fill="#c3ccd2" text-anchor="end">7 &gt; 20 &gt; 60</text>
+          </svg>
+          <figcaption class="chart-cap"><b>7 &gt; 20 &gt; 60</b> — 단기선이 가장 위, 장기선이 가장 아래. 세 선이 함께 우상향하면 눌림목 매수를 검토합니다.</figcaption>
+        </figure>
+
+        <figure class="chart-panel">
+          <div class="chart-head"><h3>역배열 · 하락</h3><span class="chart-tag bear">BEARISH</span></div>
+          <svg viewBox="0 0 560 250" role="img" aria-label="60일선이 20일선과 7일선 위에 있는 역배열 하락 차트">
+            <rect width="560" height="250" fill="#0d151c"/>
+            <g class="chart-grid-line">
+              <path d="M28 60H532"/><path d="M28 100H532"/><path d="M28 140H532"/><path d="M28 180H532"/>
+              <path d="M108 34V218"/><path d="M188 34V218"/><path d="M268 34V218"/><path d="M348 34V218"/><path d="M428 34V218"/><path d="M508 34V218"/>
+            </g>
+            <g fill="#0e9f6e">
+              <rect x="40" y="62" width="8" height="18" rx="1"/><rect x="76" y="74" width="8" height="20" rx="1"/>
+              <rect x="112" y="70" width="8" height="12" rx="1"/><rect x="148" y="88" width="8" height="22" rx="1"/>
+              <rect x="184" y="98" width="8" height="18" rx="1"/><rect x="220" y="108" width="8" height="22" rx="1"/>
+              <rect x="256" y="102" width="8" height="12" rx="1"/><rect x="292" y="122" width="8" height="24" rx="1"/>
+              <rect x="328" y="132" width="8" height="18" rx="1"/><rect x="364" y="126" width="8" height="12" rx="1"/>
+              <rect x="400" y="146" width="8" height="24" rx="1"/><rect x="436" y="156" width="8" height="16" rx="1"/>
+              <rect x="472" y="150" width="8" height="12" rx="1"/><rect x="508" y="168" width="8" height="20" rx="1"/>
+            </g>
+            <g fill="#e8482e">
+              <rect x="94" y="82" width="8" height="10" rx="1"/><rect x="166" y="92" width="8" height="10" rx="1"/>
+              <rect x="238" y="112" width="8" height="10" rx="1"/><rect x="310" y="126" width="8" height="10" rx="1"/>
+              <rect x="382" y="140" width="8" height="10" rx="1"/><rect x="454" y="152" width="8" height="10" rx="1"/>
+              <rect x="490" y="160" width="8" height="10" rx="1"/>
+            </g>
+            <g stroke="#0e9f6e" stroke-width="1">
+              <path d="M44 56v30"/><path d="M80 68v32"/><path d="M116 64v24"/><path d="M152 82v34"/>
+              <path d="M188 92v30"/><path d="M224 102v34"/><path d="M260 96v24"/><path d="M296 116v36"/>
+              <path d="M332 126v30"/><path d="M368 120v24"/><path d="M404 140v36"/><path d="M440 150v28"/>
+              <path d="M476 144v24"/><path d="M512 162v32"/>
+            </g>
+            <g stroke="#e8482e" stroke-width="1">
+              <path d="M98 76v22"/><path d="M170 86v22"/><path d="M242 106v22"/><path d="M314 120v22"/>
+              <path d="M386 134v22"/><path d="M458 146v22"/><path d="M494 154v22"/>
+            </g>
+            <path class="chart-white-line" d="M28 98C80 108 140 122 200 138S310 160 380 176S470 192 532 200"/>
+            <path class="chart-green-line" d="M28 82C90 88 150 102 210 118S320 142 390 154S480 170 532 180"/>
+            <path class="chart-red-line" d="M28 64C90 68 150 80 210 96S320 122 390 136S480 154 532 166"/>
+            <g class="chart-annotation">
+              <rect x="28" y="30" width="52" height="15" rx="4" fill="#e8482e"/><text x="54" y="41" fill="#fff" text-anchor="middle">60 MA</text>
+              <rect x="86" y="30" width="52" height="15" rx="4" fill="#22c55e"/><text x="112" y="41" fill="#06351f" text-anchor="middle">20 MA</text>
+              <rect x="144" y="30" width="46" height="15" rx="4" fill="#ffffff"/><text x="167" y="41" fill="#16222d" text-anchor="middle">7 MA</text>
+            </g>
+            <text x="532" y="238" class="chart-annotation" fill="#c3ccd2" text-anchor="end">60 &gt; 20 &gt; 7</text>
+          </svg>
+          <figcaption class="chart-cap"><b>60 &gt; 20 &gt; 7</b> — 장기선이 가장 위, 단기선이 가장 아래. 반등이 나와도 추세가 꺾이기 전까지는 관망이 우선입니다.</figcaption>
+        </figure>
+      </div>
+
+      <p class="note" style="margin-top:18px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg><span>위 차트는 이 페이지의 3MA 색상 기준(7일 흰색 · 20일 녹색 · 60일 빨간색)으로 그린 예시입니다. 실제 플랫폼 캡처는 기본 색상이 다를 수 있으니, 선의 <b>위아래 순서</b>를 먼저 읽으세요.</span></p>
     </div>
   </section>
 
@@ -691,13 +944,13 @@ footer{background:var(--paper-2);border-top:1px solid var(--line);padding:35px 0
       </div>
 
       <div class="cross-grid">
-        <article class="cross-card reveal" style="--c:#e8482e">
+        <article class="cross-card reveal" style="--c:var(--ma20)">
           <div class="cc-top"><i aria-hidden="true"></i><span>BUY SIGNAL</span></div>
           <h3>골든크로스</h3>
           <p>단기선이 상위 이동평균선을 상향 돌파하는 순간. 하락세나 박스권을 깨고 강한 상승 전환이 시작될 때 나타나는 대표적인 매수 타이밍입니다.</p>
           <div class="cc-rule"><b>확인:</b> 7일선이 20일선을 위로 통과한 뒤, 20일선도 함께 우상향하는지 봅니다.</div>
         </article>
-        <article class="cross-card reveal" style="--c:#3f7df3">
+        <article class="cross-card reveal" style="--c:var(--ma60)">
           <div class="cc-top"><i aria-hidden="true"></i><span>EXIT SIGNAL</span></div>
           <h3>데드크로스</h3>
           <p>단기선이 상위선을 하향 이탈하는 순간. 상승 추세가 끝나고 하락 국면으로 전환됨을 알리는 신호로, 손절 또는 비중 축소가 권장됩니다.</p>
@@ -705,23 +958,111 @@ footer{background:var(--paper-2);border-top:1px solid var(--line);padding:35px 0
         </article>
       </div>
 
-      <div class="cross-visual">
-        <figure class="cross-figure reveal">
-          <button class="zoomable" type="button" data-full="assets/cross.jpg" data-caption="골든크로스와 데드크로스의 개념을 정리한 자료. 단기선의 상향·하향 돌파를 기준으로 한다." aria-label="골든크로스와 데드크로스 이미지 크게 보기">
-            <img src="assets/cross.jpg" alt="골든크로스와 데드크로스 개념 슬라이드" width="1280" height="720" loading="lazy">
-            <span class="zoom-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6M11 8v6M8 11h6"/></svg>VIEW</span>
-          </button>
-          <figcaption><b>골든크로스 &amp; 데드크로스</b> — 방향이 바뀌는 첫 지점을 표시합니다.</figcaption>
+      <div class="ma-legend reveal" style="margin-top:24px">
+        <span class="lg7"><i></i>7일선</span>
+        <span class="lg20"><i></i>20일선</span>
+        <span class="lg60"><i></i>60일선</span>
+        <span class="legend-note">CROSS + ALIGNMENT · 7 WHITE / 20 GREEN / 60 RED</span>
+      </div>
+
+      <div class="chart-duo reveal">
+        <figure class="chart-panel">
+          <div class="chart-head"><h3>골든크로스</h3><span class="chart-tag bull">GOLDEN CROSS</span></div>
+          <svg viewBox="0 0 560 250" role="img" aria-label="7일선이 20일선을 위로 돌파한 뒤 20일선도 60일선 위로 올라가는 골든크로스 예시 차트">
+            <rect width="560" height="250" fill="#0d151c"/>
+            <g class="chart-grid-line">
+              <path d="M28 60H532"/><path d="M28 100H532"/><path d="M28 140H532"/><path d="M28 180H532"/>
+              <path d="M108 34V218"/><path d="M188 34V218"/><path d="M268 34V218"/><path d="M348 34V218"/><path d="M428 34V218"/><path d="M508 34V218"/>
+            </g>
+            <g fill="#0e9f6e">
+              <rect x="40" y="194" width="8" height="18" rx="1"/><rect x="112" y="202" width="8" height="14" rx="1"/>
+              <rect x="184" y="200" width="8" height="16" rx="1"/><rect x="256" y="180" width="8" height="22" rx="1"/>
+              <rect x="328" y="148" width="8" height="24" rx="1"/><rect x="400" y="116" width="8" height="24" rx="1"/>
+              <rect x="472" y="88" width="8" height="18" rx="1"/>
+            </g>
+            <g fill="#e8482e">
+              <rect x="76" y="198" width="8" height="12" rx="1"/><rect x="148" y="196" width="8" height="12" rx="1"/>
+              <rect x="220" y="190" width="8" height="14" rx="1"/><rect x="292" y="164" width="8" height="16" rx="1"/>
+              <rect x="364" y="132" width="8" height="18" rx="1"/><rect x="436" y="100" width="8" height="18" rx="1"/>
+              <rect x="508" y="76" width="8" height="22" rx="1"/>
+            </g>
+            <g stroke="#0e9f6e" stroke-width="1">
+              <path d="M44 188v30"/><path d="M116 196v26"/><path d="M188 194v28"/><path d="M260 174v34"/>
+              <path d="M332 142v36"/><path d="M404 110v36"/><path d="M476 82v30"/>
+            </g>
+            <g stroke="#e8482e" stroke-width="1">
+              <path d="M80 192v24"/><path d="M152 190v24"/><path d="M224 184v26"/><path d="M296 158v28"/>
+              <path d="M368 126v30"/><path d="M440 94v30"/><path d="M512 70v34"/>
+            </g>
+            <path class="chart-red-line" d="M28 184C100 182 170 178 230 170S340 150 410 136S500 120 532 114"/>
+            <path class="chart-green-line" d="M28 196C80 198 130 194 180 184S250 160 300 138S400 104 532 82"/>
+            <path class="chart-white-line" d="M28 204C70 206 110 200 150 190S210 168 240 148S300 104 360 84S470 62 532 54"/>
+            <circle cx="246" cy="148" r="18" class="chart-cross-ring"/>
+            <path d="M262 140l48-22" stroke="#7ee2a8" stroke-width="1.2"/>
+            <text x="314" y="116" class="chart-annotation" fill="#7ee2a8">GOLDEN CROSS</text>
+            <g class="chart-annotation">
+              <rect x="28" y="30" width="46" height="15" rx="4" fill="#ffffff"/><text x="51" y="41" fill="#16222d" text-anchor="middle">7 MA</text>
+              <rect x="80" y="30" width="52" height="15" rx="4" fill="#22c55e"/><text x="106" y="41" fill="#06351f" text-anchor="middle">20 MA</text>
+              <rect x="138" y="30" width="52" height="15" rx="4" fill="#e8482e"/><text x="164" y="41" fill="#fff" text-anchor="middle">60 MA</text>
+            </g>
+            <text x="532" y="238" class="chart-annotation" fill="#c3ccd2" text-anchor="end">7 &gt; 20 &gt; 60</text>
+          </svg>
+          <figcaption class="chart-cap"><b>7일선이 20일선을 위로 돌파</b> — 이후 20일선도 60일선 위로 올라오면 정배열 전환을 확인합니다. 크로스만 보고 바로 진입하지 않습니다.</figcaption>
         </figure>
-        <div class="cross-seq reveal">
-          <h3>ORDER OF CONFIRMATION</h3>
-          <ol>
-            <li><b>1</b><div><strong>선의 순서</strong>7 &gt; 20 &gt; 60 정배열인지 확인</div></li>
-            <li><b>2</b><div><strong>크로스 발생</strong>단기선이 상위선을 실제로 돌파했는지 확인</div></li>
-            <li><b>3</b><div><strong>캔들 위치</strong>고야라인 위에서 캔들이 형성되는지 확인</div></li>
-            <li><b>4</b><div><strong>TP / SL</strong>진입과 동시에 익절·손절을 설정</div></li>
-          </ol>
-        </div>
+
+        <figure class="chart-panel">
+          <div class="chart-head"><h3>데드크로스</h3><span class="chart-tag bear">DEAD CROSS</span></div>
+          <svg viewBox="0 0 560 250" role="img" aria-label="7일선이 20일선을 아래로 이탈한 뒤 20일선도 60일선 아래로 내려가는 데드크로스 예시 차트">
+            <rect width="560" height="250" fill="#0d151c"/>
+            <g class="chart-grid-line">
+              <path d="M28 60H532"/><path d="M28 100H532"/><path d="M28 140H532"/><path d="M28 180H532"/>
+              <path d="M108 34V218"/><path d="M188 34V218"/><path d="M268 34V218"/><path d="M348 34V218"/><path d="M428 34V218"/><path d="M508 34V218"/>
+            </g>
+            <g fill="#0e9f6e">
+              <rect x="40" y="62" width="8" height="18" rx="1"/><rect x="112" y="70" width="8" height="14" rx="1"/>
+              <rect x="184" y="78" width="8" height="16" rx="1"/><rect x="256" y="100" width="8" height="22" rx="1"/>
+              <rect x="328" y="132" width="8" height="24" rx="1"/><rect x="400" y="158" width="8" height="24" rx="1"/>
+              <rect x="472" y="180" width="8" height="18" rx="1"/>
+            </g>
+            <g fill="#e8482e">
+              <rect x="76" y="66" width="8" height="12" rx="1"/><rect x="148" y="74" width="8" height="12" rx="1"/>
+              <rect x="220" y="88" width="8" height="14" rx="1"/><rect x="292" y="116" width="8" height="16" rx="1"/>
+              <rect x="364" y="144" width="8" height="18" rx="1"/><rect x="436" y="170" width="8" height="18" rx="1"/>
+              <rect x="508" y="190" width="8" height="22" rx="1"/>
+            </g>
+            <g stroke="#0e9f6e" stroke-width="1">
+              <path d="M44 56v30"/><path d="M116 64v26"/><path d="M188 72v28"/><path d="M260 94v34"/>
+              <path d="M332 126v36"/><path d="M404 152v36"/><path d="M476 174v30"/>
+            </g>
+            <g stroke="#e8482e" stroke-width="1">
+              <path d="M80 60v24"/><path d="M152 68v24"/><path d="M224 82v26"/><path d="M296 110v28"/>
+              <path d="M368 138v30"/><path d="M440 164v30"/><path d="M512 184v34"/>
+            </g>
+            <path class="chart-red-line" d="M28 92C100 94 170 100 230 110S330 130 400 144S500 158 532 162"/>
+            <path class="chart-green-line" d="M28 76C90 78 150 86 210 100S300 126 360 146S460 170 532 184"/>
+            <path class="chart-white-line" d="M28 58C80 62 130 70 180 84S240 108 280 130S360 164 430 182S510 198 532 204"/>
+            <circle cx="228" cy="106" r="18" class="chart-cross-ring"/>
+            <path d="M244 98l48-20" stroke="#ff9a86" stroke-width="1.2"/>
+            <text x="296" y="76" class="chart-annotation" fill="#ff9a86">DEAD CROSS</text>
+            <g class="chart-annotation">
+              <rect x="28" y="30" width="52" height="15" rx="4" fill="#e8482e"/><text x="54" y="41" fill="#fff" text-anchor="middle">60 MA</text>
+              <rect x="86" y="30" width="52" height="15" rx="4" fill="#22c55e"/><text x="112" y="41" fill="#06351f" text-anchor="middle">20 MA</text>
+              <rect x="144" y="30" width="46" height="15" rx="4" fill="#ffffff"/><text x="167" y="41" fill="#16222d" text-anchor="middle">7 MA</text>
+            </g>
+            <text x="532" y="238" class="chart-annotation" fill="#c3ccd2" text-anchor="end">60 &gt; 20 &gt; 7</text>
+          </svg>
+          <figcaption class="chart-cap"><b>7일선이 20일선을 아래로 이탈</b> — 이후 20일선도 60일선 아래로 내려가면 역배열 전환입니다. 롱은 비중 축소, 숏은 추세 확인 후 접근합니다.</figcaption>
+        </figure>
+      </div>
+
+      <div class="cross-seq steps-row reveal">
+        <h3>ORDER OF CONFIRMATION</h3>
+        <ol>
+          <li><b>1</b><div><strong>선의 순서</strong>7 &gt; 20 &gt; 60 정배열인지 확인</div></li>
+          <li><b>2</b><div><strong>크로스 발생</strong>단기선이 상위선을 실제로 돌파했는지 확인</div></li>
+          <li><b>3</b><div><strong>캔들 위치</strong>고야라인 위에서 캔들이 형성되는지 확인</div></li>
+          <li><b>4</b><div><strong>TP / SL</strong>진입과 동시에 익절·손절을 설정</div></li>
+        </ol>
       </div>
       <p class="note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg><span>크로스는 확정 신호가 아니라 가능성입니다. 횡보 구간에서는 잦은 거짓 신호가 나올 수 있으므로 60일선 방향과 거래량을 함께 보세요.</span></p>
     </div>
@@ -736,6 +1077,13 @@ footer{background:var(--paper-2);border-top:1px solid var(--line);padding:35px 0
           <h2>실전에서 쓰는<br>여섯 가지 <em>신호.</em></h2>
         </div>
         <p>교재에 나온 규칙을 그대로 옮겼습니다. 신호의 이름보다 <b>언제 진입하고 언제 쉬는지</b>가 더 중요합니다.</p>
+      </div>
+
+      <div class="ma-legend reveal" style="margin:18px 0 16px">
+        <span class="lg7"><i></i>7일선</span>
+        <span class="lg20"><i></i>20일선</span>
+        <span class="lg60"><i></i>60일선</span>
+        <span class="legend-note">TEACHING COLORS · CAPTURES MAY DIFFER</span>
       </div>
 
       <div class="signal-grid">
@@ -839,12 +1187,74 @@ footer{background:var(--paper-2);border-top:1px solid var(--line);padding:35px 0
     </div>
   </section>
 
-  <!-- CHART READING -->
-  <section class="section section-paper" id="charts">
+  <!-- TOP COIN STRATEGY -->
+  <section class="section section-paper" id="strategy">
     <div class="wrap">
       <div class="section-head reveal">
         <div>
-          <span class="kicker">05 / Chart Reading</span>
+          <span class="kicker">05 / TOP Coin</span>
+          <h2>TOP 코인은<br>이 순서로 <em>공략한다.</em></h2>
+        </div>
+        <p>알람 → 진입 → 손절의 순서를 고정합니다. <b>TOP-COIN 알람</b>으로 후보를 좁히고, <b>SS 알람</b>이 왔을 때 위치를 확인한 뒤, 진입과 동시에 손절을 설정합니다.</p>
+      </div>
+
+      <div class="strategy-grid">
+        <div class="strategy-copy reveal">
+          <div class="ma-legend">
+            <span class="lg7"><i></i>7일선</span>
+            <span class="lg20"><i></i>20일선</span>
+            <span class="lg60"><i></i>60일선</span>
+            <span class="legend-note">ENTRY CHECK · 3MA + SIGNAL</span>
+          </div>
+          <div class="strategy-steps">
+            <article class="strategy-step">
+              <span class="num">01</span>
+              <div>
+                <h3>상위 TOP-COIN 알람 등록</h3>
+                <p>하루 두 번, 상승·하락 상위 TOP10에서 <b>20% 이상 움직인 코인</b>을 추립니다. 30% 이상 급등한 종목 중에서도 조건에 맞는 소수만 남깁니다.</p>
+              </div>
+            </article>
+            <article class="strategy-step">
+              <span class="num">02</span>
+              <div>
+                <h3>SS 알람 → 위치 확인 → 마켓가 진입</h3>
+                <p>SS 알람이 오면 <b>고야라인 위인지</b> 먼저 확인합니다. 고야 위 SS는 패스. 고야라인을 장대음봉으로 뚫고 내려가는 자리는 다음 시간 하락 확률이 높으므로 기다립니다.</p>
+              </div>
+            </article>
+            <article class="strategy-step">
+              <span class="num">03</span>
+              <div>
+                <h3>진입과 동시에 STOP-LOSS 설정</h3>
+                <p>자동손절가를 <b>무조건</b> 설정합니다. 기준은 <b>무명선 라인 살짝 위</b>. 손절가가 너무 멀면 캔들의 저항라인까지 끌어올려 리스크를 줄입니다.</p>
+              </div>
+            </article>
+          </div>
+          <p class="practice-note"><b>중요:</b> 세 단계 중 하나라도 빠지면 진입하지 않습니다. 특히 손절 없는 진입은 금지입니다.</p>
+          <div class="strategy-goya">
+            <img class="goya" src="assets/goya-mascot.png" alt="고야 캐릭터가 TOP 코인 공략 순서를 안내합니다" width="228" height="238" loading="lazy">
+            <div class="goya-bubble">알람만 보고 들어가지 말고, <b>고야 위 SS인지</b> 먼저 확인!</div>
+          </div>
+        </div>
+
+        <div class="strategy-visual reveal">
+          <figure class="strategy-figure">
+            <button class="zoomable" type="button" data-full="assets/top10-strategy.jpg" data-caption="TOP 코인 공략법: TOP-COIN 알람 등록, SS 알람 진입, 진입과 동시에 STOP-LOSS 설정." aria-label="TOP 코인 공략법 이미지 크게 보기">
+              <img src="assets/top10-strategy.jpg" alt="TOP 코인 공략법 3단계를 정리한 인포그래픽" width="1600" height="900" loading="lazy">
+              <span class="zoom-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6M11 8v6M8 11h6"/></svg>ZOOM</span>
+            </button>
+            <figcaption><b>TOP 코인 공략법</b> — 알람 등록 → SS 진입 → 손절 설정. 이미지를 크게 열어 실제 순서를 확인하세요.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHART READING -->
+  <section class="section section-paper-2" id="charts">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="kicker">06 / Chart Reading</span>
           <h2>차트 위에서<br>이렇게 <em>읽는다.</em></h2>
         </div>
         <p>라벨을 외우는 것보다 <b>선과 캔들이 만나는 위치</b>를 보는 훈련이 먼저입니다. 실제 화면을 크게 열어 직접 확인해 보세요.</p>
@@ -885,6 +1295,8 @@ footer{background:var(--paper-2);border-top:1px solid var(--line);padding:35px 0
         </div>
       </div>
 
+      <p class="note" style="margin-top:4px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg><span>갤러리의 실제 캡처는 플랫폼 기본 색상을 사용합니다. 이 페이지의 3MA 기준은 <b>7일 흰색 · 20일 녹색 · 60일 빨간색</b>이며, 위의 교육용 차트는 같은 기준으로 그렸습니다.</span></p>
+
       <div class="reading-strip reveal">
         <div><b>01 / ORDER</b><p>7일선이 가장 위, 60일선이 가장 아래인가.</p></div>
         <div><b>02 / SLOPE</b><p>세 선이 모두 우상향인가, 한 선만 튀는가.</p></div>
@@ -899,7 +1311,7 @@ footer{background:var(--paper-2);border-top:1px solid var(--line);padding:35px 0
     <div class="wrap">
       <div class="section-head reveal">
         <div>
-          <span class="kicker">06 / Trading Rules</span>
+          <span class="kicker">07 / Trading Rules</span>
           <h2>일곱 가지 원칙,<br>수익보다 <em>생존.</em></h2>
         </div>
         <p>신호는 틀릴 수 있습니다. 원칙은 그 틀림을 감당할 수 있게 만듭니다. <b>진입 전에 확인하고, 진입과 동시에 손절을 정합니다.</b></p>
@@ -908,8 +1320,8 @@ footer{background:var(--paper-2);border-top:1px solid var(--line);padding:35px 0
       <div class="rules-layout">
         <div class="rule-list">
           <div class="rule reveal"><span class="rn">01</span><div><h3>상승 LONG은 고야라인 위에서</h3><p>롱 진입 전, 캔들이 <b>고야라인 위</b>에 위치하는지 반드시 확인합니다. 위치가 아니면 신호가 좋아도 진입하지 않습니다.</p></div></div>
-          <div class="rule reveal"><span class="rn">02</span><div><h3>시그널 확인 후 진입</h3><p>스마트 시그널 LL, 프리미엄 시그널 L1·L2·L3 중 하나를 확인합니다. <b>RSI가 L일 때</b> 가장 이상적입니다.</p></div></div>
-          <div class="rule reveal"><span class="rn">03</span><div><h3>진입과 동시에 TP / SL</h3><p>익절과 손절은 주문과 동시에 설정합니다. 무명선 라인에서 살짝 위, 손절각이 부담되면 <b>캔들의 저항라인</b>을 기준으로 잡습니다.</p></div></div>
+          <div class="rule reveal"><span class="rn">02</span><div><h3>시그널 3종이 겹칠 때 진입 <span style="color:#8ff0b5">LONG / SHORT</span></h3><p>스마트 시그널(<b>LL 또는 SS</b>) + 프리미엄 시그널(<b>S1·S2·S3</b>) + <b>RSI S</b>가 동시에 같은 방향으로 겹치는 자리가 가장 좋습니다. <b>LL 하나만 보고 진입하지 않습니다.</b> LONG은 상승, SHORT은 하락으로 세 신호가 정렬될 때만 검토합니다.</p><div class="rule-tags"><span>SMART LL/SS</span><span class="plus">+</span><span>PREMIUM S1·S2·S3</span><span class="plus">+</span><span>RSI S</span><span class="plus">=</span><span class="eq">BEST ENTRY</span></div></div></div>
+          <div class="rule reveal"><span class="rn">03</span><div><h3>진입과 동시에 TP / SL — 기준은 무명선</h3><p>익절과 손절은 주문과 동시에 설정합니다. 손절은 <b class="hl">무명선 라인 살짝 위</b>에 두는 것이 기본입니다. 무명선과 괴리가 너무 크면 캔들의 저항라인까지 끌어올려 손실 폭을 줄입니다.</p><div class="rule-callout"><i></i>STOP-LOSS REFERENCE · 무명선</div></div></div>
           <div class="rule reveal"><span class="rn">04</span><div><h3>20% 이상 급등락만 공략</h3><p>변동성이 부족한 코인은 제외합니다. 하루 두 번, 상승·하락 상위 TOP10에서 <b>20% 이상 움직인 코인</b>만 후보로 남깁니다.</p></div></div>
           <div class="rule reveal"><span class="rn">05</span><div><h3>SS 위치가 나쁘면 쉰다</h3><p>SS가 고야라인에 걸쳐 있거나 위에 있으면 진입하지 않습니다. <b>S2가 떠도 바로 아래에 스마트라인이 있으면</b> 진입을 보류합니다.</p></div></div>
           <div class="rule reveal"><span class="rn">06</span><div><h3>LL 최고점 이후 음봉은 숏 후보</h3><p>LL 시그널 최고점 이후 캔들이 음봉으로 나오면 숏 진입을 고려하고, <b>알람을 설정해 두고</b> 다음 캔들을 확인합니다.</p></div></div>
@@ -917,12 +1329,15 @@ footer{background:var(--paper-2);border-top:1px solid var(--line);padding:35px 0
         </div>
 
         <aside class="rules-side reveal">
-          <figure class="rules-figure">
-            <button class="zoomable" type="button" data-full="assets/basic-rules.jpg" data-caption="트레이딩의 기본 원칙: 고야라인 위 캔들 확인, 시그널 확인 후 진입, 진입 시 익절과 손절 설정." aria-label="트레이딩 기본 원칙 이미지 크게 보기">
-              <img src="assets/basic-rules.jpg" alt="트레이딩의 기본 원칙 세 가지를 정리한 슬라이드" width="1280" height="720" loading="lazy">
-              <span class="zoom-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6M11 8v6M8 11h6"/></svg>VIEW</span>
-            </button>
-            <figcaption><b>기본 원칙 3</b> — 위치, 시그널, TP/SL. 이 세 가지가 먼저입니다.</figcaption>
+          <figure class="rules-figure rules-confluence">
+            <div class="rc-head"><span>ENTRY CONFLUENCE</span><b>3 / 3</b></div>
+            <div class="rc-stack">
+              <div class="rc-row"><span class="rc-k">SMART</span><b>LL 또는 SS</b><i>✓</i></div>
+              <div class="rc-row"><span class="rc-k">PREMIUM</span><b>S1 · S2 · S3</b><i>✓</i></div>
+              <div class="rc-row"><span class="rc-k">RSI</span><b>S</b><i>✓</i></div>
+            </div>
+            <div class="rc-result">세 신호가 같은 방향으로 겹칠 때만 진입</div>
+            <figcaption><b>LONG은 상승, SHORT은 하락.</b> 하나라도 빠지면 대기합니다. LL 하나만 보고 들어가지 않습니다.</figcaption>
           </figure>
           <div class="rules-quote">“원칙이 수익을 만든다.”<br>신호를 맞히는 것보다 <b>틀렸을 때 작게 잃는 것</b>이 오래 살아남는 방법입니다.<span>BASIC RULES FOR SUCCESSFUL TRADING</span></div>
         </aside>
@@ -938,12 +1353,52 @@ footer{background:var(--paper-2);border-top:1px solid var(--line);padding:35px 0
     </div>
   </section>
 
+  <!-- PRACTICE -->
+  <section class="section section-paper-2" id="practice">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="kicker">08 / Practice</span>
+          <h2>살아남는 연습,<br>모의투자에서 <em>시작.</em></h2>
+        </div>
+        <p>실전은 <b>모의투자 → 적은 레버 → 소액 거래</b> 순서로 몸에 익힙니다. 수익보다 원칙을 지키는 상태를 먼저 만드세요.</p>
+      </div>
+
+      <div class="practice-grid">
+        <div class="practice-copy reveal">
+          <p class="practice-lead">처음부터 큰 금액과 높은 레버리지로 시작하면, 신호를 맞혀도 감정에 흔들려 원칙을 놓치기 쉽습니다. <b>작은 크기로 오래 연습하는 것</b>이 실전에서 살아남는 방법입니다.</p>
+          <div class="practice-note"><b>소액 거래 원칙:</b> 처음에는 계좌의 1~2% 이내, 레버리지는 2배 이하로 제한하세요. 연속 손실이 나면 거래 크기를 줄이고, 모의투자로 돌아가 다시 연습합니다.</div>
+          <div class="practice-goya">
+            <img class="goya goya-practice" src="assets/goya-mascot.png" alt="고야 캐릭터가 안정적인 거래를 안내합니다" width="228" height="238" loading="lazy">
+            <div class="goya-bubble">수익보다 <b>생존</b>. 작게 시작하고, 원칙을 지키는 연습부터!</div>
+          </div>
+        </div>
+
+        <figure class="practice-figure reveal">
+          <button class="zoomable" type="button" data-full="assets/practice-demo.jpg" data-caption="모의투자와 적은 레버 소액 거래: 모의투자로 연습하고, 적은 레버와 소액으로 심리적 부담을 줄이는 순서." aria-label="모의투자와 소액 거래 이미지 크게 보기">
+            <img src="assets/practice-demo.jpg" alt="모의투자와 적은 레버 소액 거래 5단계를 정리한 슬라이드" width="1600" height="900" loading="lazy">
+            <span class="zoom-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6M11 8v6M8 11h6"/></svg>ZOOM</span>
+          </button>
+          <figcaption><b>모의투자와 적은 레버 소액 거래</b> — 데모로 연습하고, 작은 크기로 실전에 적응합니다.</figcaption>
+        </figure>
+      </div>
+
+      <div class="practice-steps reveal">
+        <div class="practice-step"><span class="pn">STEP 01</span><h3>모의투자</h3><p>리스크 없이 반복해서 연습하고, 신호와 손절을 몸에 익힙니다.</p></div>
+        <div class="practice-step"><span class="pn">STEP 02</span><h3>적은 레버 · 소액</h3><p>적은 레버와 소액으로 시작해 심리적 부담을 줄입니다.</p></div>
+        <div class="practice-step"><span class="pn">STEP 03</span><h3>심리적 안정</h3><p>감정에 흔들리지 않고 원칙을 지키는 상태를 확인합니다.</p></div>
+        <div class="practice-step"><span class="pn">STEP 04</span><h3>수익의 반복</h3><p>작은 수익이 반복되며 자신감과 확신이 생깁니다.</p></div>
+        <div class="practice-step"><span class="pn">STEP 05</span><h3>기록과 공유</h3><p>신뢰하는 두 명에게 결과를 보여주고 피드백을 받습니다.</p></div>
+      </div>
+    </div>
+  </section>
+
   <!-- CHECKLIST -->
   <section class="section section-paper" id="checklist">
     <div class="wrap">
       <div class="checklist reveal">
         <div class="checklist-copy">
-          <span class="kicker">07 / Before You Enter</span>
+          <span class="kicker">09 / Before You Enter</span>
           <h2>주문 버튼을 누르기 전,<br>이것만은 확인하세요.</h2>
           <p>차트가 아무리 좋아 보여도 아래 항목이 하나라도 비어 있으면 오늘은 쉬는 편이 낫습니다. 체크리스트를 복사해 매매 노트에 붙여두세요.</p>
           <button class="btn btn-red" id="copyChecklist" type="button">
@@ -954,13 +1409,15 @@ footer{background:var(--paper-2);border-top:1px solid var(--line);padding:35px 0
         </div>
         <ul class="check-list">
           <li><span class="c">✓</span><span>20% 이상 급등락한 코인인가?</span></li>
-          <li><span class="c">✓</span><span>7일선이 20일선 위, 20일선이 60일선 위인가?</span></li>
-          <li><span class="c">✓</span><span>캔들이 고야라인 위에 있는가?</span></li>
           <li><span class="c">✓</span><span>SS가 고야 위에 있지 않은가?</span></li>
           <li><span class="c">✓</span><span>S2 바로 아래에 스마트라인이 있지 않은가?</span></li>
           <li><span class="c">✓</span><span>TP와 SL을 동시에 입력했는가?</span></li>
           <li><span class="c">✓</span><span>감정이 아닌 원칙으로 진입했는가?</span></li>
         </ul>
+        <div class="checklist-goya" aria-hidden="true">
+          <div class="goya-bubble">5개만 확인!</div>
+          <img class="goya" src="assets/goya-mascot.png" alt="" width="228" height="238" loading="lazy">
+        </div>
       </div>
     </div>
   </section>
@@ -978,7 +1435,10 @@ footer{background:var(--paper-2);border-top:1px solid var(--line);padding:35px 0
         <a href="#alignment">배열</a>
         <a href="#cross">크로스</a>
         <a href="#signals">실전 신호</a>
+        <a href="#strategy">공략법</a>
+        <a href="#charts">차트 읽기</a>
         <a href="#rules">원칙</a>
+        <a href="#practice">연습</a>
         <a href="https://mjky1014-collab.github.io/" target="_blank" rel="noopener">모음목록 ↗</a>
       </div>
     </div>
@@ -1039,7 +1499,7 @@ footer{background:var(--paper-2);border-top:1px solid var(--line);padding:35px 0
     revealEls.forEach((el, i) => { el.style.transitionDelay = Math.min(i % 4 * 50, 150) + 'ms'; io.observe(el); });
   } else revealEls.forEach(el => el.classList.add('on'));
 
-  const sections = ['concept','alignment','cross','signals','charts','rules'].map(id => document.getElementById(id)).filter(Boolean);
+  const sections = ['concept','alignment','cross','signals','strategy','charts','rules','practice'].map(id => document.getElementById(id)).filter(Boolean);
   const navAnchors = $$('#navLinks a[href^="#"]');
   if ('IntersectionObserver' in window) {
     const spy = new IntersectionObserver(entries => {
@@ -1094,12 +1554,10 @@ footer{background:var(--paper-2);border-top:1px solid var(--line);padding:35px 0
   const checklist = [
     '탑10 급등락 코인 진입 전 체크리스트',
     '1. 20% 이상 급등락한 코인인가?',
-    '2. 7일선 > 20일선 > 60일선 정배열인가?',
-    '3. 캔들이 고야라인 위에 있는가?',
-    '4. SS가 고야 위에 있지 않은가?',
-    '5. S2 바로 아래에 스마트라인이 있지 않은가?',
-    '6. TP와 SL을 동시에 입력했는가?',
-    '7. 감정이 아닌 원칙으로 진입했는가?'
+    '2. SS가 고야 위에 있지 않은가?',
+    '3. S2 바로 아래에 스마트라인이 있지 않은가?',
+    '4. TP와 SL을 동시에 입력했는가?',
+    '5. 감정이 아닌 원칙으로 진입했는가?'
   ].join('\n');
   const toast = $('#toast');
   let toastTimer;
