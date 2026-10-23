@@ -73,4 +73,92 @@
     navSections.forEach((section) => navObserver.observe(section));
   }
 
+  // ---------- curriculum 25 : source-material modal ----------
+  const curriculumButtons = Array.from(doc.querySelectorAll('[data-curriculum]'));
+  const curriculumModal = doc.getElementById('curriculum-modal');
+  const curriculumTitle = doc.getElementById('curriculum-modal-title');
+  const curriculumKicker = doc.getElementById('curriculum-modal-kicker');
+  const curriculumBody = doc.getElementById('curriculum-modal-body');
+  const curriculumClose = curriculumModal ? curriculumModal.querySelector('.curriculum-modal-close') : null;
+  const curriculumData = window.CURRICULUM_DATA || {};
+  let curriculumTrigger = null;
+
+  if (curriculumModal && curriculumTitle && curriculumKicker && curriculumBody && curriculumButtons.length) {
+    const canShowModal = typeof curriculumModal.showModal === 'function';
+
+    const openCurriculum = (key) => {
+      const item = curriculumData[key];
+      if (!item) return;
+
+      curriculumKicker.textContent = `CURRICULUM ${key}${item.tag ? ` · ${item.tag}` : ''}`;
+      curriculumTitle.textContent = item.title;
+
+      const points = (item.points || []).map((point) => `<li>${point}</li>`).join('');
+      const figures = (item.images || []).map((image) => `
+        <figure class="curriculum-modal-figure">
+          <img src="${image.src}" alt="${image.alt}" loading="lazy" decoding="async">
+          <figcaption>${image.caption}</figcaption>
+        </figure>`).join('');
+      const video = item.video ? `
+        <div class="curriculum-modal-video">
+          <div><b>영상 참조</b>${item.video} <a href="#videos" data-modal-inner-link>영상 목록 보기 ↗</a></div>
+        </div>` : '';
+      const link = item.link ? `
+        <a class="curriculum-modal-link" href="${item.link.href}" data-modal-inner-link>${item.link.label} <span aria-hidden="true">→</span></a>` : '';
+
+      curriculumBody.innerHTML = `
+        <p class="curriculum-modal-lead">제공된 강의자료에서 확인한 내용을 정리했습니다.</p>
+        <ul class="curriculum-modal-points">${points}</ul>
+        ${figures}
+        ${video}
+        <p class="curriculum-modal-source"><b>출처</b> ${item.source}</p>
+        ${link}
+        <p class="curriculum-modal-note">제공된 강의자료에서 발췌·재구성했습니다. 교육용이며 매매 권유가 아닙니다. 모든 판단과 책임은 본인에게 있습니다.</p>`;
+
+      curriculumModal.scrollTop = 0;
+      curriculumBody.scrollTop = 0;
+      doc.body.classList.add('modal-open');
+      if (canShowModal) curriculumModal.showModal();
+      else curriculumModal.setAttribute('open', '');
+    };
+
+    const closeCurriculum = () => {
+      if (canShowModal && curriculumModal.open) curriculumModal.close();
+      else {
+        curriculumModal.removeAttribute('open');
+        doc.body.classList.remove('modal-open');
+        if (curriculumTrigger) curriculumTrigger.focus();
+      }
+    };
+
+    curriculumButtons.forEach((button) => {
+      const key = button.getAttribute('data-curriculum');
+      const label = button.querySelector('p')?.textContent.trim();
+      if (label) button.setAttribute('aria-label', `${label} — 제공 자료 보기`);
+      button.addEventListener('click', () => {
+        curriculumTrigger = button;
+        openCurriculum(key);
+      });
+    });
+
+    if (curriculumClose) curriculumClose.addEventListener('click', closeCurriculum);
+
+    curriculumModal.addEventListener('click', (event) => {
+      if (event.target === curriculumModal) closeCurriculum();
+      if (event.target.closest('[data-modal-inner-link]')) closeCurriculum();
+    });
+
+    curriculumModal.addEventListener('close', () => {
+      doc.body.classList.remove('modal-open');
+      if (curriculumTrigger) {
+        curriculumTrigger.focus();
+        curriculumTrigger = null;
+      }
+    });
+
+    curriculumModal.addEventListener('cancel', () => {
+      doc.body.classList.remove('modal-open');
+    });
+  }
+
 })();

@@ -446,11 +446,44 @@ section[id]{scroll-margin-top:88px}
 .precursor-card p{margin:0;font-size:10.5px;line-height:1.65;color:var(--muted)}
 
 /* ---------- curriculum ---------- */
-.curriculum-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;position:relative;z-index:1}
-.curriculum-item{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:13px 13px 12px;min-height:92px;transition:.22s}
-.curriculum-item:hover{border-color:rgba(217,74,61,.4);transform:translateY(-2px);box-shadow:0 10px 24px rgba(35,27,16,.06)}
-.curriculum-item span{display:block;font-family:var(--cond);font-size:10px;font-weight:700;letter-spacing:1.3px;color:var(--red);margin-bottom:5px}
-.curriculum-item p{margin:0;font-size:11px;line-height:1.6;color:#4f4a41;font-weight:500}
+.curriculum-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;position:relative;z-index:1}
+.curriculum-item{display:flex;flex-direction:column;align-items:flex-start;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 15px 14px;min-height:138px;transition:.22s;position:relative;overflow:hidden}
+.curriculum-item::after{content:"자료 보기 ↗";display:block;margin-top:auto;padding-top:10px;font-family:var(--cond);font-size:11px;font-weight:700;letter-spacing:1px;color:var(--red);opacity:.9}
+.curriculum-item[data-video="partial"]::after{content:"자료 보기 · 일부 영상 참조 ↗";color:var(--muted)}
+.curriculum-item[data-video="true"]::after{content:"자료 보기 · 영상 참조 ↗";color:var(--red)}
+.curriculum-item:hover{border-color:rgba(217,74,61,.45);transform:translateY(-3px);box-shadow:0 12px 28px rgba(35,27,16,.08);background:#fffdf7}
+.curriculum-item:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.curriculum-num{display:block;font-family:var(--cond);font-size:12px;font-weight:700;letter-spacing:1.3px;color:var(--red);margin-bottom:7px}
+.curriculum-item p{margin:0;font-size:15.5px;line-height:1.62;color:#3f3a31;font-weight:600;letter-spacing:-.2px}
+
+/* ---------- curriculum modal ---------- */
+.curriculum-modal{width:min(860px,calc(100vw - 32px));max-width:860px;max-height:88vh;padding:0;border:1px solid var(--line);border-radius:18px;background:var(--card);color:var(--ink);box-shadow:0 30px 90px rgba(17,26,23,.32);overflow:auto}
+.curriculum-modal::backdrop{background:rgba(17,26,23,.62);backdrop-filter:blur(5px)}
+.curriculum-modal-card{position:relative;padding:30px 32px 28px}
+.curriculum-modal-close{position:sticky;top:12px;float:right;z-index:2;width:38px;height:38px;border:1px solid var(--line);border-radius:50%;background:var(--card);display:grid;place-items:center;font-size:22px;line-height:1;color:var(--muted);transition:.2s}
+.curriculum-modal-close:hover{background:var(--dark);color:var(--paper);border-color:var(--dark)}
+.curriculum-modal-head{padding-right:46px;margin-bottom:18px}
+.curriculum-modal-kicker{display:inline-flex;align-items:center;gap:8px;font-family:var(--cond);font-size:11px;font-weight:700;letter-spacing:2px;color:var(--red)}
+.curriculum-modal-kicker::before{content:"";width:20px;height:2px;background:var(--red)}
+.curriculum-modal-head h2{font-family:var(--display);font-size:clamp(24px,3.2vw,34px);font-weight:400;line-height:1.25;letter-spacing:-1px;margin:8px 0 0}
+.curriculum-modal-body{position:relative;z-index:1}
+.curriculum-modal-lead{margin:0 0 16px;font-size:16px;line-height:1.8;color:#4f4a41}
+.curriculum-modal-points{list-style:none;margin:0 0 20px;padding:0;display:grid;gap:10px}
+.curriculum-modal-points li{position:relative;padding:12px 14px 12px 38px;border:1px solid var(--line);border-radius:10px;background:var(--paper);font-size:15.5px;line-height:1.75;color:#3f3a31}
+.curriculum-modal-points li::before{content:"";position:absolute;left:15px;top:1.25em;width:7px;height:7px;border-radius:50%;background:var(--red)}
+.curriculum-modal-points li b{color:var(--ink);font-weight:900}
+.curriculum-modal-figure{margin:18px 0 0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#0d1613}
+.curriculum-modal-figure img{width:100%;height:auto;display:block}
+.curriculum-modal-figure figcaption{padding:10px 13px;background:var(--paper);font-size:12.5px;line-height:1.6;color:var(--muted);border-top:1px solid var(--line)}
+.curriculum-modal-source{margin:20px 0 0;padding-top:14px;border-top:1px solid var(--line);font-size:12.5px;line-height:1.7;color:var(--muted)}
+.curriculum-modal-source b{color:var(--ink)}
+.curriculum-modal-video{display:flex;gap:10px;align-items:flex-start;margin:18px 0 0;padding:14px 16px;border-left:4px solid var(--red);border-radius:0 10px 10px 0;background:rgba(217,74,61,.07);font-size:14.5px;line-height:1.7;color:#5d574d}
+.curriculum-modal-video b{display:block;font-family:var(--cond);font-size:11px;letter-spacing:1.2px;color:var(--red);margin-bottom:3px}
+.curriculum-modal-video a{color:var(--red);font-weight:900;text-decoration:underline;text-underline-offset:2px}
+.curriculum-modal-link{display:inline-flex;align-items:center;gap:7px;margin-top:18px;padding:11px 15px;border-radius:8px;background:var(--dark);color:var(--paper);font-size:13.5px;font-weight:900;transition:.2s}
+.curriculum-modal-link:hover{background:var(--red);transform:translateY(-1px)}
+.curriculum-modal-note{margin:20px 0 0;font-size:12px;line-height:1.7;color:var(--muted-2)}
+body.modal-open{overflow:hidden}
 
 /* ---------- videos ---------- */
 .video-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;position:relative;z-index:1}
@@ -514,6 +547,30 @@ section[id]{scroll-margin-top:88px}
 .footer-copy{grid-column:1/-1;margin:10px 0 0;padding-top:16px;border-top:1px solid rgba(255,255,255,.08);font-size:10px;line-height:1.7;color:#6f7b74}
 .footer-copy b{color:#aeb8b2}
 
+/* ---------- readability ---------- */
+.section-head p{font-size:15.5px}
+.note{font-size:13px}
+.check-list li p{font-size:13px}
+.check-list .mini-note{font-size:12px}
+.precursor-card h4{font-size:13.5px}
+.precursor-card p{font-size:12.5px}
+.term-card b{font-size:13px}
+.term-card p{font-size:11.5px}
+.stage-card p{font-size:13px}
+.stage-card li{font-size:12px}
+.half-card li{font-size:12.5px}
+.basics-card p{font-size:13px}
+.direction-card p{font-size:13px}
+.direction-rule,.principle-note,.ma-rule{font-size:13.5px}
+.ma-copy p{font-size:15px}
+.rsi-card .rsi-sub{font-size:13px}
+.rsi-list li{font-size:13px}
+.disclaimer p{font-size:13px}
+.disclaimer li{font-size:12.5px}
+.footer-copy{font-size:11.5px}
+.academy-link b{font-size:12.5px}
+.video-link{font-size:11.5px}
+
 /* ---------- responsive ---------- */
 @media(max-width:1120px){
   .stage-grid{grid-template-columns:repeat(2,1fr)}
@@ -575,6 +632,13 @@ section[id]{scroll-margin-top:88px}
   .notion-actions{grid-template-columns:1fr}
   .notion-card{padding:28px 22px}
   .disclaimer{grid-template-columns:1fr;gap:12px}
+  .curriculum-modal{width:calc(100vw - 20px);max-width:calc(100vw - 20px);max-height:92vh;border-radius:14px}
+  .curriculum-modal-card{padding:22px 18px 22px}
+  .curriculum-modal-head{padding-right:38px}
+  .curriculum-modal-head h2{font-size:26px;letter-spacing:-.7px}
+  .curriculum-modal-points li{font-size:14.5px;padding:11px 12px 11px 34px}
+  .curriculum-modal-lead{font-size:15px}
+  .curriculum-modal-close{top:8px;width:34px;height:34px;font-size:20px}
 }
 @media(max-width:460px){
   .wrap{width:calc(100% - 28px)}
@@ -591,6 +655,12 @@ section[id]{scroll-margin-top:88px}
   .float-note{position:relative;right:auto;bottom:auto;margin:-8px 10px 0;min-width:0}
   .terminal{transform:none}
   .terminal-foot{gap:9px;font-size:9px}
+  .curriculum-item{min-height:0;padding:15px 14px 13px}
+  .curriculum-item p{font-size:15px}
+  .curriculum-modal-card{padding:20px 14px 20px}
+  .curriculum-modal-points li{font-size:14px}
+  .curriculum-modal-figure figcaption{font-size:12px}
+  .curriculum-modal-source{font-size:12px}
 }
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
