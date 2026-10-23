@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>병아리 매매법 · 시바진 어고 | 고야라인 시그널 가이드</title>
-<meta name="description" content="시그널이 바뀌면 고야라인에서. 병아리 0·1·1.5·3단계, 고야 도미넌트 점수, RSI, BTC 도미넌스, 3MA, 25가지 체크리스트를 정리한 교육용 가이드.">
+<meta name="description" content="시그널이 바뀌면 고야라인에서. 차트·캔들 기초부터 병아리 0·1·1.5·3단계, 고야 도미넌트 점수, RSI, BTC 도미넌스, 3MA, 25가지 체크리스트를 정리한 교육용 가이드.">
 <meta name="theme-color" content="#f7f1e4">
 <meta property="og:type" content="website">
 <meta property="og:title" content="병아리 매매법 · 시바진 어고 | 고야라인 시그널 가이드">
-<meta property="og:description" content="시그널대로 진입, 반대 시그널에는 무조건 정리. 0단계부터 3단계까지, 고야라인 중심의 병아리 매매법을 한 페이지에 정리했습니다.">
+<meta property="og:description" content="차트·캔들 기초부터 0단계부터 3단계까지, 고야라인 중심의 병아리 매매법을 한 페이지에 정리했습니다.">
 <meta property="og:image" content="https://mjky1014-collab.github.io/chick/cover.svg">
 <meta property="og:url" content="https://mjky1014-collab.github.io/chick/">
 <link rel="canonical" href="https://mjky1014-collab.github.io/chick/">
@@ -44,6 +44,7 @@
     </a>
     <nav class="nav-links" id="nav-links" aria-label="주요 섹션">
       <a href="#principle">원칙</a>
+      <a href="#candle">캔들</a>
       <a href="#steps">단계</a>
       <a href="#score">점수표</a>
       <a href="#rsi">RSI</a>
@@ -201,6 +202,223 @@
         <svg class="chick" aria-hidden="true"><use href="#chick-icon"/></svg>
         <div><b>시바진 어고 = 시그널 바뀌면 진입하세요, 어디서? 고야라인에서.</b><br>방향은 시그널이 정하고, 위치는 고야라인이 정합니다. 둘 중 하나라도 애매하면 진입하지 않습니다.</div>
       </div>
+    </div>
+  </section>
+
+  <section class="section section-paper-2" id="candle">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <span class="kicker">CHART BASICS · DECK 46–55</span>
+          <h2>차트는 가격의 흐름,<br><em>캔들</em>은 그 한 칸.</h2>
+        </div>
+        <p>캔들을 처음 보면 색부터 눈에 들어옵니다. 하지만 먼저 볼 것은 <b>시가·고가·저가·종가</b>입니다. 아카데미 2기 차트강의 46–55페이지의 기초 내용을 초보자 눈높이로 다시 정리했습니다.</p>
+      </div>
+
+      <div class="basics-grid">
+        <article class="basics-card reveal">
+          <div class="basics-head"><span>01</span><b>CHART</b></div>
+          <h3>차트란?</h3>
+          <p>가격의 흐름을 <b>알기 쉽게 도형으로 표현</b>한 것입니다. 시간은 오른쪽으로 흐르고, 가격은 위아래로 움직입니다. 캔들이 쌓이면 차트가 됩니다.</p>
+          <div class="mini-chart">
+            <svg viewBox="0 0 360 150" role="img" aria-label="캔들이 시간 순서대로 쌓여 상승 흐름을 보여주는 예시 차트">
+              <rect width="360" height="150" rx="10" fill="#0d1613"/>
+              <g stroke="#ffffff" stroke-opacity=".065">
+                <path d="M0 30H360M0 60H360M0 90H360M0 120H360"/>
+                <path d="M60 0V150M120 0V150M180 0V150M240 0V150M300 0V150"/>
+              </g>
+              <g stroke-linecap="round">
+                <line x1="35" y1="102" x2="35" y2="132" stroke="#5b8fc9" stroke-width="1.4"/><rect x="31" y="108" width="8" height="14" rx="1" fill="#5b8fc9"/>
+                <line x1="70" y1="92" x2="70" y2="128" stroke="#e05a52" stroke-width="1.4"/><rect x="66" y="98" width="8" height="22" rx="1" fill="#e05a52"/>
+                <line x1="105" y1="82" x2="105" y2="120" stroke="#e05a52" stroke-width="1.4"/><rect x="101" y="88" width="8" height="22" rx="1" fill="#e05a52"/>
+                <line x1="140" y1="78" x2="140" y2="114" stroke="#5b8fc9" stroke-width="1.4"/><rect x="136" y="84" width="8" height="22" rx="1" fill="#5b8fc9"/>
+                <line x1="175" y1="68" x2="175" y2="106" stroke="#e05a52" stroke-width="1.4"/><rect x="171" y="74" width="8" height="22" rx="1" fill="#e05a52"/>
+                <line x1="210" y1="58" x2="210" y2="98" stroke="#e05a52" stroke-width="1.4"/><rect x="206" y="64" width="8" height="22" rx="1" fill="#e05a52"/>
+                <line x1="245" y1="54" x2="245" y2="92" stroke="#5b8fc9" stroke-width="1.4"/><rect x="241" y="60" width="8" height="22" rx="1" fill="#5b8fc9"/>
+                <line x1="280" y1="44" x2="280" y2="84" stroke="#e05a52" stroke-width="1.4"/><rect x="276" y="50" width="8" height="20" rx="1" fill="#e05a52"/>
+                <line x1="315" y1="34" x2="315" y2="74" stroke="#e05a52" stroke-width="1.4"/><rect x="311" y="40" width="8" height="18" rx="1" fill="#e05a52"/>
+              </g>
+              <path d="M20 122 C 56 118, 84 104, 120 106 S 190 84, 226 78 S 288 58, 338 34" fill="none" stroke="#f0c33c" stroke-opacity=".65" stroke-width="1.5" stroke-dasharray="4 4"/>
+              <text x="16" y="20" font-family="Barlow Condensed, Arial Narrow, sans-serif" font-size="8" font-weight="700" letter-spacing="1.4" fill="#5f6d66">PRICE FLOW · EXAMPLE</text>
+            </svg>
+          </div>
+          <div class="basics-caption"><span>시간 →</span><span>가격 ↑</span></div>
+        </article>
+
+        <article class="basics-card reveal">
+          <div class="basics-head"><span>02</span><b>CANDLE</b></div>
+          <h3>캔들이란?</h3>
+          <p><b>특정 기간</b> 동안의 가격 움직임을 시각적으로 표현한 것입니다. 1시간봉은 1시간, 1분봉은 1분 동안의 네 가격을 한 개에 담습니다.</p>
+          <div class="mini-candles" aria-hidden="true">
+            <span class="mc up"></span>
+            <span class="mc down"></span>
+            <span class="mc up"></span>
+            <span class="mc up"></span>
+            <span class="mc down"></span>
+            <span class="mc up"></span>
+          </div>
+          <div class="basics-caption"><span>캔들 여러 개 = 차트</span><span>1H · 예시</span></div>
+        </article>
+      </div>
+
+      <div class="candle-lab reveal">
+        <div class="candle-lab-head">
+          <div>
+            <span class="lab-kicker">CANDLE ANATOMY</span>
+            <h3>캔들 하나에 담긴 네 가지 가격</h3>
+          </div>
+          <span class="lab-meta">1H · EXAMPLE</span>
+        </div>
+        <div class="candle-lab-grid">
+          <div class="candle-pair">
+            <figure class="candle-figure up">
+              <svg viewBox="0 0 240 300" role="img" aria-label="상승 캔들. 고가, 종가, 시가, 저가의 위치를 표시한 예시.">
+                <g class="c-grid">
+                  <path d="M24 40h192M24 80h192M24 120h192M24 160h192M24 200h192M24 240h192M24 280h192"/>
+                  <path d="M56 20v260M120 20v260M184 20v260"/>
+                </g>
+                <line class="c-wick up" x1="120" y1="38" x2="120" y2="258"/>
+                <rect class="c-body up" x="98" y="88" width="44" height="108" rx="3"/>
+                <g class="c-dash">
+                  <path d="M120 38h36M120 88h36M120 196h36M120 258h36"/>
+                </g>
+                <g class="c-label">
+                  <text x="162" y="42">고가 <tspan class="c-label-en">HIGH</tspan></text>
+                  <text x="162" y="92">종가 <tspan class="c-label-en">CLOSE</tspan></text>
+                  <text x="162" y="200">시가 <tspan class="c-label-en">OPEN</tspan></text>
+                  <text x="162" y="262">저가 <tspan class="c-label-en">LOW</tspan></text>
+                </g>
+              </svg>
+              <figcaption><b>상승 캔들</b><span>종가 &gt; 시가</span></figcaption>
+            </figure>
+            <figure class="candle-figure down">
+              <svg viewBox="0 0 240 300" role="img" aria-label="하락 캔들. 고가, 시가, 종가, 저가의 위치를 표시한 예시.">
+                <g class="c-grid">
+                  <path d="M24 40h192M24 80h192M24 120h192M24 160h192M24 200h192M24 240h192M24 280h192"/>
+                  <path d="M56 20v260M120 20v260M184 20v260"/>
+                </g>
+                <line class="c-wick down" x1="120" y1="34" x2="120" y2="264"/>
+                <rect class="c-body down" x="98" y="84" width="44" height="114" rx="3"/>
+                <g class="c-dash">
+                  <path d="M120 34h36M120 84h36M120 198h36M120 264h36"/>
+                </g>
+                <g class="c-label">
+                  <text x="162" y="38">고가 <tspan class="c-label-en">HIGH</tspan></text>
+                  <text x="162" y="88">시가 <tspan class="c-label-en">OPEN</tspan></text>
+                  <text x="162" y="202">종가 <tspan class="c-label-en">CLOSE</tspan></text>
+                  <text x="162" y="268">저가 <tspan class="c-label-en">LOW</tspan></text>
+                </g>
+              </svg>
+              <figcaption><b>하락 캔들</b><span>종가 &lt; 시가</span></figcaption>
+            </figure>
+          </div>
+          <div class="candle-notes">
+            <div class="candle-note"><div><span>시가</span><b>OPEN</b></div><p>캔들이 시작될 때의 가격</p></div>
+            <div class="candle-note"><div><span>고가</span><b>HIGH</b></div><p>그 기간 가장 높았던 가격</p></div>
+            <div class="candle-note"><div><span>저가</span><b>LOW</b></div><p>그 기간 가장 낮았던 가격</p></div>
+            <div class="candle-note"><div><span>종가</span><b>CLOSE</b></div><p>캔들이 끝날 때의 가격</p></div>
+            <div class="body-wick-note"><b>몸통</b>은 시가와 종가의 차이, <b>꼬리</b>는 고가·저가까지 남은 흔적입니다. 몸통이 길수록 그 시간의 방향이 뚜렷했다는 뜻으로 읽습니다.</div>
+          </div>
+        </div>
+        <p class="candle-color-note">색은 플랫폼마다 다릅니다. 이 섹션은 강의 자료와 같이 <b>상승=빨강, 하락=파랑</b>으로 표시합니다. 실제 거래소에서는 색보다 <b>시가와 종가의 위치</b>를 먼저 확인하세요.</p>
+      </div>
+
+      <div class="block-head reveal">
+        <div>
+          <span class="kicker">MARKET PRICE</span>
+          <h3>시장가는 마지막 거래가 만든다.</h3>
+        </div>
+        <p>호가창에는 사려는 주문과 팔려는 주문이 쌓입니다. 두 주문이 만나 체결된 <b>마지막 가격</b>이 현재 시장가가 됩니다.</p>
+      </div>
+      <div class="market-grid">
+        <div class="orderbook reveal" role="img" aria-label="매도 주문 1,300원과 1,200원, 마지막 체결가 1,000원, 매수 주문 900원, 800원, 700원이 있는 예시 호가창">
+          <div class="ob-title"><span>ORDER BOOK</span><b>EDU EXAMPLE</b></div>
+          <div class="ob-side ask">
+            <div class="ob-row" style="--w:36%"><span>1,300원</span><em>매도</em></div>
+            <div class="ob-row" style="--w:22%"><span>1,200원</span><em>매도</em></div>
+          </div>
+          <div class="ob-last"><span>시장가 · 마지막 체결</span><b>1,000원</b></div>
+          <div class="ob-side bid">
+            <div class="ob-row" style="--w:30%"><span>900원</span><em>매수</em></div>
+            <div class="ob-row" style="--w:44%"><span>800원</span><em>매수</em></div>
+            <div class="ob-row" style="--w:58%"><span>700원</span><em>매수</em></div>
+          </div>
+        </div>
+        <div class="price-steps reveal">
+          <div class="price-change"><span>1,000원</span><i>→</i><b>700원</b><small>매도가 대기 매수를 소화했을 때</small></div>
+          <div class="price-step"><span>01</span><p><b>마지막 거래가 시장가.</b> 1,000원에서 체결이 일어나면 현재 시장가는 1,000원입니다.</p></div>
+          <div class="price-step"><span>02</span><p><b>매도가 이어지면 가격이 내려갑니다.</b> 1,000원·900원·800원의 대기 물량이 차례로 소화되면 마지막 체결가는 700원까지 내려갈 수 있습니다.</p></div>
+          <div class="price-step"><span>03</span><p><b>그 결과가 캔들에 남습니다.</b> 시간이 흐르며 시가·고가·저가·종가가 바뀌고, 그 결과가 다음 캔들에 기록됩니다.</p></div>
+        </div>
+      </div>
+      <p class="note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 9v4M12 17h.01M10.3 3.9 2.7 17.1A1.5 1.5 0 0 0 4 19.5h16a1.5 1.5 0 0 0 1.3-2.4L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg> 호가창은 이해를 돕기 위한 예시입니다. 실제 가격과 수량은 거래소마다 다르게 표시됩니다.</p>
+
+      <div class="block-head reveal">
+        <div>
+          <span class="kicker">LONG / SHORT</span>
+          <h3>상승에 베팅하면 롱, 하락에 베팅하면 숏.</h3>
+        </div>
+        <p>롱과 숏은 <b>방향</b>일 뿐, 수익을 보장하는 신호가 아닙니다. 진입 위치와 청산 기준은 따로 확인합니다.</p>
+      </div>
+      <div class="direction-grid">
+        <article class="direction-card long reveal">
+          <div class="dir-head"><span>LONG</span><b>롱 · 상승</b></div>
+          <div class="dir-visual" aria-hidden="true">
+            <svg viewBox="0 0 320 84">
+              <g class="dir-grid"><path d="M0 21h320M0 42h320M0 63h320M80 0v84M160 0v84M240 0v84"/></g>
+              <path class="dir-line long" d="M14 64 C 60 60, 82 46, 124 48 S 198 30, 242 26 S 282 18, 306 12"/>
+              <path class="dir-arrow long" d="M288 12h18M306 12v18"/>
+            </svg>
+          </div>
+          <p>가격이 오를 것이라고 보고 진입합니다. 나중에 더 높은 가격에 팔아 차익을 노리는 방향입니다.</p>
+          <ul class="dir-list">
+            <li><span>기대 방향</span><b>상승 ↑</b></li>
+            <li><span>진입 위치</span><b>고야라인</b></li>
+            <li><span>청산 기준</span><b>반대 시그널</b></li>
+          </ul>
+        </article>
+        <article class="direction-card short reveal">
+          <div class="dir-head"><span>SHORT</span><b>숏 · 하락</b></div>
+          <div class="dir-visual" aria-hidden="true">
+            <svg viewBox="0 0 320 84">
+              <g class="dir-grid"><path d="M0 21h320M0 42h320M0 63h320M80 0v84M160 0v84M240 0v84"/></g>
+              <path class="dir-line short" d="M14 20 C 60 24, 82 38, 124 36 S 198 54, 242 58 S 282 66, 306 72"/>
+              <path class="dir-arrow short" d="M288 72h18M306 54v18"/>
+            </svg>
+          </div>
+          <p>선물·마진 거래에서 가격이 내릴 것이라고 보고 진입합니다. 나중에 더 낮은 가격에 되사서 차익을 노리는 방향입니다.</p>
+          <ul class="dir-list">
+            <li><span>기대 방향</span><b>하락 ↓</b></li>
+            <li><span>진입 위치</span><b>고야라인</b></li>
+            <li><span>청산 기준</span><b>반대 시그널</b></li>
+          </ul>
+        </article>
+      </div>
+      <div class="direction-rule reveal">
+        <svg class="chick" aria-hidden="true"><use href="#chick-icon"/></svg>
+        <div><b>방향은 LONG/SHORT, 위치는 고야라인.</b> 어디서 진입할지는 고야 지정가와 시그널로 확인합니다. 진입 후 반대 시그널이 나오면 방향과 상관없이 정리합니다.</div>
+      </div>
+
+      <div class="block-head reveal">
+        <div>
+          <span class="kicker">CHART TERMS</span>
+          <h3>차트에서 자주 만나는 말.</h3>
+        </div>
+        <p>처음에는 이름과 역할만 알아도 충분합니다. 지표는 참고하고, 실제 진입은 <b>시그널과 고야라인</b>을 우선합니다.</p>
+      </div>
+      <div class="term-grid">
+        <article class="term-card reveal"><span>GOYA</span><b>고야라인</b><p>시그널과 진입 위치를 함께 보는 기준선</p></article>
+        <article class="term-card reveal"><span>3MA</span><b>이동평균선</b><p>7·20·60일선으로 흐름과 배열을 보는 지표</p></article>
+        <article class="term-card reveal"><span>BB</span><b>볼린저밴드</b><p>가격이 움직이는 범위를 보여주는 밴드</p></article>
+        <article class="term-card reveal"><span>TREND</span><b>추세선</b><p>고점과 저점을 이어 방향을 보는 선</p></article>
+        <article class="term-card reveal"><span>R / S</span><b>지지·저항</b><p>가격이 멈추거나 반등할 수 있는 구간</p></article>
+        <article class="term-card reveal"><span>HEIKIN</span><b>하이킨아시</b><p>추세를 더 부드럽게 보여주는 캔들 차트</p></article>
+        <article class="term-card reveal"><span>RSI</span><b>RSI</b><p>매수·매도 힘의 우위를 보는 보조지표</p></article>
+        <article class="term-card reveal"><span>MACD</span><b>MACD</b><p>이동평균의 차이로 추세 전환을 보는 지표</p></article>
+        <article class="term-card reveal"><span>EXIT</span><b>익절</b><p>목표 수익에 도달했을 때 이익을 확정</p></article>
+        <article class="term-card reveal"><span>CUT</span><b>손절</b><p>기준 이탈 시 손실을 제한하기 위해 정리</p></article>
+      </div>
+      <p class="note"><svg class="chick" aria-hidden="true"><use href="#chick-icon"/></svg> 이 섹션은 아카데미 2기 차트강의 46–55페이지의 기초 용어와 예시를 페이지 흐름에 맞게 재구성한 것입니다. 캔들 색과 호가창은 교육용 예시이며 실제 시장 데이터가 아닙니다.</p>
     </div>
   </section>
 
