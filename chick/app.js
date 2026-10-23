@@ -96,7 +96,7 @@
       const points = (item.points || []).map((point) => `<li>${point}</li>`).join('');
       const figures = (item.images || []).map((image) => `
         <figure class="curriculum-modal-figure">
-          <img src="${image.src}" alt="${image.alt}" loading="lazy" decoding="async">
+          <img src="${image.src}" alt="${image.alt}" loading="eager" decoding="async">
           <figcaption>${image.caption}</figcaption>
         </figure>`).join('');
       const video = item.video ? `
