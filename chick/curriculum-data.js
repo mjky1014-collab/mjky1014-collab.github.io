@@ -76,37 +76,22 @@ window.CURRICULUM_DATA = {
   "09": {
     tag: "지표 · 72p",
     title: "3MA 기능은 무엇인가?",
-    points: [
-      "3MA는 <b>7일·20일·60일 이동평균선</b>을 한 화면에 보여주는 기능입니다.",
-      "짧은 기간은 심리선, 긴 기간은 추세선으로 설명합니다.",
-      "7일선 흰색, 20일선 노란색, 60일선 빨간색, 고야라인은 분홍색으로 표시됩니다."
-    ],
-    source: "아카데미 2기 차트강의 72p · 이동평균선",
-    images: [{ src: "assets/curriculum/slide-72.jpg", alt: "7일, 20일, 60일 이동평균선과 정배열·역배열을 설명하는 슬라이드", caption: "3MA와 정배열·역배열 · 72p" }],
+    source: "아카데미 2기 차트강의 72p · 이동평균선 / 병아리매매자료 PPT 6페이지",
+    images: [{ src: "assets/curriculum/ppt-06-3ma.png", alt: "7일선, 20일선, 60일선과 고야라인을 표시한 차트 슬라이드", caption: "PPT 6페이지 · 3MA와 고야라인" }],
     link: { href: "#ma", label: "3MA 섹션 보기" }
   },
   "10": {
     tag: "지표 · 47p",
     title: "S/R의 의미는?",
-    points: [
-      "S/R은 <b>Support/Resistance</b>, 즉 지지·저항의 약자입니다.",
-      "자료에서는 ‘현재 가격 기준으로 고야에서 분석한 지지선과 저항선’으로 설명합니다.",
-      "가격이 멈추거나 반등할 수 있는 구간이지만, 반전을 보장하지는 않습니다."
-    ],
-    source: "아카데미 2기 차트강의 47p · R/S",
-    images: [{ src: "assets/curriculum/slide-46.jpg", alt: "지지라인과 저항라인을 설명하는 강의 슬라이드", caption: "지지와 저항 · 46p" }],
+    source: "아카데미 2기 차트강의 47p · R/S / 병아리매매자료 PPT 7페이지",
+    images: [{ src: "assets/curriculum/ppt-07-sr.png", alt: "저항과 지지를 화살표로 표시한 차트 슬라이드", caption: "PPT 7페이지 · 지지와 저항" }],
     link: { href: "#candle", label: "차트 용어 섹션 보기" }
   },
   "11": {
     tag: "지표 · 47p",
     title: "RSI 신호는 무엇인가?",
-    points: [
-      "RSI는 <b>상대강도지수(Relative Strength Index)</b>로, 매수·매도 힘의 우위를 보는 보조지표입니다.",
-      "페이지의 RSI 섹션은 초록·빨강 색과 L/S 전환을 함께 읽습니다.",
-      "색만 보고 진입하지 않고, 고야라인 근처에서 반대 시그널이 나오는지 확인합니다."
-    ],
-    source: "아카데미 2기 차트강의 47p / 페이지 RSI 섹션",
-    images: [{ src: "assets/curriculum/slide-47.jpg", alt: "RSI를 포함한 프리미엄 차트 용어 슬라이드", caption: "RSI 상대강도지수 · 47p" }],
+    source: "아카데미 2기 차트강의 47p / 페이지 RSI 섹션 / 병아리매매자료 PPT 8페이지",
+    images: [{ src: "assets/curriculum/ppt-08-rsi.png", alt: "LL·SS 시그널과 RSI L·S를 표시한 차트 슬라이드", caption: "PPT 8페이지 · RSI와 LL/SS 시그널" }],
     link: { href: "#rsi", label: "RSI 섹션 보기" }
   },
   "12": {
