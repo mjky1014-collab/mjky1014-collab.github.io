@@ -73,7 +73,7 @@
     navSections.forEach((section) => navObserver.observe(section));
   }
 
-  // ---------- curriculum 25 : source-material modal ----------
+  // ---------- curriculum 13 : source-material modal ----------
   const curriculumButtons = Array.from(doc.querySelectorAll('[data-curriculum]'));
   const curriculumModal = doc.getElementById('curriculum-modal');
   const curriculumTitle = doc.getElementById('curriculum-modal-title');
@@ -93,7 +93,9 @@
       curriculumKicker.textContent = `CURRICULUM ${key}${item.tag ? ` · ${item.tag}` : ''}`;
       curriculumTitle.textContent = item.title;
 
-      const points = (item.points || []).map((point) => `<li>${point}</li>`).join('');
+      const pointItems = (item.points || []).map((point) => `<li>${point}</li>`).join('');
+      const points = pointItems ? `<ul class="curriculum-modal-points">${pointItems}</ul>` : '';
+      const lead = pointItems ? '제공된 강의자료에서 확인한 내용을 정리했습니다.' : '제공된 강의자료의 해당 페이지입니다.';
       const figures = (item.images || []).map((image) => `
         <figure class="curriculum-modal-figure">
           <img src="${image.src}" alt="${image.alt}" loading="eager" decoding="async">
@@ -107,8 +109,8 @@
         <a class="curriculum-modal-link" href="${item.link.href}" data-modal-inner-link>${item.link.label} <span aria-hidden="true">→</span></a>` : '';
 
       curriculumBody.innerHTML = `
-        <p class="curriculum-modal-lead">제공된 강의자료에서 확인한 내용을 정리했습니다.</p>
-        <ul class="curriculum-modal-points">${points}</ul>
+        <p class="curriculum-modal-lead">${lead}</p>
+        ${points}
         ${figures}
         ${video}
         <p class="curriculum-modal-source"><b>출처</b> ${item.source}</p>
