@@ -83,14 +83,14 @@ window.CURRICULUM_DATA = {
   "10": {
     tag: "지표 · 47p",
     title: "S/R의 의미는?",
-    source: "아카데미 2기 차트강의 47p · R/S / 병아리매매자료 PPT 7페이지",
+    source: "아카데미 2기 차트강의 47p · S/R / 병아리매매자료 PPT 7페이지",
     images: [{ src: "assets/curriculum/ppt-07-sr.png", alt: "저항과 지지를 화살표로 표시한 차트 슬라이드", caption: "PPT 7페이지 · 지지와 저항" }],
     link: { href: "#candle", label: "차트 용어 섹션 보기" }
   },
   "11": {
     tag: "지표 · 47p",
     title: "RSI 신호는 무엇인가?",
-    source: "아카데미 2기 차트강의 47p / 페이지 RSI 섹션 / 병아리매매자료 PPT 8페이지",
+    source: "아카데미 2기 차트강의 47p · RSI / 병아리매매자료 PPT 8페이지",
     images: [{ src: "assets/curriculum/ppt-08-rsi.png", alt: "LL·SS 시그널과 RSI L·S를 표시한 차트 슬라이드", caption: "PPT 8페이지 · RSI와 LL/SS 시그널" }],
     link: { href: "#rsi", label: "RSI 섹션 보기" }
   },
