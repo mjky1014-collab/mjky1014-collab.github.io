@@ -4,6 +4,7 @@ MJ의 작업 페이지와 가이드를 정리한 저장소입니다.
 
 ## 공개 가이드
 
+- **EX 차트 · 추세 보는 법:** `https://mjky1014-collab.github.io/trend/`
 - **수퍼사이클 가이드:** `https://mjky1014-collab.github.io/super/`
 - **코인노트 통합장부:** `https://mjky1014-collab.github.io/super/memo.html`
 - **EX 시작 가이드:** `https://mjky1014-collab.github.io/ex/`
@@ -26,6 +27,7 @@ MJ의 작업 페이지와 가이드를 정리한 저장소입니다.
 | 구성 | 위치 |
 | --- | --- |
 | 개인 작업 목록 | 이 저장소 루트 `index.html` |
+| EX 차트 · 추세 보는 법 | `trend/` |
 | 병아리 매매법 | `chick/` |
 | 탑10 급등락 코인 공략 | `top10/` |
 | EX 시작 가이드 | `ex/` |
@@ -69,6 +71,7 @@ https://github.com/mjky1014-collab/mjky1014-collab.github.io/upload/main/chick
 https://github.com/mjky1014-collab/mjky1014-collab.github.io/upload/main/top10
 https://github.com/mjky1014-collab/mjky1014-collab.github.io/upload/main/next
 https://github.com/mjky1014-collab/mjky1014-collab.github.io/upload/main/ex
+https://github.com/mjky1014-collab/mjky1014-collab.github.io/upload/main/trend
 ```
 
 `.nojekyll` 파일이 포함되어 있어 한글 파일명과 폴더가 그대로 배포됩니다.
