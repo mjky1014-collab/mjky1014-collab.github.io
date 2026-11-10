@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="paper-light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>코인 매매일지 (Trading Ledger)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
+  <style>
+    :root {
+      --font-body: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-heading: 'Nanum Myeongjo', serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    [data-theme="paper-light"] {
+      --bg-desk: #ede6d6;
+      --bg-paper: #fcfbf7;
+      --paper-line: #e4dbcb;
+      --paper-grid: rgba(60, 50, 40, 0.05);
+      --border-color: #d1c7b7;
+      --border-dark: #8c7b66;
+      --text-main: #2b2621;
+      --text-muted: #6e6457;
+      --card-bg: #f6f2e9;
+      --input-bg: #fffdf9;
+      --profit-color: #1b7a3e;
+      --profit-bg: #eaf5ec;
+      --loss-color: #b3261e;
+      --loss-bg: #fdeeee;
+      --accent: #5c4832;
+      --accent-hover: #453624;
+      --shadow-paper: 0 10px 30px rgba(70, 55, 40, 0.12), 0 2px 8px rgba(70, 55, 40, 0.06);
+      --tag-long: #205493;
+      --tag-long-bg: #e6eef7;
+      --tag-short: #8c2323;
+      --tag-short-bg: #faeaea;
+    }
+
+    [data-theme="paper-dark"] {
+      --bg-desk: #121417;
+      --bg-paper: #1c1f24;
+      --paper-line: #2b313a;
+      --paper-grid: rgba(255, 255, 255, 0.03);
+      --border-color: #323944;
+      --border-dark: #4d5766;
+      --text-main: #e2dfd9;
+      --text-muted: #959fae;
+      --card-bg: #232830;
+      --input-bg: #16181d;
+      --profit-color: #4ade80;
+      --profit-bg: rgba(34, 197, 94, 0.12);
+      --loss-color: #f87171;
+      --loss-bg: rgba(239, 68, 68, 0.12);
+      --accent: #d8b488;
+      --accent-hover: #e5c9a7;
+      --shadow-paper: 0 10px 35px rgba(0, 0, 0, 0.5), 0 2px 10px rgba(0, 0, 0, 0.4);
+      --tag-long: #60a5fa;
+      --tag-long-bg: rgba(59, 130, 246, 0.15);
+      --tag-short: #f87171;
+      --tag-short-bg: rgba(239, 68, 68, 0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    }
+
+    body {
+      background-color: var(--bg-desk);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      padding: 24px 16px;
+      line-height: 1.5;
+    }
+
+    .ledger-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      background: var(--bg-paper);
+      background-image: 
+        linear-gradient(var(--paper-grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--paper-grid) 1px, transparent 1px);
+      background-size: 20px 20px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      box-shadow: var(--shadow-paper);
+      padding: 32px 36px;
+      position: relative;
+    }
+
+    .ledger-container::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 20px;
+      width: 2px;
+      background: rgba(190, 80, 80, 0.25);
+      pointer-events: none;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: 2px double var(--border-dark);
+      padding-bottom: 16px;
+      margin-bottom: 24px;
+      padding-left: 12px;
+    }
+
+    .title-area h1 {
+      font-family: var(--font-heading);
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .title-area p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 7px 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid var(--border-color);
+      background: var(--card-bg);
+      color: var(--text-main);
+    }
+
+    .btn:hover {
+      border-color: var(--border-dark);
+      filter: brightness(0.97);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+      font-weight: 600;
+    }
+    [data-theme="paper-dark"] .btn-primary {
+      color: #121417;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+    }
+
+    .btn-excel {
+      background: #1e7145;
+      color: #ffffff;
+      border-color: #175735;
+      font-weight: 600;
+    }
+    .btn-excel:hover {
+      background: #175735;
+    }
+
+    .theme-toggle-btn {
+      padding: 6px 12px;
+      font-size: 13px;
+      border-radius: 20px;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .stats-board {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      margin-bottom: 24px;
+      padding-left: 12px;
+    }
+
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 12px 16px;
+      border-left: 4px solid var(--accent);
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .stat-value {
+      font-size: 20px;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      margin-top: 4px;
+    }
+
+    .stat-card.profit-stat { border-left-color: var(--profit-color); }
+    .stat-card.loss-stat { border-left-color: var(--loss-color); }
+
+    .entry-section {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin-bottom: 26px;
+      margin-left: 12px;
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+      align-items: flex-end;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .form-group.span-2 {
+      grid-column: span 2;
+    }
+
+    @media (max-width: 900px) {
+      .form-group.span-2 {
+        grid-column: span 1;
+      }
+    }
+
+    label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    input, select {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      padding: 7px 10px;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      background: var(--input-bg);
+      color: var(--text-main);
+      outline: none;
+    }
+
+    input:focus, select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent);
+    }
+
+    .btn-submit-row {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .table-wrapper {
+      margin-left: 12px;
+      overflow-x: auto;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      background: var(--input-bg);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    thead {
+      background: var(--card-bg);
+      border-bottom: 2px solid var(--border-color);
+    }
+
+    th {
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-muted);
+      padding: 12px 14px;
+      border-right: 1px solid var(--paper-line);
+    }
+
+    th:last-child {
+      border-right: none;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid var(--paper-line);
+    }
+
+    tbody tr:hover {
+      background: rgba(0, 0, 0, 0.02);
+    }
+    [data-theme="paper-dark"] tbody tr:hover {
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    td {
+      padding: 10px 14px;
+      border-right: 1px solid var(--paper-line);
+      font-family: var(--font-mono);
+      color: var(--text-main);
+      vertical-align: middle;
+    }
+
+    td:last-child {
+      border-right: none;
+    }
+
+    tr.row-profit { background-color: var(--profit-bg); }
+    tr.row-loss { background-color: var(--loss-bg); }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 3px;
+      font-size: 11px;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      letter-spacing: 0.5px;
+    }
+    .badge-long {
+      background: var(--tag-long-bg);
+      color: var(--tag-long);
+      border: 1px solid var(--tag-long);
+    }
+    .badge-short {
+      background: var(--tag-short-bg);
+      color: var(--tag-short);
+      border: 1px solid var(--tag-short);
+    }
+
+    .cell-return { font-weight: 700; }
+    .return-profit { color: var(--profit-color); }
+    .return-loss { color: var(--loss-color); }
+
+    .memo-cell {
+      max-width: 200px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-family: var(--font-body);
+      font-size: 12px;
+      color: var(--text-main);
+      cursor: pointer;
+    }
+
+    .action-icons {
+      display: flex;
+      gap: 6px;
+    }
+
+    .btn-icon {
+      border: none;
+      background: none;
+      cursor: pointer;
+      color: var(--text-muted);
+      font-size: 14px;
+      padding: 2px 5px;
+      border-radius: 3px;
+    }
+    .btn-icon:hover {
+      color: var(--text-main);
+      background: rgba(0,0,0,0.06);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px;
+      color: var(--text-muted);
+      font-family: var(--font-heading);
+      font-size: 15px;
+    }
+
+    .ledger-footer {
+      margin-top: 24px;
+      padding-left: 12px;
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-backdrop.active {
+      display: flex;
+    }
+    .modal {
+      background: var(--bg-paper);
+      border: 1px solid var(--border-dark);
+      border-radius: 8px;
+      max-width: 500px;
+      width: 90%;
+      padding: 24px;
+      box-shadow: var(--shadow-paper);
+    }
+    .modal-header {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="ledger-container">
+    <header class="header">
+      <div class="title-area">
+        <h1>📓 코인 매매일지 (Coin Trading Ledger)</h1>
+        <p>실제 손으로 기록하는 감성의 가상자산 트레이딩 저널 • 한 줄씩 정렬 및 통계 분석</p>
+      </div>
+      <div class="header-actions">
+        <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()">
+          🌓 테마 변경: <span id="themeName">종이(화이트) 모드</span>
+        </button>
+        <button class="btn" onclick="exportJSON()">💾 데이터 백업</button>
+        <button class="btn" onclick="document.getElementById('fileInput').click()">📂 불러오기</button>
+        <input type="file" id="fileInput" accept=".json" style="display:none" onchange="importJSON(event)">
+        <button class="btn btn-excel" onclick="exportToExcel()">📊 엑셀 다운로드 (폴더선택)</button>
+      </div>
+    </header>
+
+    <section class="stats-board">
+      <div class="stat-card">
+        <div class="stat-label">총 매매 횟수</div>
+        <div class="stat-value" id="statTotalTrades">0회</div>
+      </div>
+      <div class="stat-card profit-stat">
+        <div class="stat-label">승률 (Win Rate)</div>
+        <div class="stat-value" id="statWinRate">0.0%</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">익절 / 손절 비율</div>
+        <div class="stat-value" id="statWinLossCount">0승 0패</div>
+      </div>
+      <div class="stat-card" id="statNetCard">
+        <div class="stat-label">누적 실현 손익률(%)</div>
+        <div class="stat-value" id="statNetReturn">0.00%</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">손익비 (Profit Factor)</div>
+        <div class="stat-value" id="statProfitFactor">0.00</div>
+      </div>
+    </section>
+
+    <section class="entry-section">
+      <div class="section-title">
+        <span>✏️ 새로운 매매 기록 작성</span>
+      </div>
+      <form id="tradeForm" onsubmit="handleAddTrade(event)">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="coinSymbol">코인명</label>
+            <input type="text" id="coinSymbol" placeholder="예: BTC, ETH, XRP" required>
+          </div>
+
+          <div class="form-group">
+            <label for="tradePosition">포지션</label>
+            <select id="tradePosition" onchange="autoCalcReturn()">
+              <option value="LONG">LONG (롱)</option>
+              <option value="SHORT">SHORT (숏)</option>
+            </select>
+          </div>
+
+          <div class="form-group span-2">
+            <label for="entryCondition">진입조건 (직접 기입)</label>
+            <input type="text" id="entryCondition" placeholder="예: LL(4H L2), SS(1H S1), L1, S2 등" required>
+          </div>
+
+          <div class="form-group">
+            <label for="entryTime">진입 시간</label>
+            <input type="datetime-local" id="entryTime" required>
+          </div>
+
+          <div class="form-group">
+            <label for="exitTime">종료 시간</label>
+            <input type="datetime-local" id="exitTime">
+          </div>
+
+          <div class="form-group">
+            <label for="entryPrice">진입 가격</label>
+            <input type="number" id="entryPrice" step="any" placeholder="0.00" oninput="autoCalcReturn()">
+          </div>
+
+          <div class="form-group">
+            <label for="exitPrice">종료 가격</label>
+            <input type="number" id="exitPrice" step="any" placeholder="0.00" oninput="autoCalcReturn()">
+          </div>
+
+          <div class="form-group">
+            <label for="returnRate">손익률 (%)</label>
+            <input type="number" id="returnRate" step="0.01" placeholder="예: +5.2 또는 -2.1" required>
+          </div>
+
+          <div class="form-group span-2">
+            <label for="entryReason">진입 근거 메모</label>
+            <input type="text" id="entryReason" placeholder="예: 4시간봉 주요 지지선 반등 및 거래량 급증">
+          </div>
+
+          <div class="form-group span-2">
+            <label for="exitReason">손절 / 청산 근거 메모</label>
+            <input type="text" id="exitReason" placeholder="예: 직전 저점 이탈로 원칙 칼손절 / 저항선 1차 도달 익절">
+          </div>
+        </div>
+
+        <div class="btn-submit-row">
+          <button type="button" class="btn" onclick="resetForm()">지우기</button>
+          <button type="submit" class="btn btn-primary" id="submitBtn">➕ 매매일지에 기록하기</button>
+        </div>
+      </form>
+    </section>
+
+    <div class="table-wrapper">
+      <table id="journalTable">
+        <thead>
+          <tr>
+            <th style="width: 45px;">No.</th>
+            <th>진입 일시</th>
+            <th>종료 일시</th>
+            <th>코인명</th>
+            <th>포지션</th>
+            <th>진입 조건</th>
+            <th>진입가</th>
+            <th>종료가</th>
+            <th>손익률 (%)</th>
+            <th>진입 근거</th>
+            <th>손절/종료 근거</th>
+            <th style="width: 70px; text-align: center;">관리</th>
+          </tr>
+        </thead>
+        <tbody id="journalBody">
+        </tbody>
+      </table>
+      <div id="emptyMessage" class="empty-state">
+        아직 기록된 매매 일지가 없습니다. 위의 양식을 작성하여 첫 거래를 기록해 보세요.
+      </div>
+    </div>
+
+    <footer class="ledger-footer">
+      <div>💡 <strong>팁:</strong> 진입조건 칸에는 사용하시는 세부 셋업을 자유롭게 적으실 수 있습니다. (예: <code>LL(4H L2)</code>, <code>SS(15M S1)</code>)</div>
+      <div>브라우저 자동저장 활성화됨 • 엑셀 다운로드 지원</div>
+    </footer>
+  </div>
+
+  <div class="modal-backdrop" id="detailModal">
+    <div class="modal">
+      <div class="modal-header" id="modalTitle">매매 상세 메모</div>
+      <div id="modalContent" style="font-size: 14px; line-height: 1.6; color: var(--text-main); white-space: pre-wrap;"></div>
+      <div style="display: flex; justify-content: flex-end; margin-top: 20px;">
+        <button class="btn" onclick="closeModal()">닫기</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let trades = [];
+    let editingId = null;
+
+    const STORAGE_KEY = 'coin_trading_ledger_v1';
+    const THEME_KEY = 'coin_ledger_theme';
+
+    window.addEventListener('DOMContentLoaded', () => {
+      loadTheme();
+      loadTrades();
+      setDefaultDates();
+    });
+
+    function toggleTheme() {
+      const html = document.documentElement;
+      const currentTheme = html.getAttribute('data-theme');
+      const newTheme = currentTheme === 'paper-light' ? 'paper-dark' : 'paper-light';
+      html.setAttribute('data-theme', newTheme);
+      localStorage.setItem(THEME_KEY, newTheme);
+      updateThemeLabel(newTheme);
+    }
+
+    function loadTheme() {
+      const savedTheme = localStorage.getItem(THEME_KEY) || 'paper-light';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      updateThemeLabel(savedTheme);
+    }
+
+    function updateThemeLabel(theme) {
+      const label = document.getElementById('themeName');
+      label.textContent = theme === 'paper-light' ? '종이(화이트) 모드' : '슬레이트(다크) 모드';
+    }
+
+    function setDefaultDates() {
+      const now = new Date();
+      now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+      document.getElementById('entryTime').value = now.toISOString().slice(0, 16);
+    }
+
+    function autoCalcReturn() {
+      const entryPrice = parseFloat(document.getElementById('entryPrice').value);
+      const exitPrice = parseFloat(document.getElementById('exitPrice').value);
+      const position = document.getElementById('tradePosition').value;
+      const returnInput = document.getElementById('returnRate');
+
+      if (!isNaN(entryPrice) && !isNaN(exitPrice) && entryPrice > 0) {
+        let diffPct = 0;
+        if (position === 'LONG') {
+          diffPct = ((exitPrice - entryPrice) / entryPrice) * 100;
+        } else {
+          diffPct = ((entryPrice - exitPrice) / entryPrice) * 100;
+        }
+        returnInput.value = diffPct.toFixed(2);
+      }
+    }
+
+    function saveTrades() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(trades));
+      renderTable();
+      updateStats();
+    }
+
+    function loadTrades() {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        try {
+          trades = JSON.parse(saved);
+        } catch (e) {
+          trades = [];
+        }
+      }
+      renderTable();
+      updateStats();
+    }
+
+    function handleAddTrade(e) {
+      e.preventDefault();
+
+      const tradeData = {
+        id: editingId || Date.now().toString(),
+        coin: document.getElementById('coinSymbol').value.trim().toUpperCase(),
+        position: document.getElementById('tradePosition').value,
+        condition: document.getElementById('entryCondition').value.trim(),
+        entryTime: document.getElementById('entryTime').value,
+        exitTime: document.getElementById('exitTime').value || '-',
+        entryPrice: document.getElementById('entryPrice').value ? parseFloat(document.getElementById('entryPrice').value) : null,
+        exitPrice: document.getElementById('exitPrice').value ? parseFloat(document.getElementById('exitPrice').value) : null,
+        returnRate: parseFloat(document.getElementById('returnRate').value) || 0,
+        entryReason: document.getElementById('entryReason').value.trim() || '-',
+        exitReason: document.getElementById('exitReason').value.trim() || '-'
+      };
+
+      if (editingId) {
+        const index = trades.findIndex(t => t.id === editingId);
+        if (index !== -1) trades[index] = tradeData;
+        editingId = null;
+        document.getElementById('submitBtn').innerHTML = '➕ 매매일지에 기록하기';
+      } else {
+        trades.push(tradeData);
+      }
+
+      saveTrades();
+      resetForm();
+    }
+
+    function resetForm() {
+      document.getElementById('tradeForm').reset();
+      editingId = null;
+      document.getElementById('submitBtn').innerHTML = '➕ 매매일지에 기록하기';
+      setDefaultDates();
+    }
+
+    function editTrade(id) {
+      const trade = trades.find(t => t.id === id);
+      if (!trade) return;
+
+      editingId = id;
+      document.getElementById('coinSymbol').value = trade.coin;
+      document.getElementById('tradePosition').value = trade.position;
+      document.getElementById('entryCondition').value = trade.condition;
+      document.getElementById('entryTime').value = trade.entryTime;
+      document.getElementById('exitTime').value = trade.exitTime === '-' ? '' : trade.exitTime;
+      document.getElementById('entryPrice').value = trade.entryPrice !== null ? trade.entryPrice : '';
+      document.getElementById('exitPrice').value = trade.exitPrice !== null ? trade.exitPrice : '';
+      document.getElementById('returnRate').value = trade.returnRate;
+      document.getElementById('entryReason').value = trade.entryReason === '-' ? '' : trade.entryReason;
+      document.getElementById('exitReason').value = trade.exitReason === '-' ? '' : trade.exitReason;
+
+      document.getElementById('submitBtn').innerHTML = '✏️ 수정 완료';
+      window.scrollTo({ top: 120, behavior: 'smooth' });
+    }
+
+    function deleteTrade(id) {
+      if (confirm('이 매매 기록을 삭제하시겠습니까?')) {
+        trades = trades.filter(t => t.id !== id);
+        saveTrades();
+      }
+    }
+
+    function renderTable() {
+      const tbody = document.getElementById('journalBody');
+      const emptyMsg = document.getElementById('emptyMessage');
+      tbody.innerHTML = '';
+
+      if (trades.length === 0) {
+        emptyMsg.style.display = 'block';
+        return;
+      }
+      emptyMsg.style.display = 'none';
+
+      trades.forEach((trade, idx) => {
+        const tr = document.createElement('tr');
+        const isProfit = trade.returnRate > 0;
+        const isLoss = trade.returnRate < 0;
+
+        if (isProfit) tr.classList.add('row-profit');
+        else if (isLoss) tr.classList.add('row-loss');
+
+        const returnColorClass = isProfit ? 'return-profit' : (isLoss ? 'return-loss' : '');
+        const sign = trade.returnRate > 0 ? '+' : '';
+        const positionBadge = trade.position === 'LONG' 
+          ? `<span class="badge badge-long">LONG</span>` 
+          : `<span class="badge badge-short">SHORT</span>`;
+
+        tr.innerHTML = `
+          <td style="text-align: center; color: var(--text-muted);">${idx + 1}</td>
+          <td>${formatDate(trade.entryTime)}</td>
+          <td>${formatDate(trade.exitTime)}</td>
+          <td><strong>${trade.coin}</strong></td>
+          <td>${positionBadge}</td>
+          <td><span style="font-weight: 600; color: var(--accent);">${escapeHTML(trade.condition)}</span></td>
+          <td>${trade.entryPrice !== null ? trade.entryPrice.toLocaleString() : '-'}</td>
+          <td>${trade.exitPrice !== null ? trade.exitPrice.toLocaleString() : '-'}</td>
+          <td class="cell-return ${returnColorClass}">${sign}${trade.returnRate.toFixed(2)}%</td>
+          <td class="memo-cell" title="클릭해서 전체보기" onclick="showMemo('${escapeHTML(trade.coin)} 진입 근거', '${escapeHTML(trade.entryReason)}')">${escapeHTML(trade.entryReason)}</td>
+          <td class="memo-cell" title="클릭해서 전체보기" onclick="showMemo('${escapeHTML(trade.coin)} 손절/종료 근거', '${escapeHTML(trade.exitReason)}')">${escapeHTML(trade.exitReason)}</td>
+          <td style="text-align: center;">
+            <div class="action-icons">
+              <button class="btn-icon" title="수정" onclick="editTrade('${trade.id}')">✏️</button>
+              <button class="btn-icon" title="삭제" onclick="deleteTrade('${trade.id}')">🗑️</button>
+            </div>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function formatDate(dtStr) {
+      if (!dtStr || dtStr === '-') return '-';
+      return dtStr.replace('T', ' ');
+    }
+
+    function escapeHTML(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function showMemo(title, content) {
+      document.getElementById('modalTitle').innerText = title;
+      document.getElementById('modalContent').innerText = content || '내용 없음';
+      document.getElementById('detailModal').classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('detailModal').classList.remove('active');
+    }
+
+    function updateStats() {
+      const totalTrades = trades.length;
+      document.getElementById('statTotalTrades').innerText = `${totalTrades}회`;
+
+      if (totalTrades === 0) {
+        document.getElementById('statWinRate').innerText = '0.0%';
+        document.getElementById('statWinLossCount').innerText = '0승 0패';
+        document.getElementById('statNetReturn').innerText = '0.00%';
+        document.getElementById('statProfitFactor').innerText = '0.00';
+        return;
+      }
+
+      let wins = 0;
+      let losses = 0;
+      let totalReturn = 0;
+      let grossProfit = 0;
+      let grossLoss = 0;
+
+      trades.forEach(t => {
+        totalReturn += t.returnRate;
+        if (t.returnRate > 0) {
+          wins++;
+          grossProfit += t.returnRate;
+        } else if (t.returnRate < 0) {
+          losses++;
+          grossLoss += Math.abs(t.returnRate);
+        }
+      });
+
+      const winRate = ((wins / totalTrades) * 100).toFixed(1);
+      document.getElementById('statWinRate').innerText = `${winRate}%`;
+      document.getElementById('statWinLossCount').innerText = `${wins}승 ${losses}패`;
+
+      const sign = totalReturn > 0 ? '+' : '';
+      const netElem = document.getElementById('statNetReturn');
+      netElem.innerText = `${sign}${totalReturn.toFixed(2)}%`;
+      netElem.style.color = totalReturn > 0 ? 'var(--profit-color)' : (totalReturn < 0 ? 'var(--loss-color)' : 'inherit');
+
+      const profitFactor = grossLoss > 0 ? (grossProfit / grossLoss).toFixed(2) : (grossProfit > 0 ? '∞' : '0.00');
+      document.getElementById('statProfitFactor').innerText = profitFactor;
+    }
+
+    async function exportToExcel() {
+      if (trades.length === 0) {
+        alert('내보낼 매매 기록이 없습니다.');
+        return;
+      }
+
+      const excelData = trades.map((t, idx) => ({
+        "순번": idx + 1,
+        "진입일시": t.entryTime,
+        "종료일시": t.exitTime,
+        "코인명": t.coin,
+        "포지션": t.position,
+        "진입조건": t.condition,
+        "진입가": t.entryPrice,
+        "종료가": t.exitPrice,
+        "손익률(%)": t.returnRate,
+        "진입근거": t.entryReason,
+        "손절및종료근거": t.exitReason
+      }));
+
+      const worksheet = XLSX.utils.json_to_sheet(excelData);
+      const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(workbook, worksheet, "매매일지");
+
+      const colWidths = [
+        { wch: 6 },
+        { wch: 18 },
+        { wch: 18 },
+        { wch: 10 },
+        { wch: 8 },
+        { wch: 16 },
+        { wch: 14 },
+        { wch: 14 },
+        { wch: 12 },
+        { wch: 30 },
+        { wch: 30 }
+      ];
+      worksheet['!cols'] = colWidths;
+
+      const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+      const blob = new Blob([excelBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+      const defaultFileName = `코인매매일지_${new Date().toISOString().slice(0, 10)}.xlsx`;
+
+      if (window.showSaveFilePicker) {
+        try {
+          const handle = await window.showSaveFilePicker({
+            suggestedName: defaultFileName,
+            types: [{
+              description: 'Excel Spreadsheet (*.xlsx)',
+              accept: { 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': ['.xlsx'] }
+            }]
+          });
+          const writable = await handle.createWritable();
+          await writable.write(blob);
+          await writable.close();
+          alert('지정한 폴더에 엑셀 파일이 성공적으로 저장되었습니다!');
+          return;
+        } catch (err) {
+          if (err.name === 'AbortError') return;
+          console.warn('showSaveFilePicker fallback:', err);
+        }
+      }
+
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = defaultFileName;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    function exportJSON() {
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(trades, null, 2));
+      const downloadAnchor = document.createElement('a');
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", `코인매매일지_백업_${new Date().toISOString().slice(0, 10)}.json`);
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+    }
+
+    function importJSON(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const imported = JSON.parse(e.target.result);
+          if (Array.isArray(imported)) {
+            if (confirm(`가져온 파일에서 총 ${imported.length}개의 매매 기록을 발견했습니다. 기존 일지에 병합하시겠습니까? (취소 시 기존 일지를 덮어씁니다)`)) {
+              const existingIds = new Set(trades.map(t => t.id));
+              imported.forEach(t => {
+                if (!existingIds.has(t.id)) trades.push(t);
+              });
+            } else {
+              trades = imported;
+            }
+            saveTrades();
+            alert('데이터를 성공적으로 불러왔습니다!');
+          } else {
+            alert('올바른 매매일지 JSON 형식이 아닙니다.');
+          }
+        } catch (err) {
+          alert('파일을 읽는 도중 오류가 발생했습니다: ' + err.message);
+        }
+      };
+      reader.readAsText(file);
+      event.target.value = '';
+    }
+  </script>
+</body>
+</html>
