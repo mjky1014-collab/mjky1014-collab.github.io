@@ -231,6 +231,45 @@ footer .in{max-width:var(--max);margin:0 auto}
   .step::before{width:36px;height:36px;font-size:16px;border-radius:10px}
   .theme-switch button span{/* keep labels visible */}
 }
+
+/* click-to-enlarge */
+button.zoom{display:block;width:100%;border:0;padding:0;background:transparent;cursor:zoom-in;border-radius:0}
+button.zoom img{pointer-events:none}
+.lightbox{
+  position:fixed;inset:0;z-index:400;display:none;
+  background:rgba(4,3,2,.92);
+  align-items:center;justify-content:center;
+}
+.lightbox.open{display:flex}
+.lightbox .stage{
+  position:relative;width:100%;height:100%;
+  overflow:auto;overscroll-behavior:contain;
+  touch-action:none;
+  display:flex;align-items:center;justify-content:center;
+  cursor:zoom-out;
+}
+.lightbox .stage img{
+  max-width:96vw;max-height:92vh;width:auto;height:auto;
+  object-fit:contain;border-radius:8px;
+  box-shadow:0 16px 50px rgba(0,0,0,.45);
+  transform-origin:center center;
+  user-select:none;-webkit-user-drag:none;
+}
+.lightbox .close{
+  position:fixed;top:14px;right:16px;z-index:401;
+  width:44px;height:44px;border:0;border-radius:50%;
+  background:rgba(255,255,255,.12);color:#fff;
+  font-size:28px;line-height:1;cursor:pointer;
+  display:grid;place-items:center;
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+}
+.lightbox .close:hover{background:rgba(255,255,255,.22)}
+.lightbox .hint{
+  position:fixed;bottom:12px;left:0;right:0;text-align:center;
+  color:rgba(255,255,255,.65);font-size:12px;pointer-events:none;
+}
+body.lb-lock{overflow:hidden}
+
 </style>
 </head>
 <body>
@@ -306,12 +345,16 @@ footer .in{max-width:var(--max);margin:0 auto}
       </div>
       <div class="grid2">
         <figure class="fig">
-          <img src="assets/01-up-cross.jpg" alt="상방 교차 슬라이드. 점수는 오르고 시세는 내릴 때 시세가 오를 것으로 예측합니다." width="1463" height="761">
-          <figcaption>상방 교차 — 점수는 오르고, 시세는 내릴 때</figcaption>
+  <button type="button" class="zoom" aria-label="상방 교차 슬라이드 크게 보기">
+    <img src="assets/01-up-cross.jpg" alt="상방 교차 슬라이드. 점수는 오르고 시세는 내릴 때 시세가 오를 것으로 예측합니다." width="1463" height="761">
+  </button>
+  <figcaption>상방 교차 — 점수는 오르고, 시세는 내릴 때</figcaption>
         </figure>
         <figure class="fig">
-          <img src="assets/03-down-cross.jpg" alt="하방 교차 슬라이드. 점수는 내리고 시세는 오를 때 시세가 내릴 것으로 예측합니다." width="1463" height="795">
-          <figcaption>하방 교차 — 같은 원리를 반대로 봐요</figcaption>
+  <button type="button" class="zoom" aria-label="하방 교차 슬라이드 크게 보기">
+    <img src="assets/03-down-cross.jpg" alt="하방 교차 슬라이드. 점수는 내리고 시세는 오를 때 시세가 내릴 것으로 예측합니다." width="1463" height="795">
+  </button>
+  <figcaption>하방 교차 — 같은 원리를 반대로 봐요</figcaption>
         </figure>
       </div>
     </div>
@@ -341,12 +384,16 @@ footer .in{max-width:var(--max);margin:0 auto}
       </div>
       <div class="grid2">
         <figure class="fig">
-          <img src="assets/02-70-30.jpg" alt="교차 이후 시세가 스코어점수를 따라올 확률 약 70퍼센트, 점수가 시세를 따라갈 확률 약 30퍼센트 슬라이드." width="1463" height="795">
-          <figcaption>누가 누구를 따라갈까? 70 : 30</figcaption>
+  <button type="button" class="zoom" aria-label="교차 이후 시세가 스코어점수를 따라올 확률 약 70퍼센트, 점수가 시세를 따라갈 확률 약 30퍼센트 슬라이드 크게 보기">
+    <img src="assets/02-70-30.jpg" alt="교차 이후 시세가 스코어점수를 따라올 확률 약 70퍼센트, 점수가 시세를 따라갈 확률 약 30퍼센트 슬라이드." width="1463" height="795">
+  </button>
+  <figcaption>누가 누구를 따라갈까? 70 : 30</figcaption>
         </figure>
         <figure class="fig">
-          <img src="assets/04-watch.jpg" alt="교차 후 시세가 점수를 따라오는 경우와 계속 반대로 가는 경우를 비교하는 관망 슬라이드." width="1463" height="795">
-          <figcaption>관망한 뒤 판단하기</figcaption>
+  <button type="button" class="zoom" aria-label="교차 후 시세가 점수를 따라오는 경우와 계속 반대로 가는 경우를 비교하는 관망 슬라이드 크게 보기">
+    <img src="assets/04-watch.jpg" alt="교차 후 시세가 점수를 따라오는 경우와 계속 반대로 가는 경우를 비교하는 관망 슬라이드." width="1463" height="795">
+  </button>
+  <figcaption>관망한 뒤 판단하기</figcaption>
         </figure>
       </div>
     </div>
@@ -371,8 +418,10 @@ footer .in{max-width:var(--max);margin:0 auto}
         </article>
       </div>
       <figure class="fig">
-        <img src="assets/05-divergence.jpg" alt="상방 이격 슬라이드. 점수가 시세보다 더 크게 오를 때 시세가 오를 것으로 봅니다." width="1463" height="795">
-        <figcaption>상방 이격 — 점수가 시세보다 더 크게 오를 때</figcaption>
+  <button type="button" class="zoom" aria-label="상방 이격 슬라이드 크게 보기">
+    <img src="assets/05-divergence.jpg" alt="상방 이격 슬라이드. 점수가 시세보다 더 크게 오를 때 시세가 오를 것으로 봅니다." width="1463" height="795">
+  </button>
+  <figcaption>상방 이격 — 점수가 시세보다 더 크게 오를 때</figcaption>
       </figure>
     </div>
   </section>
@@ -401,12 +450,16 @@ footer .in{max-width:var(--max);margin:0 auto}
       </article>
       <div class="grid2">
         <figure class="fig">
-          <img src="assets/06-score-64.jpg" alt="6.4점 정의 슬라이드. 상승 중 6.4는 하방 6.4, 하락 중 6.4는 상방 6.4로 설명합니다." width="1463" height="690">
-          <figcaption>6.4점의 의미 — 하방 6.4와 상방 6.4</figcaption>
+  <button type="button" class="zoom" aria-label="6 크게 보기">
+    <img src="assets/06-score-64.jpg" alt="6.4점 정의 슬라이드. 상승 중 6.4는 하방 6.4, 하락 중 6.4는 상방 6.4로 설명합니다." width="1463" height="690">
+  </button>
+  <figcaption>6.4점의 의미 — 하방 6.4와 상방 6.4</figcaption>
         </figure>
         <figure class="fig">
-          <img src="assets/06b-plus250.jpg" alt="점수가 플러스 250점 이상이면 고점에 다가가는 중이라는 슬라이드." width="1463" height="795">
-          <figcaption>+250점 — 고점에 다가가는 중</figcaption>
+  <button type="button" class="zoom" aria-label="점수가 플러스 250점 이상이면 고점에 다가가는 중이라는 슬라이드 크게 보기">
+    <img src="assets/06b-plus250.jpg" alt="점수가 플러스 250점 이상이면 고점에 다가가는 중이라는 슬라이드." width="1463" height="795">
+  </button>
+  <figcaption>+250점 — 고점에 다가가는 중</figcaption>
         </figure>
       </div>
     </div>
@@ -430,12 +483,16 @@ footer .in{max-width:var(--max);margin:0 auto}
       </div>
       <div class="grid2">
         <figure class="fig">
-          <img src="assets/08-top10-short.jpg" alt="상승을 탑텐 숏으로 보는 실전 순서 슬라이드. 하루 20퍼센트 상승과 6.4, 알람, 하방 6.4, 고야 위 SS 금지를 안내합니다." width="1463" height="795">
-          <figcaption>상승을 탑텐 숏으로 — 실전 순서</figcaption>
+  <button type="button" class="zoom" aria-label="상승을 탑텐 숏으로 보는 실전 순서 슬라이드 크게 보기">
+    <img src="assets/08-top10-short.jpg" alt="상승을 탑텐 숏으로 보는 실전 순서 슬라이드. 하루 20퍼센트 상승과 6.4, 알람, 하방 6.4, 고야 위 SS 금지를 안내합니다." width="1463" height="795">
+  </button>
+  <figcaption>상승을 탑텐 숏으로 — 실전 순서</figcaption>
         </figure>
         <figure class="fig">
-          <img src="assets/09-short-entry.jpg" alt="숏 진입 때 차트에서 시세 종료 신호탄과 고야, 전고 돌파를 확인하는 슬라이드." width="1463" height="795">
-          <figcaption>차트에서 시세가 끝나는 신호탄을 확인할 때</figcaption>
+  <button type="button" class="zoom" aria-label="숏 진입 때 차트에서 시세 종료 신호탄과 고야, 전고 돌파를 확인하는 슬라이드 크게 보기">
+    <img src="assets/09-short-entry.jpg" alt="숏 진입 때 차트에서 시세 종료 신호탄과 고야, 전고 돌파를 확인하는 슬라이드." width="1463" height="795">
+  </button>
+  <figcaption>차트에서 시세가 끝나는 신호탄을 확인할 때</figcaption>
         </figure>
       </div>
     </div>
@@ -448,7 +505,9 @@ footer .in{max-width:var(--max);margin:0 auto}
         <small>강의 마무리 문장</small>
       </div>
       <figure class="fig mt">
-        <img src="assets/10-fin.jpg" alt="강의 마무리 슬라이드. 타점은 시그널이, 진입 익절 손절은 내가." width="1463" height="795">
+        <button type="button" class="zoom" aria-label="강의 마무리 슬라이드 크게 보기">
+          <img src="assets/10-fin.jpg" alt="강의 마무리 슬라이드. 타점은 시그널이, 진입 익절 손절은 내가." width="1463" height="795">
+        </button>
         <figcaption>마무리 슬라이드</figcaption>
       </figure>
     </div>
@@ -482,5 +541,121 @@ footer .in{max-width:var(--max);margin:0 auto}
   });
 })();
 </script>
+
+<div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="슬라이드 확대 보기">
+  <button type="button" class="close" aria-label="닫기">&times;</button>
+  <div class="stage"><img alt=""></div>
+  <p class="hint">바깥이나 ×, Esc로 닫을 수 있어요. 두 손가락으로 확대할 수 있어요.</p>
+</div>
+<script>
+(function(){
+  var box=document.getElementById('lightbox');
+  var stage=box.querySelector('.stage');
+  var img=stage.querySelector('img');
+  var closeBtn=box.querySelector('.close');
+  var lastFocus=null;
+  var scale=1,x=0,y=0,startDist=0,startScale=1,px=0,py=0,sx=0,sy=0,dragging=false,pointers={};
+
+  function setTransform(){
+    img.style.transform='translate('+x+'px,'+y+'px) scale('+scale+')';
+  }
+  function resetView(){
+    scale=1;x=0;y=0;pointers={};dragging=false;
+    img.style.transform='';
+  }
+  function openFrom(btn){
+    var thumb=btn.querySelector('img');
+    if(!thumb) return;
+    lastFocus=btn;
+    img.src=thumb.currentSrc||thumb.src;
+    img.alt=thumb.alt||'';
+    resetView();
+    box.hidden=false;
+    box.classList.add('open');
+    document.body.classList.add('lb-lock');
+    closeBtn.focus();
+  }
+  function close(){
+    box.classList.remove('open');
+    box.hidden=true;
+    document.body.classList.remove('lb-lock');
+    img.removeAttribute('src');
+    resetView();
+    if(lastFocus) lastFocus.focus();
+  }
+  document.querySelectorAll('button.zoom').forEach(function(btn){
+    btn.addEventListener('click',function(){openFrom(btn)});
+  });
+  closeBtn.addEventListener('click',function(e){e.stopPropagation();close()});
+  box.addEventListener('click',function(e){if(e.target===box||e.target===stage) close()});
+  document.addEventListener('keydown',function(e){
+    if(!box.classList.contains('open')) return;
+    if(e.key==='Escape'){e.preventDefault();close()}
+  });
+
+  // wheel zoom (desktop)
+  stage.addEventListener('wheel',function(e){
+    if(!box.classList.contains('open')) return;
+    e.preventDefault();
+    var next=scale*(e.deltaY<0?1.12:0.9);
+    scale=Math.max(1, Math.min(5, next));
+    if(scale===1){x=0;y=0}
+    setTransform();
+  },{passive:false});
+
+  // double-click / double-tap toggle 2x
+  var lastTap=0;
+  stage.addEventListener('click',function(e){
+    if(e.target!==img) return;
+    var now=Date.now();
+    if(now-lastTap<320){
+      if(scale>1){scale=1;x=0;y=0}else{scale=2}
+      setTransform();
+    }
+    lastTap=now;
+  });
+
+  function dist(a,b){
+    var dx=a.clientX-b.clientX, dy=a.clientY-b.clientY;
+    return Math.hypot(dx,dy);
+  }
+  stage.addEventListener('pointerdown',function(e){
+    if(!box.classList.contains('open')) return;
+    pointers[e.pointerId]=e;
+    stage.setPointerCapture(e.pointerId);
+    var vals=Object.keys(pointers).map(function(k){return pointers[k]});
+    if(vals.length===2){
+      startDist=dist(vals[0],vals[1]);
+      startScale=scale;
+      dragging=false;
+    }else if(vals.length===1 && scale>1){
+      dragging=true;px=e.clientX;py=e.clientY;sx=x;sy=y;
+    }
+  });
+  stage.addEventListener('pointermove',function(e){
+    if(pointers[e.pointerId]) pointers[e.pointerId]=e;
+    var vals=Object.keys(pointers).map(function(k){return pointers[k]});
+    if(vals.length===2 && startDist){
+      var d=dist(vals[0],vals[1]);
+      scale=Math.max(1, Math.min(5, startScale*(d/startDist)));
+      if(scale===1){x=0;y=0}
+      setTransform();
+    }else if(dragging && vals.length===1){
+      x=sx+(e.clientX-px);
+      y=sy+(e.clientY-py);
+      setTransform();
+    }
+  });
+  function endPtr(e){
+    delete pointers[e.pointerId];
+    var n=Object.keys(pointers).length;
+    if(n<2) startDist=0;
+    if(n<1) dragging=false;
+  }
+  stage.addEventListener('pointerup',endPtr);
+  stage.addEventListener('pointercancel',endPtr);
+})();
+</script>
+
 </body>
 </html>
