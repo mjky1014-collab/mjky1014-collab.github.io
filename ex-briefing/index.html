@@ -1,0 +1,2236 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EX 차트 - AI 시그널 & 신개념 크립토 네비게이션</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #1e40af;       /* 신뢰의 로열 블루 */
+      --primary-light: #3b82f6; /* 생동감 있는 스카이 블루 */
+      --primary-soft: #eff6ff;  /* 연한 블루 배경 */
+      --accent: #10b981;        /* 안정감 있는 그린 (롱/상승 신호) */
+      --accent-red: #ef4444;    /* 하락/주의 레드 (숏 신호) */
+      --text-main: #0f172a;     /* 짙은 차콜 */
+      --text-sub: #475569;      /* 부드러운 그레이 */
+      --text-muted: #94a3b8;    /* 연한 안내 텍스트 */
+      --bg-main: #f8fafc;       /* 깨끗한 연회색 배경 */
+      --bg-white: #ffffff;      /* 순백색 카드 */
+      --border: #e2e8f0;        /* 얇은 경계선 */
+      --radius: 16px;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 10px 25px -5px rgba(30, 64, 175, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+      --shadow-lg: 0 20px 35px -10px rgba(30, 64, 175, 0.12), 0 10px 15px -5px rgba(0, 0, 0, 0.04);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* 상단 헤더 & 네비게이션 */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      transition: all 0.3s;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.5px;
+    }
+
+    .logo-badge {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-ppt-mode {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #1e40af, #3b82f6);
+      color: white;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 9px 18px;
+      border-radius: 9999px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+      transition: all 0.2s ease;
+    }
+
+    .btn-ppt-mode:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45);
+    }
+
+    .btn-cta-header {
+      background: #f1f5f9;
+      color: var(--text-main);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 9px 16px;
+      border-radius: 9999px;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-cta-header:hover {
+      background: #e2e8f0;
+    }
+
+    /* 공통 레이아웃 */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    .section-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      margin-bottom: 16px;
+      border: 1px solid rgba(59, 130, 246, 0.2);
+    }
+
+    .section-title {
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--text-main);
+      line-height: 1.3;
+      margin-bottom: 16px;
+      letter-spacing: -0.8px;
+    }
+
+    .section-desc {
+      font-size: 18px;
+      color: var(--text-sub);
+      line-height: 1.6;
+      max-width: 700px;
+      margin-bottom: 40px;
+    }
+
+    /* 1. HERO 섹션 */
+    .hero {
+      padding: 100px 0 80px;
+      text-align: center;
+      background: radial-gradient(circle at 50% 20%, #eff6ff 0%, #f8fafc 70%);
+      position: relative;
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #ffffff;
+      border: 1px solid #bfdbfe;
+      padding: 8px 18px;
+      border-radius: 9999px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--primary);
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 24px;
+    }
+
+    .hero-pill span.dot {
+      width: 8px;
+      height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: inline-block;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.3); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    .hero h1 {
+      font-size: 50px;
+      font-weight: 900;
+      line-height: 1.25;
+      color: var(--text-main);
+      margin-bottom: 24px;
+      letter-spacing: -1.2px;
+    }
+
+    .hero h1 .highlight {
+      background: linear-gradient(120deg, #1d4ed8, #2563eb 50%, #0284c7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p.lead {
+      font-size: 20px;
+      color: var(--text-sub);
+      max-width: 760px;
+      margin: 0 auto 36px;
+      word-break: keep-all;
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 50px;
+    }
+
+    .btn-primary-hero {
+      background: linear-gradient(135deg, #1e40af, #2563eb);
+      color: white;
+      font-size: 17px;
+      font-weight: 700;
+      padding: 16px 36px;
+      border-radius: 12px;
+      text-decoration: none;
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.35);
+      transition: all 0.25s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary-hero:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 30px rgba(37, 99, 235, 0.45);
+    }
+
+    .btn-secondary-hero {
+      background: white;
+      color: var(--text-main);
+      font-size: 17px;
+      font-weight: 600;
+      padding: 16px 28px;
+      border-radius: 12px;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn-secondary-hero:hover {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+    }
+
+    /* 히어로 보증 3요소 */
+    .hero-trust-bar {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      padding: 24px 30px;
+      border-radius: 20px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid #e2e8f0;
+      text-align: left;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .trust-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+      background: var(--primary-soft);
+      color: var(--primary);
+    }
+
+    .trust-item h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 2px;
+    }
+
+    .trust-item p {
+      font-size: 13px;
+      color: var(--text-sub);
+      line-height: 1.4;
+    }
+
+    /* 2. 돈의 변천사 섹션 */
+    .history-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .history-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 16px;
+      text-align: center;
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    .history-card.current {
+      border: 2px solid var(--primary-light);
+      background: linear-gradient(180deg, #eff6ff 0%, #ffffff 100%);
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .history-card.current::after {
+      content: 'NOW (현재)';
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--primary);
+      color: white;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 9999px;
+      letter-spacing: 0.5px;
+    }
+
+    .history-icon {
+      font-size: 36px;
+      margin-bottom: 12px;
+    }
+
+    .history-card h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--text-main);
+    }
+
+    .history-card p {
+      font-size: 12px;
+      color: var(--text-sub);
+      line-height: 1.4;
+    }
+
+    .history-arrow {
+      display: none;
+    }
+
+    /* 3. 왜 실패하는가 vs 해결책 섹션 */
+    .contrast-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 20px;
+    }
+
+    .contrast-card {
+      padding: 36px;
+      border-radius: 20px;
+      transition: all 0.3s;
+    }
+
+    .card-fail {
+      background: #fef2f2;
+      border: 1px solid #fee2e2;
+    }
+
+    .card-success {
+      background: #f0fdf4;
+      border: 1px solid #dcfce7;
+      box-shadow: var(--shadow-md);
+    }
+
+    .contrast-badge {
+      font-size: 12px;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      display: inline-block;
+      margin-bottom: 16px;
+    }
+
+    .badge-fail { background: #fee2e2; color: #b91c1c; }
+    .badge-success { background: #dcfce7; color: #15803d; }
+
+    .contrast-card h3 {
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+
+    .card-fail h3 { color: #991b1b; }
+    .card-success h3 { color: #166534; }
+
+    .contrast-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .contrast-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .card-fail li { color: #7f1d1d; }
+    .card-success li { color: #14532d; font-weight: 500; }
+
+    /* 4. AI 네비게이션 & 시그널 핵심 */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 30px;
+    }
+
+    .feature-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px 24px;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+      border-color: #cbd5e1;
+    }
+
+    .feature-icon-wrapper {
+      width: 54px;
+      height: 54px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      margin-bottom: 20px;
+    }
+
+    .feature-icon-blue { background: #eff6ff; color: #2563eb; }
+    .feature-icon-green { background: #ecfdf5; color: #10b981; }
+    .feature-icon-purple { background: #faf5ff; color: #9333ea; }
+
+    .feature-card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 10px;
+    }
+
+    .feature-card p {
+      font-size: 14px;
+      color: var(--text-sub);
+      line-height: 1.6;
+    }
+
+    /* 5. 100% 안전 구조 강조 섹션 */
+    .safety-banner {
+      background: linear-gradient(135deg, #1e3a8a, #1e40af);
+      color: white;
+      border-radius: 24px;
+      padding: 50px 40px;
+      box-shadow: var(--shadow-lg);
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .safety-content h3 {
+      font-size: 30px;
+      font-weight: 800;
+      line-height: 1.3;
+      margin-bottom: 16px;
+    }
+
+    .safety-content p {
+      font-size: 16px;
+      color: #bfdbfe;
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    .safety-points {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .safety-point-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 12px 16px;
+      border-radius: 12px;
+      backdrop-filter: blur(8px);
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .safety-badge-shield {
+      background: white;
+      border-radius: 20px;
+      padding: 30px 24px;
+      color: var(--text-main);
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .safety-badge-shield .shield-icon {
+      font-size: 48px;
+      margin-bottom: 12px;
+    }
+
+    .safety-badge-shield h4 {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .safety-badge-shield p {
+      font-size: 13px;
+      color: var(--text-sub);
+      line-height: 1.5;
+    }
+
+    /* 6. 복리의 마법 인터랙티브 계산기 */
+    .compound-calc-wrapper {
+      background: white;
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      padding: 40px;
+      box-shadow: var(--shadow-md);
+      margin-top: 30px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .calc-inputs {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .input-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .input-row input {
+      flex: 1;
+      padding: 12px 16px;
+      font-size: 16px;
+      font-weight: 700;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #f8fafc;
+      color: var(--text-main);
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .input-row input:focus {
+      border-color: var(--primary-light);
+      background: white;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+    }
+
+    .input-unit {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-sub);
+      width: 40px;
+    }
+
+    .quick-seed-buttons {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .btn-seed-chip {
+      background: #f1f5f9;
+      border: 1px solid var(--border);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      color: var(--text-sub);
+    }
+
+    .btn-seed-chip:hover {
+      background: #e2e8f0;
+      color: var(--text-main);
+    }
+
+    .calc-results {
+      background: linear-gradient(145deg, #f8fafc, #f1f5f9);
+      border-radius: 18px;
+      padding: 30px;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .result-header {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-sub);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
+    }
+
+    .result-big-number {
+      font-size: 38px;
+      font-weight: 900;
+      color: var(--primary);
+      margin-bottom: 6px;
+      letter-spacing: -1px;
+    }
+
+    .result-sub-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0;
+      padding: 16px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .stat-val {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .stat-val.profit {
+      color: var(--accent);
+    }
+
+    .calc-note {
+      font-size: 12px;
+      color: var(--text-sub);
+      line-height: 1.5;
+    }
+
+    /* 7. 미디어 & 언론 보도 섹션 */
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 30px;
+    }
+
+    .media-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s;
+    }
+
+    .media-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .media-tag-wrapper {
+      padding: 16px 20px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .media-tag {
+      background: #fee2e2;
+      color: #dc2626;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    .media-body {
+      padding: 14px 20px 20px;
+    }
+
+    .media-body h4 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+
+    .media-body p {
+      font-size: 13px;
+      color: var(--text-sub);
+      line-height: 1.5;
+    }
+
+    /* 8. 슬라이드 원본 갤러리 섹션 */
+    .gallery-preview {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 30px;
+    }
+
+    .slide-thumb-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+    }
+
+    .slide-thumb-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary-light);
+    }
+
+    .slide-thumb-card img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      display: block;
+      background: #f1f5f9;
+    }
+
+    .slide-thumb-caption {
+      padding: 10px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-sub);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* 9. 전체 CTA 섹션 (사용자 요구 2번: 전부 다 반영) */
+    .cta-final {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: white;
+      border-radius: 28px;
+      padding: 70px 40px;
+      text-align: center;
+      margin-top: 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-final::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-final h2 {
+      font-size: 38px;
+      font-weight: 900;
+      margin-bottom: 16px;
+      letter-spacing: -0.8px;
+    }
+
+    .cta-final p.lead-cta {
+      font-size: 18px;
+      color: #94a3b8;
+      max-width: 640px;
+      margin: 0 auto 36px;
+    }
+
+    .cta-buttons-bundle {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-cta-gold {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: white;
+      font-size: 16px;
+      font-weight: 800;
+      padding: 16px 28px;
+      border-radius: 12px;
+      text-decoration: none;
+      box-shadow: 0 10px 20px rgba(217, 119, 6, 0.3);
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-cta-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 26px rgba(217, 119, 6, 0.4);
+    }
+
+    .btn-cta-blue {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: white;
+      font-size: 16px;
+      font-weight: 800;
+      padding: 16px 28px;
+      border-radius: 12px;
+      text-decoration: none;
+      box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-cta-blue:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 26px rgba(37, 99, 235, 0.4);
+    }
+
+    .btn-cta-kakao {
+      background: #fee500;
+      color: #191919;
+      font-size: 16px;
+      font-weight: 800;
+      padding: 16px 28px;
+      border-radius: 12px;
+      text-decoration: none;
+      box-shadow: 0 10px 20px rgba(254, 229, 0, 0.2);
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-cta-kakao:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 26px rgba(254, 229, 0, 0.3);
+    }
+
+    /* 푸터 */
+    footer {
+      background: #ffffff;
+      border-top: 1px solid var(--border);
+      padding: 40px 0;
+      color: var(--text-muted);
+      font-size: 13px;
+      margin-top: 80px;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    /* ========================================================
+       C타입 핵심: PPT 전체화면 슬라이드 모드 (프레젠테이션 뷰)
+       ======================================================== */
+    #ppt-presentation-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: #090d16;
+      z-index: 99999;
+      flex-direction: column;
+      color: white;
+    }
+
+    #ppt-presentation-modal.active {
+      display: flex;
+    }
+
+    .ppt-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 24px;
+      background: rgba(15, 23, 42, 0.8);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .ppt-title-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .ppt-counter {
+      background: rgba(59, 130, 246, 0.25);
+      color: #93c5fd;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .ppt-top-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-close-ppt {
+      background: rgba(255, 255, 255, 0.15);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      transition: background 0.2s;
+    }
+
+    .btn-close-ppt:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .ppt-stage {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ppt-slide-container {
+      max-width: 1200px;
+      width: 100%;
+      height: 85vh;
+      background: #0f172a;
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
+    }
+
+    .ppt-slide-img-side {
+      flex: 1.3;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .ppt-slide-img-side img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .ppt-slide-text-side {
+      flex: 1;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: #111827;
+      border-left: 1px solid rgba(255, 255, 255, 0.08);
+      overflow-y: auto;
+    }
+
+    .ppt-slide-tag {
+      font-size: 13px;
+      font-weight: 800;
+      color: #60a5fa;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+
+    .ppt-slide-text-side h2 {
+      font-size: 30px;
+      font-weight: 800;
+      line-height: 1.3;
+      color: #f8fafc;
+      margin-bottom: 20px;
+    }
+
+    .ppt-slide-text-side p.desc {
+      font-size: 16px;
+      color: #cbd5e1;
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .ppt-key-takeaways {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 18px;
+    }
+
+    .ppt-key-takeaways h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #38bdf8;
+      margin-bottom: 10px;
+    }
+
+    .ppt-key-takeaways ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .ppt-key-takeaways li {
+      font-size: 14px;
+      color: #94a3b8;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .ppt-key-takeaways li::before {
+      content: '✔';
+      color: #34d399;
+      font-weight: bold;
+    }
+
+    /* 슬라이드 넘김 네비게이션 버튼 */
+    .ppt-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      font-size: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      z-index: 10;
+      backdrop-filter: blur(4px);
+    }
+
+    .ppt-nav-btn:hover {
+      background: rgba(59, 130, 246, 0.8);
+      border-color: #3b82f6;
+    }
+
+    .ppt-prev { left: 24px; }
+    .ppt-next { right: 24px; }
+
+    .ppt-bottom-strip {
+      padding: 12px 24px;
+      background: rgba(15, 23, 42, 0.9);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      overflow-x: auto;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .ppt-strip-thumb {
+      width: 70px;
+      height: 42px;
+      border-radius: 6px;
+      border: 2px solid transparent;
+      cursor: pointer;
+      opacity: 0.5;
+      transition: all 0.2s;
+      flex-shrink: 0;
+      overflow: hidden;
+      background: #1e293b;
+    }
+
+    .ppt-strip-thumb.active {
+      border-color: #3b82f6;
+      opacity: 1;
+      transform: scale(1.05);
+    }
+
+    .ppt-strip-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* 모달 공통 (상담 신청 등) */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(6px);
+      z-index: 999999;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-box {
+      background: white;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 480px;
+      padding: 36px;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      animation: modalSlideUp 0.3s ease;
+    }
+
+    @keyframes modalSlideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--text-main);
+    }
+
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 15px;
+      outline: none;
+    }
+
+    .form-group input:focus, .form-group textarea:focus {
+      border-color: var(--primary-light);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+    }
+
+    /* 반응형 스타일 */
+    @media (max-width: 900px) {
+      .hero h1 { font-size: 34px; }
+      .section-title { font-size: 28px; }
+      .hero-trust-bar { grid-template-columns: 1fr; }
+      .history-grid { grid-template-columns: 1fr 1fr; }
+      .contrast-box { grid-template-columns: 1fr; }
+      .features-grid { grid-template-columns: 1fr; }
+      .safety-banner { grid-template-columns: 1fr; }
+      .compound-calc-wrapper { grid-template-columns: 1fr; }
+      .media-grid { grid-template-columns: 1fr; }
+      .gallery-preview { grid-template-columns: 1fr 1fr; }
+      
+      .ppt-slide-container {
+        flex-direction: column;
+        height: 90vh;
+      }
+      .ppt-slide-img-side {
+        flex: 1;
+        max-height: 40%;
+      }
+      .ppt-slide-text-side {
+        flex: 1.2;
+        padding: 20px;
+      }
+      .ppt-slide-text-side h2 { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 상단 헤더 -->
+  <header>
+    <div class="header-container">
+      <a href="#" class="logo">
+        <span>EX CHART</span>
+        <span class="logo-badge">AI SIGNAL</span>
+      </a>
+
+      <div class="nav-actions">
+        <!-- C타입 핵심 기능: PPT 슬라이드 모드 전환 버튼 -->
+        <button class="btn-ppt-mode" onclick="openPptMode(0)">
+          <span>🖥️</span>
+          <span>슬라이드 발표 모드 (PPT)</span>
+        </button>
+        <button class="btn-cta-header" onclick="openModal('consult')">상담 신청</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 1. 히어로 섹션 -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-pill">
+        <span class="dot"></span>
+        <span>유스메타 X EX 차트 공식 사업설명회</span>
+      </div>
+
+      <h1>
+        코인이 오르고 내릴 길목을<br>
+        <span class="highlight">미리 알 수 있다면 어떨까요?</span>
+      </h1>
+
+      <p class="lead">
+        더 이상 깜깜한 밤길을 헤매지 마세요.<br>
+        혼돈의 가상자산 시장에서 나침반과 신호등이 되어줄 <strong>차세대 AI 트레이딩 네비게이션</strong>을 만나보세요.
+      </p>
+
+      <div class="hero-actions">
+        <button class="btn-primary-hero" onclick="openPptMode(0)">
+          ✨ PPT 슬라이드로 핵심 보기
+        </button>
+        <button class="btn-secondary-hero" onclick="scrollToSection('compound-section')">
+          📈 하루 1% 복리의 마법 계산기
+        </button>
+      </div>
+
+      <!-- 신뢰 3요소 (안전성 & 객관성) -->
+      <div class="hero-trust-bar">
+        <div class="trust-item">
+          <div class="trust-icon">🛡️</div>
+          <div>
+            <h4>100% 안전한 내 자산</h4>
+            <p>투자금 입금 일체 없음! 내 자산은 내 거래소 지갑에 안전 보관</p>
+          </div>
+        </div>
+
+        <div class="trust-item">
+          <div class="trust-icon">🚦</div>
+          <div>
+            <h4>직관적인 AI 신호등</h4>
+            <p>어려운 지표 대신 초록불(롱)/빨간불(숏) 선행 시그널</p>
+          </div>
+        </div>
+
+        <div class="trust-item">
+          <div class="trust-icon">📺</div>
+          <div>
+            <h4>언론 & 방송 검증</h4>
+            <p>서울경제TV, 한국경제TV가 주목한 온체인 빅데이터 솔루션</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. 돈의 변천사 섹션 -->
+  <section id="history-section">
+    <div class="container">
+      <div class="section-badge">CHAPTER 01</div>
+      <h2 class="section-title">돈의 형태는 변해도<br>가치의 흐름은 멈추지 않습니다</h2>
+      <p class="section-desc">
+        인류 역사는 항상 '가장 빠르고 안전한 가치 저장 수단'으로 진화해 왔습니다. 
+        지금 부의 길목은 어디로 향하고 있는지 시대의 눈을 열어야 합니다.
+      </p>
+
+      <div class="history-grid">
+        <div class="history-card">
+          <div class="history-icon">🐚</div>
+          <h3>1단계: 물품 화폐</h3>
+          <p>조개껍데기, 쌀, 가축<br>(물물교환의 번거로움)</p>
+        </div>
+
+        <div class="history-card">
+          <div class="history-icon">🪙</div>
+          <h3>2단계: 금속 화폐</h3>
+          <p>금화, 은화, 동전<br>(무게와 이동의 한계)</p>
+        </div>
+
+        <div class="history-card">
+          <div class="history-icon">💵</div>
+          <h3>3단계: 종이 지폐</h3>
+          <p>국가 발행 중앙 화폐<br>(인플레이션과 화폐가치 하락)</p>
+        </div>
+
+        <div class="history-card">
+          <div class="history-icon">💳</div>
+          <h3>4단계: 전자 화폐</h3>
+          <p>신용카드, 모바일페이<br>(데이터 전송과 수수료)</p>
+        </div>
+
+        <div class="history-card current">
+          <div class="history-icon">🌐</div>
+          <h3>5단계: 디지털 자산</h3>
+          <p><strong>비트코인 & 크립토</strong><br>(탈중앙화, 글로벌 가치 저장)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. 개인 투자자가 실패하는 이유 vs EX차트 솔루션 -->
+  <section style="background: white;">
+    <div class="container">
+      <div class="section-badge">CHAPTER 02</div>
+      <h2 class="section-title">왜 95%의 개인 투자자는<br>코인 시장에서 눈물을 흘릴까요?</h2>
+      <p class="section-desc">
+        코인이 나쁜 것이 아닙니다. 아무런 지도(네비게이션)도 없이, 감정에 휘둘려 깜깜한 밤길을 운전했기 때문입니다.
+      </p>
+
+      <div class="contrast-box">
+        <!-- 실패하는 기존 방식 -->
+        <div class="contrast-card card-fail">
+          <span class="contrast-badge badge-fail">기존의 위험한 매매 방식</span>
+          <h3>❌ 실패할 수밖에 없는 이유</h3>
+          <ul class="contrast-list">
+            <li>
+              <span>⚠️</span>
+              <span><strong>공포와 탐욕의 감정 매매:</strong> 오르면 흥분해서 사고(고점 매수), 떨어지면 무서워서 팝니다(저점 매도).</span>
+            </li>
+            <li>
+              <span>⚠️</span>
+              <span><strong>출처 불명의 리딩방 & 사기:</strong> "돈을 맡기면 굴려준다"는 불법 유사수신에 속아 원금을 잃습니다.</span>
+            </li>
+            <li>
+              <span>⚠️</span>
+              <span><strong>복잡한 보조지표의 늪:</strong> 수십 개의 선과 그래프에 갇혀 진짜 매수/매도 타이밍을 놓칩니다.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- EX 차트의 스마트 솔루션 -->
+        <div class="contrast-card card-success">
+          <span class="contrast-badge badge-success">EX AI 차트의 명확한 해결책</span>
+          <h3>✅ 안전하고 똑똑한 원칙 매매</h3>
+          <ul class="contrast-list">
+            <li>
+              <span>💡</span>
+              <span><strong>감정 0%, AI 데이터 시그널:</strong> 수억 건의 온체인 거래량을 분석해 최적의 타점을 시그널로 띄웁니다.</span>
+            </li>
+            <li>
+              <span>💡</span>
+              <span><strong>100% 본인 계좌 직접 매매:</strong> 회사는 투자금을 받지 않으며, 본인이 직접 확인하고 거래합니다.</span>
+            </li>
+            <li>
+              <span>💡</span>
+              <span><strong>신호등 & 고야 라인:</strong> 초보자도 1초 만에 이해하는 직관적인 기준선과 점수 시스템을 제공합니다.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. EX 차트의 3대 핵심 기능 -->
+  <section>
+    <div class="container">
+      <div class="section-badge">CHAPTER 03</div>
+      <h2 class="section-title">초보자도 1초 만에 판별하는<br>트레이딩 네비게이션</h2>
+      <p class="section-desc">
+        운전면허만 있으면 네비게이션을 보고 목적지에 가듯, 코인을 몰라도 AI 시그널만 따라오면 안전한 길을 안내합니다.
+      </p>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon-wrapper feature-icon-blue">
+            <span>🎯</span>
+          </div>
+          <h3>AI 스코어 & 점수 판별</h3>
+          <p>
+            시장 전체 분위기와 특정 코인의 매수/매도 세기를 숫자로 시각화합니다. (+50 이상 상승세, -50 이하 하락세)
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-wrapper feature-icon-green">
+            <span>🚦</span>
+          </div>
+          <h3>신호등 선행 시그널</h3>
+          <p>
+            오를 것 같을 땐 초록불(Long), 꺾일 것 같을 땐 빨간불(Short)! 고래(세력)의 온체인 이동을 포착해 미리 알려줍니다.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-wrapper feature-icon-purple">
+            <span>📏</span>
+          </div>
+          <h3>고야(GOYA) 기준선</h3>
+          <p>
+            추세의 중심을 잡아주는 핑크빛 기준선. 기준선에 걸쳐있을 때 예약 매매를 걸어두어 손실 위험을 최소화합니다.
+          </p>
+        </div>
+      </div>
+
+      <!-- 100% 안전 구조 강조 배너 -->
+      <div class="safety-banner">
+        <div class="safety-content">
+          <h3>"회사는 고객의 투자금을<br>단 1원도 보관하거나 위탁받지 않습니다"</h3>
+          <p>
+            많은 분들이 코인 사업설명회라고 하면 '사기'나 '유사수신'을 걱정하십니다. 
+            유스메타의 EX차트는 투자를 대신해주는 회사가 아닌, <strong>소프트웨어(SaaS) 차트 구독 플랫폼</strong>입니다.
+          </p>
+          <div class="safety-points">
+            <div class="safety-point-item">
+              <span>🔒</span> 내 자산은 바이낸스 등 글로벌 1위 거래소 본인 명의 계좌에 100% 보관
+            </div>
+            <div class="safety-point-item">
+              <span>🔒</span> 매매 타이밍 버튼 클릭은 오직 회원 본인이 직접 실행
+            </div>
+            <div class="safety-point-item">
+              <span>🔒</span> 회사는 오직 합법적인 차트 이용 구독료 외 어떠한 수수료도 요구하지 않음
+            </div>
+          </div>
+        </div>
+
+        <div class="safety-badge-shield">
+          <div class="shield-icon">🛡️</div>
+          <h4>안심 트레이딩 보증</h4>
+          <p>
+            "내 돈의 주인은 언제나 나 자신이어야 합니다."<br>
+            투명한 시스템과 올바른 원칙으로 초보자를 보호합니다.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. 복리의 마법 인터랙티브 계산기 섹션 -->
+  <section id="compound-section" style="background: white;">
+    <div class="container">
+      <div class="section-badge">CHAPTER 04</div>
+      <h2 class="section-title">작은 수익이 만드는 기적,<br>복복리(複複利)의 마법</h2>
+      <p class="section-desc">
+        대박을 노리다 모든 것을 잃는 도박은 그만두세요. 
+        AI 시그널을 보고 욕심부리지 않고 <strong>하루 단 1%의 수익</strong>을 꾸준히 쌓으면 어떻게 될까요? 직접 계산해 보세요!
+      </p>
+
+      <div class="compound-calc-wrapper">
+        <div class="calc-inputs">
+          <div class="input-group">
+            <label>시작 원금 (원)</label>
+            <div class="input-row">
+              <input type="number" id="calc-seed" value="1000000" step="100000" oninput="calculateCompound()">
+              <span class="input-unit">원</span>
+            </div>
+            <div class="quick-seed-buttons">
+              <button class="btn-seed-chip" onclick="setSeed(500000)">50만</button>
+              <button class="btn-seed-chip" onclick="setSeed(1000000)">100만</button>
+              <button class="btn-seed-chip" onclick="setSeed(3000000)">300만</button>
+              <button class="btn-seed-chip" onclick="setSeed(5000000)">500만</button>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label>하루 목표 수익률 (%)</label>
+            <div class="input-row">
+              <input type="number" id="calc-rate" value="1.0" step="0.1" oninput="calculateCompound()">
+              <span class="input-unit">%</span>
+            </div>
+            <div class="quick-seed-buttons">
+              <button class="btn-seed-chip" onclick="setRate(0.5)">0.5% (안전)</button>
+              <button class="btn-seed-chip" onclick="setRate(1.0)">1.0% (권장)</button>
+              <button class="btn-seed-chip" onclick="setRate(2.0)">2.0% (적극)</button>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label>투자 기간 (일)</label>
+            <div class="input-row">
+              <input type="number" id="calc-days" value="30" step="5" oninput="calculateCompound()">
+              <span class="input-unit">일</span>
+            </div>
+            <div class="quick-seed-buttons">
+              <button class="btn-seed-chip" onclick="setDays(30)">30일 (1개월)</button>
+              <button class="btn-seed-chip" onclick="setDays(60)">60일 (2개월)</button>
+              <button class="btn-seed-chip" onclick="setDays(100)">100일</button>
+              <button class="btn-seed-chip" onclick="setDays(365)">1년</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="calc-results">
+          <div>
+            <div class="result-header">예상 최종 자산</div>
+            <div class="result-big-number" id="res-final-asset">1,347,848 원</div>
+            <div class="stat-label">원금 대비 약 <strong id="res-total-roi" style="color: var(--primary);">+34.8%</strong> 성장</div>
+          </div>
+
+          <div class="result-sub-stats">
+            <div>
+              <div class="stat-label">순수익금</div>
+              <div class="stat-val profit" id="res-net-profit">+347,848 원</div>
+            </div>
+            <div>
+              <div class="stat-label">일일 평균 수익금</div>
+              <div class="stat-val" id="res-daily-avg">약 11,595 원</div>
+            </div>
+          </div>
+
+          <p class="calc-note">
+            💡 아인슈타인은 <strong>"복리는 인류의 8번째 불가사의"</strong>라고 했습니다. 무리한 레버리지 없이 AI 신호만 지키는 것이 가장 빠른 부의 지름길입니다.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. 언론 및 방송 검증 섹션 -->
+  <section>
+    <div class="container">
+      <div class="section-badge">CHAPTER 05</div>
+      <h2 class="section-title">방송과 언론이 먼저 주목한<br>차세대 AI 온체인 데이터 기술</h2>
+      <p class="section-desc">
+        유스메타의 차트 기술은 국내 주요 경제 TV 방송 프로그램과 언론 매체를 통해 그 기술력과 공신력을 인정받았습니다.
+      </p>
+
+      <div class="media-grid">
+        <div class="media-card">
+          <div class="media-tag-wrapper">
+            <span class="media-tag">서울경제TV</span>
+            <span style="font-size: 12px; color: var(--text-muted);">정규 방송 협력</span>
+          </div>
+          <div class="media-body">
+            <h4>〈AI 크립토 관측소〉 등 방송 출연</h4>
+            <p>
+              전문가와 함께 AI 온체인 데이터 및 가상자산 시장 분석 코너를 진행하며 객관적인 시황 분석 솔루션으로 소개되었습니다.
+            </p>
+          </div>
+        </div>
+
+        <div class="media-card">
+          <div class="media-tag-wrapper">
+            <span class="media-tag" style="background: #e0f2fe; color: #0284c7;">한국경제TV</span>
+            <span style="font-size: 12px; color: var(--text-muted);">보도 및 컨벤션</span>
+          </div>
+          <div class="media-body">
+            <h4>글로벌 가상자산 AI 컨벤션 보도</h4>
+            <p>
+              차세대 핀테크 및 블록체인 AI 시세 예측 플랫폼으로서 국내외 투자자들의 뜨거운 관심을 집중 조명받았습니다.
+            </p>
+          </div>
+        </div>
+
+        <div class="media-card">
+          <div class="media-tag-wrapper">
+            <span class="media-tag" style="background: #ecfdf5; color: #059669;">핀테크 투데이</span>
+            <span style="font-size: 12px; color: var(--text-muted);">언론 기사</span>
+          </div>
+          <div class="media-body">
+            <h4>빅데이터 기반 온체인 분석 솔루션</h4>
+            <p>
+              초보자도 쉽게 다룰 수 있는 스마트 트레이딩 솔루션을 통해 건강한 가상자산 생태계 구축을 선도하고 있습니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. 사업설명회 15장 슬라이드 갤러리 섹션 -->
+  <section style="background: white;">
+    <div class="container">
+      <div class="section-badge">CHAPTER 06</div>
+      <h2 class="section-title">사업설명회 15장 슬라이드 둘러보기</h2>
+      <p class="section-desc">
+        신규 회원을 위한 실제 사업설명회 발표 슬라이드 전체입니다. 
+        원하는 슬라이드를 클릭하시면 <strong>발표 모드(PPT)</strong>로 즉시 이동하여 큰 화면으로 보실 수 있습니다.
+      </p>
+
+      <div class="gallery-preview">
+        <!-- 15개 슬라이드 썸네일 -->
+        <div class="slide-thumb-card" onclick="openPptMode(0)">
+          <img src="assets/slide_01.png" alt="슬라이드 1" onerror="this.src='https://placehold.co/400x250/1e40af/ffffff?text=Slide+01'">
+          <div class="slide-thumb-caption">
+            <span>01. 표지 및 개요</span>
+            <span>클릭 🔍</span>
+          </div>
+        </div>
+
+        <div class="slide-thumb-card" onclick="openPptMode(1)">
+          <img src="assets/slide_02.png" alt="슬라이드 2" onerror="this.src='https://placehold.co/400x250/1e40af/ffffff?text=Slide+02'">
+          <div class="slide-thumb-caption">
+            <span>02. 시대의 흐름</span>
+            <span>클릭 🔍</span>
+          </div>
+        </div>
+
+        <div class="slide-thumb-card" onclick="openPptMode(2)">
+          <img src="assets/slide_03.png" alt="슬라이드 3" onerror="this.src='https://placehold.co/400x250/1e40af/ffffff?text=Slide+03'">
+          <div class="slide-thumb-caption">
+            <span>03. 돈의 역사</span>
+            <span>클릭 🔍</span>
+          </div>
+        </div>
+
+        <div class="slide-thumb-card" onclick="openPptMode(3)">
+          <img src="assets/slide_04.png" alt="슬라이드 4" onerror="this.src='https://placehold.co/400x250/1e40af/ffffff?text=Slide+04'">
+          <div class="slide-thumb-caption">
+            <span>04. 가상자산의 본질</span>
+            <span>클릭 🔍</span>
+          </div>
+        </div>
+
+        <div class="slide-thumb-card" onclick="openPptMode(4)">
+          <img src="assets/slide_05.png" alt="슬라이드 5" onerror="this.src='https://placehold.co/400x250/1e40af/ffffff?text=Slide+05'">
+          <div class="slide-thumb-caption">
+            <span>05. 개인의 실패 원인</span>
+            <span>클릭 🔍</span>
+          </div>
+        </div>
+
+        <div class="slide-thumb-card" onclick="openPptMode(5)">
+          <img src="assets/slide_06.png" alt="슬라이드 6" onerror="this.src='https://placehold.co/400x250/1e40af/ffffff?text=Slide+06'">
+          <div class="slide-thumb-caption">
+            <span>06. AI 차트의 등장</span>
+            <span>클릭 🔍</span>
+          </div>
+        </div>
+
+        <div class="slide-thumb-card" onclick="openPptMode(6)">
+          <img src="assets/slide_07.png" alt="슬라이드 7" onerror="this.src='https://placehold.co/400x250/1e40af/ffffff?text=Slide+07'">
+          <div class="slide-thumb-caption">
+            <span>07. 시그널 신호등</span>
+            <span>클릭 🔍</span>
+          </div>
+        </div>
+
+        <div class="slide-thumb-card" onclick="openPptMode(7)">
+          <img src="assets/slide_08.png" alt="슬라이드 8" onerror="this.src='https://placehold.co/400x250/1e40af/ffffff?text=Slide+08'">
+          <div class="slide-thumb-caption">
+            <span>08. 고야 라인 분석</span>
+            <span>클릭 🔍</span>
+          </div>
+        </div>
+
+        <div class="slide-thumb-card" onclick="openPptMode(8)">
+          <img src="assets/slide_09.png" alt="슬라이드 9" onerror="this.src='https://placehold.co/400x250/1e40af/ffffff?text=Slide+09'">
+          <div class="slide-thumb-caption">
+            <span>09. 안전 자산 구조</span>
+            <span>클릭 🔍</span>
+          </div>
+        </div>
+
+        <div class="slide-thumb-card" onclick="openPptMode(9)">
+          <img src="assets/slide_10.png" alt="슬라이드 10" onerror="this.src='https://placehold.co/400x250/1e40af/ffffff?text=Slide+10'">
+          <div class="slide-thumb-caption">
+            <span>10. 언론/방송 공신력</span>
+            <span>클릭 🔍</span>
+          </div>
+        </div>
+
+        <div class="slide-thumb-card" onclick="openPptMode(10)">
+          <img src="assets/slide_11.png" alt="슬라이드 11" onerror="this.src='https://placehold.co/400x250/1e40af/ffffff?text=Slide+11'">
+          <div class="slide-thumb-caption">
+            <span>11. 복리의 마법</span>
+            <span>클릭 🔍</span>
+          </div>
+        </div>
+
+        <div class="slide-thumb-card" onclick="openPptMode(11)">
+          <img src="assets/slide_12.png" alt="슬라이드 12" onerror="this.src='https://placehold.co/400x250/1e40af/ffffff?text=Slide+12'">
+          <div class="slide-thumb-caption">
+            <span>12. 초보자 병아리반</span>
+            <span>클릭 🔍</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 30px;">
+        <button class="btn-ppt-mode" style="padding: 12px 28px; font-size: 16px;" onclick="openPptMode(0)">
+          🖥️ 1페이지부터 전체화면으로 발표 시작하기
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. 최종 CTA 섹션 (사용자 요구 2번: 전부 다 해줘 반영) -->
+  <section class="container">
+    <div class="cta-final">
+      <h2>준비되셨나요? 시대의 흐름에 올라타세요</h2>
+      <p class="lead-cta">
+        혼자 고민하지 마세요. 처음이어도 괜찮습니다.<br>
+        친절한 매뉴얼과 AI 네비게이션이 당신의 안전한 트레이딩 여정을 함께합니다.
+      </p>
+
+      <div class="cta-buttons-bundle">
+        <!-- 1) 무료체험/상담 신청 -->
+        <button class="btn-cta-gold" onclick="openModal('consult')">
+          🎁 EX차트 무료체험 & 상담 신청
+        </button>
+
+        <!-- 2) 오픈채팅방 입장 -->
+        <button class="btn-cta-kakao" onclick="openModal('kakao')">
+          💬 실시간 오픈채팅방 입장하기
+        </button>
+
+        <!-- 3) 1:1 사업설명회 문의 -->
+        <button class="btn-cta-blue" onclick="openModal('meeting')">
+          📞 1:1 사업설명회 직접 문의
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 푸터 -->
+  <footer>
+    <div class="container footer-content">
+      <div>
+        <strong style="color: var(--text-main);">유스메타(YouthMeta) & EX Chart</strong>
+        <p style="margin-top: 6px;">
+          본 사이트는 AI 차트 소프트웨어에 대한 정보 제공 및 사업설명회 목적으로 제작되었습니다.<br>
+          가상자산은 변동성이 큰 자산이며, 모든 매매의 최종 판단과 책임은 투자자 본인에게 있습니다.
+        </p>
+      </div>
+      <div>
+        <p>© 2026 EX Chart All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================
+       C타입 전체화면 PPT 발표 모드 모달 (Presentation Viewer)
+       ======================================================== -->
+  <div id="ppt-presentation-modal">
+    <div class="ppt-topbar">
+      <div class="ppt-title-group">
+        <strong style="font-size: 16px;">EX AI 차트 사업설명회</strong>
+        <span class="ppt-counter" id="ppt-page-counter">1 / 15</span>
+      </div>
+
+      <div class="ppt-top-actions">
+        <span style="font-size: 13px; color: #94a3b8; margin-right: 8px;">키보드 [←] [→] 로 이동 가능</span>
+        <button class="btn-close-ppt" onclick="closePptMode()">✕ 웹페이지로 복귀</button>
+      </div>
+    </div>
+
+    <div class="ppt-stage">
+      <!-- 이전 버튼 -->
+      <button class="ppt-nav-btn ppt-prev" onclick="prevSlide()">❮</button>
+
+      <!-- 슬라이드 컨테이너 -->
+      <div class="ppt-slide-container">
+        <!-- 좌측: 슬라이드 원본 이미지 -->
+        <div class="ppt-slide-img-side">
+          <img id="ppt-current-img" src="assets/slide_01.png" alt="PPT 슬라이드" onerror="this.src='https://placehold.co/800x500/1e40af/ffffff?text=EX+AI+Slide'">
+        </div>
+
+        <!-- 우측: 발표 대본 및 핵심 포인트 설명 -->
+        <div class="ppt-slide-text-side">
+          <div class="ppt-slide-tag" id="ppt-slide-tag">CHAPTER 01</div>
+          <h2 id="ppt-slide-heading">만약 코인이 오르고 내릴 길목을 미리 알 수 있다면?!</h2>
+          <p class="desc" id="ppt-slide-desc">
+            가상자산 시장에서 길을 잃지 않는 방법은 간단합니다. 
+            감정에 휘둘리는 뇌동매매를 멈추고, AI 빅데이터가 안내하는 명확한 기준선을 따르는 것입니다.
+          </p>
+
+          <div class="ppt-key-takeaways">
+            <h4>📌 발표 핵심 전달 포인트</h4>
+            <ul id="ppt-slide-points">
+              <li>투자금 유치 없는 100% 안전한 개인 거래소 매매 구조</li>
+              <li>서울경제TV 등 공신력 있는 언론 보도와 검증</li>
+              <li>초보자도 1초 만에 이해하는 신호등 시그널</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 다음 버튼 -->
+      <button class="ppt-nav-btn ppt-next" onclick="nextSlide()">❯</button>
+    </div>
+
+    <!-- 하단 썸네일 스트립 -->
+    <div class="ppt-bottom-strip" id="ppt-strip">
+      <!-- JS로 동적 생성 -->
+    </div>
+  </div>
+
+  <!-- 상담/문의 공통 모달 -->
+  <div class="modal-overlay" id="common-modal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal()">×</button>
+      <h3 id="modal-title" style="font-size: 22px; font-weight: 800; margin-bottom: 8px; color: var(--text-main);">상담 신청하기</h3>
+      <p id="modal-sub" style="font-size: 14px; color: var(--text-sub); margin-bottom: 24px;">신청 정보를 남겨주시면 담당자가 친절하게 안내해 드립니다.</p>
+
+      <form onsubmit="handleFormSubmit(event)">
+        <div class="form-group">
+          <label>성함</label>
+          <input type="text" placeholder="홍길동" required>
+        </div>
+        <div class="form-group">
+          <label>연락처</label>
+          <input type="tel" placeholder="010-0000-0000" required>
+        </div>
+        <div class="form-group">
+          <label>문의 및 관심 사항</label>
+          <textarea rows="3" placeholder="예: 초보인데 EX차트 무료 체험해보고 싶습니다."></textarea>
+        </div>
+        <button type="submit" class="btn-primary-hero" style="width: 100%; border-radius: 10px; margin-top: 10px;">
+          신청 완료하기
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // 15개 슬라이드 상세 데이터 (사업설명회 자료 기반)
+    const slidesData = [
+      {
+        tag: "INTRO / 표지",
+        heading: "EX AI 차트 사업설명회",
+        desc: "코인이 오르고 내릴 길목을 미리 알 수 있다면?! 혼돈의 시장에서 나침반과 신호등이 되어줄 AI 트레이딩 네비게이션을 소개합니다.",
+        img: "assets/slide_01.png",
+        points: [
+          "유스메타(YouthMeta)의 온체인 빅데이터 인공지능 분석 기술",
+          "투자금 유치 없는 100% 안전한 본인 계좌 매매 시스템",
+          "초보자도 쉽게 따라하는 신호등 시그널"
+        ]
+      },
+      {
+        tag: "CHAPTER 01",
+        heading: "시대의 거대한 흐름과 패러다임 변화",
+        desc: "농경사회에서 산업혁명으로, 인터넷 혁명에서 스마트폰 혁명으로, 그리고 지금은 블록체인과 AI의 시대로 이동하고 있습니다.",
+        img: "assets/slide_02.png",
+        points: [
+          "흐름을 읽는 자에게 항상 가장 큰 기회가 찾아옵니다",
+          "세계 최대 자산운용사(블랙록 등)의 비트코인 현물 ETF 승인",
+          "국가와 기관이 제도권으로 편입하는 디지털 자산 시장"
+        ]
+      },
+      {
+        tag: "CHAPTER 02",
+        heading: "돈의 변천사: 화폐는 계속 진화했습니다",
+        desc: "조개껍데기에서 금화로, 종이 지폐에서 신용카드로 진화했듯 화폐의 형태는 계속 바뀝니다. 코인은 갑자기 튀어나온 것이 아니라 필연적인 화폐의 진화 과정입니다.",
+        img: "assets/slide_03.png",
+        points: [
+          "중앙은행의 무제한 화폐 발행으로 인한 인플레이션 문제",
+          "발행량이 2,100만 개로 한정된 비트코인의 희소성",
+          "전 세계 어디로나 몇 초 만에 전송되는 가치 이동 인프라"
+        ]
+      },
+      {
+        tag: "CHAPTER 03",
+        heading: "가상자산(코인) 시장의 현실과 편견",
+        desc: "많은 분들이 '코인은 도박이다'라고 오해합니다. 하지만 규칙과 원칙을 알고 시장의 길목을 보는 눈을 가지면 가장 강력한 자산 증식 수단이 됩니다.",
+        img: "assets/slide_04.png",
+        points: [
+          "정보의 비대칭을 악용하는 세력들의 심리전",
+          "개인 투자자가 혼자서 감당하기 어려운 24시간 변동성",
+          "지치지 않고 24시간 데이터를 감시하는 AI의 필요성"
+        ]
+      },
+      {
+        tag: "CHAPTER 04",
+        heading: "개인 투자자가 실패하는 결정적 원인",
+        desc: "차트 공부가 부족해서가 아닙니다. 바로 인간의 본능인 '공포와 탐욕(감정)' 때문입니다.",
+        img: "assets/slide_05.png",
+        points: [
+          "남들이 살 때 흥분해서 고점에 진입하는 뇌동매매",
+          "하락할 때 두려움에 손절 타이밍을 놓쳐 손실 누적",
+          "언제 사고 언제 팔아야 할지 명확한 '기준선'의 부재"
+        ]
+      },
+      {
+        tag: "CHAPTER 05",
+        heading: "AI 네비게이션: EX 차트의 탄생",
+        desc: "자동차에 네비게이션이 있어 초행길도 사고 없이 목적지에 가듯, 트레이딩에도 AI 네비게이션이 필요합니다.",
+        img: "assets/slide_06.png",
+        points: [
+          "복잡하고 어려운 기술적 지표를 단 하나의 화면으로 압축",
+          "AI가 실시간 매수/매도 세력의 유입을 포착",
+          "운전면허처럼 기본 규칙만 알면 누구나 활용 가능"
+        ]
+      },
+      {
+        tag: "CHAPTER 06",
+        heading: "신호등 시그널: 초록불(롱)과 빨간불(숏)",
+        desc: "상승장뿐만 아니라 하락장에서도 수익을 낼 수 있는 양방향 시그널을 제공합니다.",
+        img: "assets/slide_07.png",
+        points: [
+          "Long(상승 신호): 초록불이 켜지면 매수 준비",
+          "Short(하락 신호): 빨간불이 켜지면 하락 대비 및 숏 포지션",
+          "애매한 횡보장에서는 신호를 주지 않아 무리한 매매 방지"
+        ]
+      },
+      {
+        tag: "CHAPTER 07",
+        heading: "고야(GOYA) 라인과 안전한 매매 타점",
+        desc: "차트 위에 핑크빛으로 표시되는 '고야 라인'은 시장의 중심축입니다.",
+        img: "assets/slide_08.png",
+        points: [
+          "기준선 근처에서 예약 주문을 걸어 체결시키는 안전 전략",
+          "신호가 변경되면 미련 없이 원칙에 따라 손절 대응",
+          "작은 손실은 짧게 끊고, 큰 추세는 길게 가져가는 손익비 원칙"
+        ]
+      },
+      {
+        tag: "CHAPTER 08",
+        heading: "100% 안전한 비즈니스 구조 (투자 일임 X)",
+        desc: "사기 및 유사수신 업체들과 완전히 다른 EX차트의 투명한 소프트웨어 구독 모델입니다.",
+        img: "assets/slide_09.png",
+        points: [
+          "회사는 고객의 투자금을 단 1원도 입금받지 않습니다",
+          "내 돈은 글로벌 1위 거래소 바이낸스/OKX 본인 지갑에 보관",
+          "회사는 순수 AI 차트 이용 구독료만 청구하는 합법적 SaaS"
+        ]
+      },
+      {
+        tag: "CHAPTER 09",
+        heading: "방송과 언론이 입증한 공신력",
+        desc: "서울경제TV, 한국경제TV 등 제도권 경제 미디어에서 온체인 데이터 분석 전문 플랫폼으로 방영되었습니다.",
+        img: "assets/slide_10.png",
+        points: [
+          "서울경제TV 정규 코너를 통해 검증된 시황 분석",
+          "언론 보도를 통한 높은 신뢰도와 대중성 확보",
+          "음지에서 떠도는 정보가 아닌 양지의 정식 기술 플랫폼"
+        ]
+      },
+      {
+        tag: "CHAPTER 10",
+        heading: "천천히 부자가 되는 '복리의 마법'",
+        desc: "하루 100% 대박은 환상입니다. 하지만 하루 1%씩 30일을 지키면 자산은 34.8% 불어납니다.",
+        img: "assets/slide_11.png",
+        points: [
+          "100만 원으로 시작해도 30일 뒤 약 135만 원 달성",
+          "무리한 레버리지를 쓰지 않아도 복리로 자산 급증",
+          "조급함을 버리고 원칙을 지키는 멘탈 훈련"
+        ]
+      },
+      {
+        tag: "CHAPTER 11",
+        heading: "초보자를 위한 체계적인 교육 (병아리반)",
+        desc: "코인을 한 번도 해보지 않은 분들도 단계별로 쉽게 익힐 수 있는 친절한 교육 커뮤니티가 준비되어 있습니다.",
+        img: "assets/slide_12.png",
+        points: [
+          "0단계: 기초 시그널 보고 주문하는 법",
+          "1단계: 고야 라인 예약 매수 및 손절 원칙 수립",
+          "매일 매매일지를 작성하며 실전 감각을 익히는 트레이딩 룸"
+        ]
+      },
+      {
+        tag: "CHAPTER 12",
+        heading: "투명하고 합리적인 구독 패키지",
+        desc: "자신에게 맞는 기간별 구독을 선택하여 언제 어디서나 모바일과 PC로 AI 차트를 이용할 수 있습니다.",
+        img: "assets/slide_13.png",
+        points: [
+          "PC 웹 및 모바일 반응형 차트 완벽 지원",
+          "실시간 중요 시그널 발생 시 알림(Alert) 연동",
+          "전문 컨설턴트의 1:1 세팅 지원 서비스"
+        ]
+      },
+      {
+        tag: "CHAPTER 13",
+        heading: "경제적 자유와 삶의 여유를 향해",
+        desc: "차트 앞에 하루 종일 앉아 모니터만 쳐다보는 트레이딩은 끝났습니다. AI에게 분석을 맡기고 소중한 일상을 누리세요.",
+        img: "assets/slide_14.png",
+        points: [
+          "하루 30분~1시간 확인으로 끝나는 심플한 라이프스타일",
+          "시장의 등락에 스트레스받지 않는 편안한 투자",
+          "나와 내 가족을 지키는 든든한 파이프라인 구축"
+        ]
+      },
+      {
+        tag: "OUTRO / 마무리",
+        heading: "지금 바로 시작해 보세요!",
+        desc: "망설이는 순간에도 시대의 기회는 흘러갑니다. 지금 무료 상담을 신청하시고 직접 경험해 보세요.",
+        img: "assets/slide_15.png",
+        points: [
+          "1:1 초보자 맞춤형 상담 진행",
+          "EX 차트 무료 체험 및 신호등 시그널 확인",
+          "오픈채팅방을 통한 실시간 소통과 정보 교류"
+        ]
+      }
+    ];
+
+    let currentSlideIndex = 0;
+
+    // 슬라이드 모드 열기
+    function openPptMode(index = 0) {
+      currentSlideIndex = index;
+      document.getElementById('ppt-presentation-modal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+      renderSlide();
+      initStrip();
+    }
+
+    // 슬라이드 모드 닫기
+    function closePptMode() {
+      document.getElementById('ppt-presentation-modal').classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    // 슬라이드 렌더링
+    function renderSlide() {
+      const data = slidesData[currentSlideIndex];
+      document.getElementById('ppt-page-counter').textContent = `${currentSlideIndex + 1} / ${slidesData.length}`;
+      document.getElementById('ppt-slide-tag').textContent = data.tag;
+      document.getElementById('ppt-slide-heading').textContent = data.heading;
+      document.getElementById('ppt-slide-desc').textContent = data.desc;
+      
+      const imgElem = document.getElementById('ppt-current-img');
+      imgElem.src = data.img;
+      imgElem.onerror = function() {
+        this.src = `https://placehold.co/800x500/1e40af/ffffff?text=Slide+${currentSlideIndex + 1}`;
+      };
+
+      const pointsList = document.getElementById('ppt-slide-points');
+      pointsList.innerHTML = '';
+      data.points.forEach(pt => {
+        const li = document.createElement('li');
+        li.textContent = pt;
+        pointsList.appendChild(li);
+      });
+
+      // 썸네일 스트립 활성화 상태 업데이트
+      const thumbs = document.querySelectorAll('.ppt-strip-thumb');
+      thumbs.forEach((th, idx) => {
+        if (idx === currentSlideIndex) {
+          th.classList.add('active');
+          th.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        } else {
+          th.classList.remove('active');
+        }
+      });
+    }
+
+    function prevSlide() {
+      if (currentSlideIndex > 0) {
+        currentSlideIndex--;
+        renderSlide();
+      }
+    }
+
+    function nextSlide() {
+      if (currentSlideIndex < slidesData.length - 1) {
+        currentSlideIndex++;
+        renderSlide();
+      }
+    }
+
+    // 하단 썸네일 스트립 초기화
+    function initStrip() {
+      const strip = document.getElementById('ppt-strip');
+      if (strip.children.length === 0) {
+        slidesData.forEach((s, idx) => {
+          const div = document.createElement('div');
+          div.className = `ppt-strip-thumb ${idx === currentSlideIndex ? 'active' : ''}`;
+          div.onclick = () => {
+            currentSlideIndex = idx;
+            renderSlide();
+          };
+          const img = document.createElement('img');
+          img.src = s.img;
+          img.onerror = function() {
+            this.src = `https://placehold.co/100x60/1e40af/ffffff?text=${idx+1}`;
+          };
+          div.appendChild(img);
+          strip.appendChild(div);
+        });
+      }
+    }
+
+    // 키보드 화살표 단축키 지원
+    window.addEventListener('keydown', (e) => {
+      const modal = document.getElementById('ppt-presentation-modal');
+      if (modal.classList.contains('active')) {
+        if (e.key === 'ArrowLeft') prevSlide();
+        if (e.key === 'ArrowRight') nextSlide();
+        if (e.key === 'Escape') closePptMode();
+      }
+    });
+
+    // 스크롤 이동 함수
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // 복리 계산기 로직
+    function calculateCompound() {
+      const seed = parseFloat(document.getElementById('calc-seed').value) || 0;
+      const rate = (parseFloat(document.getElementById('calc-rate').value) || 0) / 100;
+      const days = parseInt(document.getElementById('calc-days').value) || 0;
+
+      if (seed <= 0 || days <= 0) return;
+
+      const finalAsset = seed * Math.pow(1 + rate, days);
+      const netProfit = finalAsset - seed;
+      const totalRoi = ((netProfit / seed) * 100).toFixed(1);
+      const dailyAvg = (netProfit / days);
+
+      document.getElementById('res-final-asset').textContent = Math.round(finalAsset).toLocaleString() + ' 원';
+      document.getElementById('res-net-profit').textContent = '+' + Math.round(netProfit).toLocaleString() + ' 원';
+      document.getElementById('res-total-roi').textContent = '+' + totalRoi + '%';
+      document.getElementById('res-daily-avg').textContent = '약 ' + Math.round(dailyAvg).toLocaleString() + ' 원';
+    }
+
+    function setSeed(val) {
+      document.getElementById('calc-seed').value = val;
+      calculateCompound();
+    }
+
+    function setRate(val) {
+      document.getElementById('calc-rate').value = val;
+      calculateCompound();
+    }
+
+    function setDays(val) {
+      document.getElementById('calc-days').value = val;
+      calculateCompound();
+    }
+
+    // 모달 제어
+    function openModal(type) {
+      const modal = document.getElementById('common-modal');
+      const title = document.getElementById('modal-title');
+      const sub = document.getElementById('modal-sub');
+
+      if (type === 'consult') {
+        title.textContent = '🎁 EX차트 무료체험 & 상담 신청';
+        sub.textContent = '초보자도 쉽게 따라할 수 있도록 차트 세팅과 체험을 안내해 드립니다.';
+      } else if (type === 'kakao') {
+        title.textContent = '💬 실시간 오픈채팅방 안내';
+        sub.textContent = '회원 전용 오픈채팅방 링크를 SMS로 발송해 드리거나 즉시 안내해 드립니다.';
+      } else if (type === 'meeting') {
+        title.textContent = '📞 1:1 사업설명회 직접 문의';
+        sub.textContent = '온/오프라인 사업설명회 일정과 1:1 전문 상담 예약을 도와드립니다.';
+      }
+
+      modal.classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('common-modal').classList.remove('active');
+    }
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      alert('신청이 성공적으로 접수되었습니다! 담당자가 확인 후 빠르게 연락드리겠습니다.');
+      closeModal();
+    }
+
+    // 초기 계산기 실행
+    window.onload = function() {
+      calculateCompound();
+    };
+  </script>
+</body>
+</html>
