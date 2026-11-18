@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>업비트에서 바이낸스에 코인보내고 코인엠 거래하기</title>
+  <style>
+    :root{--primary:#1e2329;--accent:#f0b90b;--upbit-blue:#093687;--bg-gray:#f8f9fa;--border-color:#e6e8ea;--text-main:#2b3139;--text-sub:#5e6673;--danger-bg:#fff5f5;--danger-border:#feb2b2;--danger-text:#c53030;--tip-bg:#fffbeb;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Malgun Gothic",sans-serif;line-height:1.65;color:var(--text-main);background-color:#f0f2f5;padding:24px 16px;}
+    .container{max-width:820px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 4px 20px rgba(0,0,0,.06);overflow:hidden;}
+    header{background:linear-gradient(135deg,#1e2329 0%,#2b3139 100%);color:#fff;padding:32px 28px;border-bottom:4px solid var(--accent);}
+    header h1{font-size:1.65rem;font-weight:700;margin-bottom:8px;letter-spacing:-.02em;}
+    header p{font-size:.95rem;color:#b7bdc6;}
+    main{padding:28px;}
+    section{margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid var(--border-color);}
+    section:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+    h2{font-size:1.25rem;color:var(--primary);margin-bottom:14px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+    .badge{display:inline-block;background:var(--accent);color:var(--primary);font-size:.8rem;font-weight:700;padding:2px 8px;border-radius:6px;}
+    .badge-blue{background:var(--upbit-blue);color:#fff;}
+    p{margin-bottom:12px;}
+    ul,ol{margin-left:20px;margin-bottom:14px;}
+    li{margin-bottom:8px;}
+    strong{color:#111418;font-weight:600;}
+    code{background-color:#f1f3f5;color:#d6336c;padding:2px 6px;border-radius:4px;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:.9em;}
+    .box-tip{background-color:var(--tip-bg);border-left:4px solid var(--accent);padding:14px 16px;border-radius:0 8px 8px 0;margin:14px 0;font-size:.95rem;}
+    .box-danger{background-color:var(--danger-bg);border-left:4px solid var(--danger-border);padding:14px 16px;border-radius:0 8px 8px 0;margin:14px 0;font-size:.95rem;}
+    .box-danger strong{color:var(--danger-text);}
+    .table-wrap{overflow-x:auto;}
+    table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.93rem;}
+    th,td{border:1px solid var(--border-color);padding:11px 14px;text-align:left;}
+    th{background-color:var(--bg-gray);font-weight:700;color:var(--primary);}
+    .step-card{background-color:var(--bg-gray);border:1px solid var(--border-color);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
+    .step-card h3{font-size:1.05rem;margin-bottom:10px;color:var(--primary);}
+    footer{background-color:var(--bg-gray);padding:18px 28px;text-align:center;font-size:.85rem;color:var(--text-sub);border-top:1px solid var(--border-color);}
+    @media (max-width:600px){main{padding:20px 16px;}header{padding:26px 18px;}header h1{font-size:1.35rem;}}
+    .shot{margin:12px 0 4px;text-align:center;}
+    .shot img{max-width:260px;width:100%;border-radius:12px;border:1px solid var(--border-color);box-shadow:0 2px 10px rgba(0,0,0,.08);cursor:zoom-in;}
+    .shot figcaption{font-size:.82rem;color:var(--text-sub);margin-top:6px;}
+    #lb{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:999;align-items:center;justify-content:center;cursor:zoom-out;padding:16px;}
+    #lb img{max-width:100%;max-height:100%;border-radius:10px;}
+    #lb.on{display:flex;}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>업비트에서 바이낸스에 코인보내고 코인엠 거래하기</h1>
+      <p>XRP(리플) 전송부터 바이낸스 COIN-M 선물 거래 및 안전 격리 보관까지 핵심 가이드</p>
+    </header>
+    <main>
+      <section>
+        <h2><span class="badge">준비</span> 핵심 개념 및 출발 전 체크사항</h2>
+        <div class="box-tip">
+          <strong>핵심 비유:</strong> 코인 전송은 택배 보내기와 같습니다.<br>
+          • <strong>입금 주소(Deposit Address)</strong> = 아파트 주소<br>
+          • <strong>데스티네이션 태그(Tag)</strong> = 아파트 동·호수 (숫자 코드)
+        </div>
+        <ul>
+          <li><strong>동일 명의 확인:</strong> 업비트와 바이낸스에 가입한 본인 이름과 생년월일이 같아야 송금할 수 있습니다.</li>
+          <li><strong>출금 대기 시간 확인:</strong> 기존에 보유 중이던 XRP는 즉시 출금 가능합니다. 단, 업비트에 원화(현금)를 새로 입금한 경우 해당 금액만큼은 입금 시점부터 24시간(최초 입금 시 72시간) 동안 출금이 제한됩니다.</li>
+          <li><strong>소액 테스트 송금:</strong> 처음 전송할 때는 최소 수량(약 1~2 XRP)만 먼저 보내 도착 여부를 확인한 뒤 나머지 수량을 보내는 것이 안전합니다.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2><span class="badge">STEP 1</span> 바이낸스 모바일에서 XRP 입금 주소 확인</h2>
+        <p>코인 종류마다 지갑 주소가 다르므로 반드시 <strong>리플(XRP) 전용 주소</strong>를 발급받아야 합니다.</p>
+        <ol>
+          <li>바이낸스 앱 하단 오른쪽 <strong>[Assets]</strong>(지갑) 탭을 누릅니다.</li>
+          <li>노란색 <strong>[Add Funds]</strong> 버튼을 누릅니다.</li>
+          <li><strong>Select Asset</strong> 화면이 나오면 위쪽 돋보기(<code>Search Coins</code>) 칸에 <strong>XRP</strong>를 입력하고, 검색된 XRP를 누릅니다.
+            <figure class="shot"><img src="img/step1-select-asset.png" alt="바이낸스 Select Asset 화면" class="zoom"><figcaption>Select Asset 화면 · 돋보기 칸에 XRP 입력 (누르면 크게 보여요)</figcaption></figure>
+          </li>
+          <li><strong>Select Method</strong> 화면이 나오면 맨 위의 <strong>[Deposit Asset]</strong>을 누릅니다.
+            <figure class="shot"><img src="img/step1-select-method.png" alt="바이낸스 Select Method 화면" class="zoom"><figcaption>Select Method 화면 · Deposit Asset 선택 (누르면 크게 보여요)</figcaption></figure>
+          </li>
+          <li>네트워크 선택 창에서 반드시 <strong><code>XRP Ledger</code></strong>(또는 Ripple)를 선택합니다.</li>
+          <li>화면에 표시되는 <strong>Deposit Address</strong>(입금 주소)와 <strong>XRP Tag</strong>(숫자 태그) 각각의 복사 아이콘을 눌러 복사합니다.</li>
+        </ol>
+        <div class="box-danger">
+          <strong>네트워크 주의:</strong> <code>BNB Smart Chain (BEP20)</code>이나 <code>Ethereum (ERC20)</code> 등 다른 네트워크를 선택하면 코인이 유실될 수 있으므로 반드시 <strong>XRP Ledger</strong>를 선택하세요.
+        </div>
+      </section>
+
+      <section>
+        <h2><span class="badge badge-blue">STEP 2</span> 업비트에서 바이낸스로 XRP 출금하기</h2>
+        <ol>
+          <li>업비트 앱 하단 <strong>[입출금]</strong> 메뉴에서 <strong>엑스알피(XRP)</strong>를 선택하고 <strong>[출금하기]</strong>를 누릅니다.</li>
+          <li>보낼 수량을 입력하고 <strong>[확인]</strong>을 누릅니다.</li>
+          <li>받는 사람 거래소(입금처)에서 <strong>바이낸스(Binance)</strong>를 선택합니다.</li>
+          <li>바이낸스에서 복사한 정보를 각 칸에 정확히 붙여넣습니다.</li>
+          <li><strong>[출금신청]</strong>을 누른 뒤 카카오톡 또는 네이버 본인 인증을 완료합니다. (보통 1~5분 내 입금 완료)</li>
+        </ol>
+        <div class="table-wrap">
+        <table>
+          <thead><tr><th>업비트 입력 칸</th><th>바이낸스에서 복사할 항목</th><th>형식 및 주의사항</th></tr></thead>
+          <tbody>
+            <tr><td><strong>받는 사람 주소</strong></td><td><code>Deposit Address</code></td><td><code>r</code>로 시작하는 긴 영문+숫자 조합</td></tr>
+            <tr><td><strong>데스티네이션 태그</strong></td><td><code>XRP Tag</code> (또는 Memo)</td><td>영문 주소가 아닌 <strong>숫자로만 된 번호</strong> 입력</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </section>
+
+      <section>
+        <h2><span class="badge">STEP 3</span> 바이낸스 COIN-M 선물 거래 방법</h2>
+        <p>입금이 완료되면 리플은 바이낸스의 <strong>현물 지갑(Spot)</strong>에 들어옵니다. 내부 지갑 간 이체는 수수료가 무료이며 즉시 이동됩니다.</p>
+        <div class="step-card">
+          <h3>1. 현물 지갑(Spot) → COIN-M 선물 지갑으로 이체</h3>
+          <ol>
+            <li>바이낸스 앱 하단 <strong>[Assets]</strong> → 상단 <strong>[Transfer]</strong>(이체)를 누릅니다.</li>
+            <li><strong>From:</strong> <code>Spot</code> / <strong>To:</strong> <code>COIN-M Futures</code>로 설정합니다. (<code>USDⓈ-M</code>이 아닌 <code>COIN-M</code> 선택)</li>
+            <li><strong>Coin:</strong> <code>XRP</code> 선택 후 수량을 입력(전체는 <code>Max</code>)하고 <strong>[Confirm Transfer]</strong>를 누릅니다.</li>
+          </ol>
+        </div>
+        <div class="step-card">
+          <h3>2. COIN-M 선물 화면 설정 및 포지션 진입</h3>
+          <ol>
+            <li>하단 <strong>[Futures]</strong>(선물) 탭을 누른 뒤 맨 위 메뉴에서 <strong><code>COIN-M</code></strong>을 선택합니다.</li>
+            <li>종목 선택창에서 <strong><code>XRPUSD CM</code></strong>(또는 <code>XRPUSD Perpetual</code>)을 고릅니다.</li>
+            <li>주문창 상단에서 마진 모드를 <strong><code>Isolated</code>(격리)</strong>로 설정하고, 레버리지(배율)를 낮고 안전하게 맞춥니다.</li>
+            <li>주문 방식(시장가 <code>Market</code> / 지정가 <code>Limit</code>)과 수량 비율을 정한 뒤 상승 예상 시 <strong><code>Buy / Long</code></strong>, 하락 예상 시 <strong><code>Sell / Short</code></strong>를 누릅니다.</li>
+            <li>거래를 마칠 때는 하단 <code>Positions</code> 탭에서 <strong><code>Close Position</code></strong>을 눌러 수익·손실을 확정합니다.</li>
+          </ol>
+        </div>
+        <div class="box-tip">
+          <strong>자산 보호 및 격리 보관 팁:</strong> COIN-M 지갑의 코인은 선물 거래의 증거금으로 쓰이기 때문에, 포지션이 불리하게 움직이면 <strong>청산</strong>될 수 있습니다. 따라서 거래할 때만 COIN-M 지갑으로 옮겨 사용하고, 거래가 끝나면 <strong>[Transfer]</strong>에서 방향을 반대로(<code>COIN-M Futures</code> → <code>Spot</code>) 바꿔 현물 지갑으로 빼두는 것이 안전합니다.<br><br>
+          <strong>참고:</strong> 현물 지갑으로 옮겨도 XRP 시세 변동(오르고 내리는 것)은 그대로 받습니다. 시세 변동까지 피하고 싶다면 USDT 같은 스테이블코인으로 바꿔 보관하세요.
+        </div>
+      </section>
+    </main>
+    <footer>가상자산 전송 시 주소와 데스티네이션 태그, 네트워크를 항상 재확인하시기 바랍니다.</footer>
+  </div>
+  <div id="lb"><img alt=""></div>
+  <script>
+    const lb=document.getElementById('lb'),li=lb.querySelector('img');
+    document.querySelectorAll('img.zoom').forEach(i=>i.addEventListener('click',()=>{li.src=i.src;li.alt=i.alt;lb.classList.add('on');}));
+    lb.addEventListener('click',()=>lb.classList.remove('on'));
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.remove('on');});
+  </script>
+</body>
+</html>
