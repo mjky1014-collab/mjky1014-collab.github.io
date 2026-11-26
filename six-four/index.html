@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EX 차트 6.4 코인 정리 | 점수선이 평평해질 때</title>
+<meta name="description" content="EX 차트 자습 자료. 점수가 6.4로 평평해지는 6.4 코인을 알아보는 법과 강의 사례를 정리했습니다. 교육용이며 투자 권유가 아닙니다.">
+<meta name="theme-color" content="#080605">
+<meta property="og:type" content="website">
+<meta property="og:title" content="EX 차트 6.4 코인 정리">
+<meta property="og:description" content="6.4 코인도 시그널대로. 교육용 자료이며 투자 권유가 아닙니다.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23080605'/%3E%3Cpath d='M8 44 C20 44 24 22 34 24 S48 34 56 16' fill='none' stroke='%23ff8a1f' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+:root{--bg:#080605;--panel:rgba(20,15,11,.82);--panel2:rgba(28,21,15,.9);--line:rgba(255,176,90,.16);--line2:rgba(255,176,90,.32);--txt:#f5eee4;--sub:#cbbfae;--muted:#9a8c7a;--orange:#ff8a1f;--orange2:#ffa24a;--gold:#f3c56c;--gold2:#d9a441;--pink:#ff7eb6;--green:#46d996;--red:#ff6464;--radius:16px;--max:1120px}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--txt);line-height:1.7;font-family:'Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif;-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:anywhere;font-size:16px}
+a{color:inherit}
+img,video{display:block;max-width:100%;height:auto}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+::selection{background:rgba(255,138,31,.35);color:#fff}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:6px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--orange);color:#000;padding:8px 14px;border-radius:8px;z-index:99}.skip:focus{left:8px}
+/* background */
+.bg{position:fixed;inset:0;z-index:-1;background-color:#0b0806;background-image:linear-gradient(180deg,rgba(6,4,3,.5) 0%,rgba(6,4,3,.72) 45%,rgba(6,4,3,.86) 100%),url(assets/bg/trend_bg_desktop.jpg);background-image:linear-gradient(180deg,rgba(6,4,3,.5) 0%,rgba(6,4,3,.72) 45%,rgba(6,4,3,.86) 100%),image-set(url(assets/bg/trend_bg_desktop.webp) type("image/webp"),url(assets/bg/trend_bg_desktop.jpg) type("image/jpeg"));background-size:cover;background-position:center 40%}
+@media (max-width:760px){.bg{background-image:linear-gradient(180deg,rgba(6,4,3,.55) 0%,rgba(6,4,3,.74) 40%,rgba(6,4,3,.88) 100%),url(assets/bg/trend_bg_mobile.jpg);background-image:linear-gradient(180deg,rgba(6,4,3,.55) 0%,rgba(6,4,3,.74) 40%,rgba(6,4,3,.88) 100%),image-set(url(assets/bg/trend_bg_mobile.webp) type("image/webp"),url(assets/bg/trend_bg_mobile.jpg) type("image/jpeg"));background-position:center 30%}}
+/* header */
+header.top{position:sticky;top:0;z-index:50;background:rgba(8,6,5,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .in{max-width:var(--max);margin:0 auto;display:flex;align-items:center;gap:18px;padding:12px 20px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.02em;white-space:nowrap;text-decoration:none}
+.brand .lg{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--orange),var(--gold2));display:grid;place-items:center;color:#140c05;font-size:13px;font-weight:900}
+.brand small{display:block;font-size:10px;color:var(--gold);letter-spacing:.18em;font-weight:700;line-height:1}
+nav.nav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;margin-left:auto;mask-image:linear-gradient(90deg,#000 92%,transparent)}
+nav.nav::-webkit-scrollbar{display:none}
+nav.nav a{white-space:nowrap;text-decoration:none;font-size:14px;color:var(--sub);padding:7px 11px;border-radius:999px;transition:.2s}
+nav.nav a:hover,nav.nav a.on{color:#1a0f05;background:var(--gold)}
+@media (max-width:760px){.top .in{flex-direction:column;align-items:stretch;gap:8px;padding:10px 14px}nav.nav{margin:0 -14px;padding:0 14px}nav.nav a{font-size:13px;padding:6px 10px;background:rgba(255,255,255,.04)}}
+/* layout */
+.wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+.sec{padding:84px 0;position:relative}
+.sec+.sec{border-top:1px solid rgba(255,176,90,.08)}
+.sec.dark{background:linear-gradient(180deg,rgba(8,6,5,.55),rgba(8,6,5,.75))}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.2em;font-weight:800;color:var(--orange);text-transform:uppercase}
+.eyebrow::before{content:'';width:22px;height:2px;background:linear-gradient(90deg,var(--orange),var(--gold))}
+h1,h2,h3{line-height:1.3;letter-spacing:-.02em}
+h2{font-size:clamp(28px,4.2vw,44px);font-weight:900;margin:14px 0 16px}
+h2 .g,h1 .g{background:linear-gradient(90deg,var(--orange),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+h3{font-size:20px;font-weight:800;margin-bottom:8px}
+.lead{color:var(--sub);font-size:17px;max-width:760px}
+.lead b,.card b,p b,li b{color:var(--txt)}
+.pk{color:var(--pink);font-weight:700}
+.or{color:var(--orange2);font-weight:700}
+.gd{color:var(--gold);font-weight:700}
+.mt{margin-top:28px}.mt2{margin-top:44px}
+/* hero */
+.hero{min-height:calc(100svh - 60px);display:flex;align-items:center;padding:72px 0 64px}
+.hero h1{font-size:clamp(36px,6.4vw,72px);font-weight:900;margin:18px 0 22px;text-shadow:0 4px 30px rgba(0,0,0,.6)}
+.hero .lead{font-size:clamp(16px,2vw,19px);color:#e6dccd;text-shadow:0 2px 14px rgba(0,0,0,.8)}
+.chips{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:34px;max-width:860px}
+.chip{background:rgba(10,7,5,.7);border:1px solid var(--line2);border-radius:14px;padding:14px 16px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.chip b{display:block;font-size:24px;font-weight:900;color:var(--gold);line-height:1.2}
+.chip span{font-size:12px;letter-spacing:.08em;color:var(--sub)}
+.key{margin-top:28px;max-width:860px;display:flex;gap:16px;align-items:center;background:linear-gradient(90deg,rgba(255,138,31,.18),rgba(10,7,5,.75));border:1px solid rgba(255,138,31,.45);border-radius:16px;padding:18px 20px}
+.key .k{font-size:12px;font-weight:900;letter-spacing:.16em;color:#1a0f05;background:var(--orange);border-radius:8px;padding:6px 9px;white-space:nowrap}
+.key p{font-size:17px;font-weight:700}.key small{display:block;color:var(--sub);font-weight:500;font-size:14px}
+.hero-note{margin-top:18px;font-size:13px;color:var(--muted)}
+@media (max-width:760px){.chips{grid-template-columns:repeat(2,minmax(0,1fr))}.key{flex-direction:column;align-items:flex-start}.hero{min-height:auto;padding:56px 0 48px}}
+/* cards */
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:860px){.grid2,.grid3{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+.card .lab{font-size:11px;font-weight:900;letter-spacing:.18em;color:var(--gold);margin-bottom:6px}
+.card p,.card li{color:var(--sub)}
+.card.L{border-color:rgba(70,217,150,.35)}.card.S{border-color:rgba(255,100,100,.35)}.card.O{border-color:rgba(255,138,31,.5);background:linear-gradient(160deg,rgba(255,138,31,.12),var(--panel) 60%)}
+ul.dots{list-style:none;display:grid;gap:10px}
+ul.dots li{position:relative;padding-left:18px;color:var(--sub)}
+ul.dots li::before{content:'';position:absolute;left:0;top:.72em;width:7px;height:7px;border-radius:2px;background:var(--orange);transform:rotate(45deg)}
+.src{font-size:12px;color:var(--muted);font-weight:500;white-space:nowrap}
+.tg{display:inline-block;font-weight:800;font-size:.86em;padding:1px 8px;border-radius:6px;border:1px solid;line-height:1.5;margin:0 1px}
+.tg.L{color:var(--green);border-color:rgba(70,217,150,.45);background:rgba(70,217,150,.08)}
+.tg.S{color:var(--red);border-color:rgba(255,100,100,.45);background:rgba(255,100,100,.08)}
+.tg.G{color:var(--pink);border-color:rgba(255,126,182,.45);background:rgba(255,126,182,.08)}
+/* notes */
+.note{border-left:3px solid var(--orange);background:rgba(255,138,31,.08);border-radius:0 12px 12px 0;padding:14px 18px;color:var(--sub)}
+.note b{color:var(--txt)}
+.note.warn{border-color:var(--red);background:rgba(255,100,100,.08)}
+.note.gold{border-color:var(--gold);background:rgba(243,197,108,.08)}
+blockquote.q{border:1px solid var(--line2);background:rgba(10,7,5,.75);border-radius:14px;padding:18px 20px;font-size:17px;font-weight:600;color:#f0e2c8;position:relative}
+blockquote.q::before{content:'“';position:absolute;top:-14px;left:14px;font-size:48px;color:var(--orange);line-height:1}
+blockquote.q cite{display:block;margin-top:8px;font-size:13px;color:var(--muted);font-style:normal;font-weight:500}
+/* figures */
+.figs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.figs.one{grid-template-columns:1fr}
+.figs.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:860px){.figs,.figs.three{grid-template-columns:1fr}}
+.fig{background:var(--panel2);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column}
+.fig .zoom{position:relative;display:block;width:100%;background:#000}
+.fig .zoom img{width:100%;max-height:640px;object-fit:contain;margin:0 auto}
+.fig.small .zoom img{max-width:420px}
+.fig .ftag{position:absolute;left:10px;top:10px;z-index:2;font-size:11px;font-weight:900;letter-spacing:.08em;color:#1a0f05;background:var(--gold);padding:3px 8px;border-radius:6px}
+.fig .zl{position:absolute;right:10px;bottom:10px;font-size:11px;font-weight:700;color:#fff;background:rgba(0,0,0,.65);border:1px solid rgba(255,255,255,.2);padding:3px 8px;border-radius:6px;opacity:.85}
+.fig figcaption{padding:14px 16px 16px;font-size:14.5px;color:var(--sub);line-height:1.65}
+.fig figcaption b{color:var(--txt)}
+.fig figcaption .memo{display:block;margin-top:6px;color:#f0dcb4}
+/* video */
+.vid{background:var(--panel2);border:1px solid rgba(255,138,31,.4);border-radius:var(--radius);overflow:hidden}
+.vid video{width:100%;background:#000;aspect-ratio:16/9;object-fit:contain}
+.vhead{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:12px 16px;border-bottom:1px solid var(--line)}
+.vbadge{font-size:11px;font-weight:900;letter-spacing:.1em;color:#1a0f05;background:var(--orange);padding:3px 8px;border-radius:6px}
+.vhead b{font-size:16px}.vdur{margin-left:auto;font-size:12px;color:var(--muted)}
+.vid figcaption{padding:14px 16px 16px;font-size:14.5px;color:var(--sub)}
+/* table */
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--panel)}
+table{width:100%;border-collapse:collapse;min-width:560px;font-size:15px}
+th,td{padding:12px 14px;text-align:left;border-bottom:1px solid rgba(255,176,90,.1)}
+th{font-size:12px;letter-spacing:.08em;color:var(--gold);background:rgba(255,138,31,.07)}
+td{color:var(--sub)}td b{color:var(--txt)}
+tr:last-child td{border-bottom:0}
+.hint{font-size:12px;color:var(--muted);margin-top:6px}
+/* steps (zec) */
+.flow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:6px 0 10px;font-weight:800}
+.flow .ar{color:var(--gold)}
+.cycle{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:860px){.cycle{grid-template-columns:1fr}}
+.cycle .card .n{font-size:22px;font-weight:900;color:var(--orange)}
+.case{border:1px solid var(--line);border-radius:18px;padding:22px;background:rgba(14,10,7,.78)}
+.case+.case{margin-top:22px}
+.case .ch{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+.case .num{font-size:12px;font-weight:900;letter-spacing:.12em;color:#1a0f05;background:var(--gold);border-radius:6px;padding:3px 8px}
+.case .kind{font-size:11px;font-weight:900;letter-spacing:.14em;color:var(--orange)}
+.case .kind.loss{color:var(--red)}
+.case pre{white-space:pre-wrap;font-family:inherit;color:#f0dcb4;background:rgba(0,0,0,.35);border-radius:10px;padding:12px 14px;margin:10px 0 14px;font-size:15px}
+.learn{margin-top:14px;color:var(--sub)}.learn b{color:var(--gold)}
+/* disclaimer */
+.disc{background:linear-gradient(160deg,rgba(255,100,100,.1),rgba(10,7,5,.88) 55%);border:1px solid rgba(255,100,100,.4);border-radius:20px;padding:28px}
+.disc h2{font-size:clamp(24px,3.4vw,34px)}
+.disc ul{margin-top:12px}
+footer{padding:36px 0 48px;border-top:1px solid var(--line);background:rgba(6,4,3,.9);font-size:13px;color:var(--muted)}
+footer .in{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer a{color:var(--gold);text-decoration:none}
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.92);display:none;flex-direction:column;align-items:center;justify-content:center;padding:52px 12px 16px}
+.lb.on{display:flex}
+.lb img{max-width:100%;max-height:calc(100vh - 140px);object-fit:contain;border-radius:8px}
+.lb p{color:var(--sub);font-size:14px;max-width:900px;text-align:center;margin-top:12px}
+.lb .x{position:absolute;top:10px;right:12px;font-size:28px;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.08)}
+.lb .pv,.lb .nx{position:absolute;top:50%;transform:translateY(-50%);font-size:28px;width:44px;height:64px;background:rgba(255,255,255,.08);border-radius:10px}
+.lb .pv{left:8px}.lb .nx{right:8px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+.case .figs{margin-top:6px}
+.case .figs.one{grid-template-columns:1fr}
+.grid2 .case+.case{margin-top:0}
+.note .fig{margin-top:12px}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"></div>
+<a class="skip" href="#main">본문으로 건너뛰기</a>
+<header class="top"><div class="in">
+<a class="brand" href="#top"><span class="lg">EX</span><span>EX 차트<small>6.4 COIN NOTE</small></span></a>
+<nav class="nav" aria-label="섹션 이동">
+<a href="#what">6.4란</a><a href="#rule">인정 조건</a><a href="#long">상승 사례</a><a href="#short">숏 사례</a><a href="#follow">시그널대로</a><a href="#mine">내 원칙</a><a href="#diff">다른 점</a><a href="#notice">고지</a>
+</nav></div></header>
+
+<main id="main">
+<section class="hero" id="top"><div class="wrap">
+<span class="eyebrow">EX 차트 · 6.4 COIN</span>
+<h1>점수선이 평평해지면,<br><span class="g">그다음은 시그널이 말한다.</span></h1>
+<p class="lead">EX 차트에는 가끔 점수선(파란 선)이 <b>6.4 P</b>에 멈춰 평평하게 이어지는 코인이 있습니다. 강의 자료의 실제 캡처로 <b>6.4가 무엇인지</b>, <b>어떻게 알아보는지</b>, <b>뒤에 어떤 흐름이 있었는지</b> 정리한 자습 자료입니다.</p>
+<div class="chips">
+<div class="chip"><b>6.4</b><span>현재 점수 칸 · 정확히</span></div>
+<div class="chip"><b>3회</b><span>이상 연속 + 변동 0</span></div>
+<div class="chip"><b>LL · SS</b><span>방향은 시그널로</span></div>
+<div class="chip"><b>2배</b><span>레버리지 고정</span></div>
+</div>
+<div class="key"><span class="k">KEY POINT</span><p>6.4 코인도 시그널대로.<small>6.4라고 해서 항상 오르는 것이 아닙니다. 올라간 코인도, 계속 내려간 코인도 있었습니다. 방향은 LL · SS 시그널과 고야 라인 위치로 봅니다.</small></p></div>
+<p class="hero-note">교육·기록용 페이지입니다. 투자 권유나 수익 보장이 아니며, 모든 매매 판단과 책임은 본인에게 있습니다.</p>
+</div></section>
+
+<section class="sec dark" id="what"><div class="wrap">
+<span class="eyebrow">WHAT IS 6.4</span>
+<h2>6.4는 <span class="g">점수를 못 구했다는 표시</span>입니다.</h2>
+<p class="lead">6.4는 회사 AI가 점수를 계산하지 못할 때 주는 값입니다. 그래서 점수선이 오르내리지 않고 한 줄로 평평하게 이어집니다. 캡처한 코인 화면 대부분에 <b>"신규 상장 시 각 지표의 데이터가 부족할 수 있습니다"</b> 안내문이 함께 보였습니다.</p>
+<div class="figs mt">
+<figure class="fig "><button type="button" class="zoom" data-full="assets/susdt.webp" aria-label="크게 보기"><span class="ftag">SUSDT</span><img src="assets/susdt.webp" alt="SUSDT 스코어 차트. 6/26 02:02 점수 6.40 P가 계속 이어집니다. 아래 캔들은 고야 라인 아래에서 내려갑니다." width="890" height="604" loading="lazy" decoding="async"><span class="zl">크게 보기 ⤢</span></button><figcaption><b>SUSDT 스코어 차트.</b> 6/26 02:02 점수 6.40 P가 계속 이어집니다. 아래 캔들은 고야 라인 아래에서 내려갑니다.</figcaption></figure>
+<figure class="fig "><button type="button" class="zoom" data-full="assets/kat_score.webp" aria-label="크게 보기"><span class="ftag">KAT</span><img src="assets/kat_score.webp" alt="KAT 스코어 차트. 오르내리던 점수선이 4월 23일 21시 무렵 6.40 P에서 평평해지고, 이후 가격(빨간 선)이 올랐습니다." width="1400" height="783" loading="lazy" decoding="async"><span class="zl">크게 보기 ⤢</span></button><figcaption><b>KAT 스코어 차트.</b> 오르내리던 점수선이 4월 23일 21시 무렵 6.40 P에서 평평해지고, 이후 가격(빨간 선)이 올랐습니다.</figcaption></figure>
+</div>
+<div class="note gold mt"><b>안내문은 캡처에서 본 공통점입니다.</b> 강의 자료에 6.4의 뜻이 글로 적혀 있지는 않습니다. 6.4의 정의는 위의 확정 설명을 기준으로 합니다.</div>
+</div></section>
+
+<section class="sec" id="rule"><div class="wrap">
+<span class="eyebrow">HOW TO CHECK</span>
+<h2>이렇게 확인해야 <span class="g">6.4 코인</span>입니다.</h2>
+<div class="grid3 mt">
+<div class="card O"><div class="lab">1</div><h3>현재 점수 칸에 정확히 6.4</h3><p>「현재 점수 &amp; 가격」 칸에 <b>6.4</b>가 보여야 합니다. <b>변동 점수 칸의 6.4</b>는 인정하지 않고, <b>-6.4</b>나 <b>16.4</b>처럼 앞뒤에 숫자가 붙은 값도 인정하지 않습니다.</p></div>
+<div class="card"><div class="lab">2</div><h3>3회 이상 연속</h3><p>현재 점수 6.4가 <b>3회 이상 연속</b>으로 나와야 합니다. 한 번 스치듯 보이는 값은 6.4 코인이 아닙니다.</p></div>
+<div class="card"><div class="lab">3</div><h3>변동 점수는 0</h3><p>같이 보는 <b>변동 점수가 0</b>이어야 합니다. 점수가 움직이고 있다면 아직 6.4 코인으로 보지 않습니다.</p></div>
+</div>
+<div class="note mt">강의 캡처에서는 점수선이 몇 시간 동안 평평하게 이어진 모습만 보입니다. 3회 연속과 변동 점수 0이라는 숫자 조건은 자료에 직접 나오지 않으니, 위 확인 순서를 그대로 따르세요.</div>
+</div></section>
+
+<section class="sec dark" id="long"><div class="wrap">
+<span class="eyebrow">CASES · UP</span>
+<h2>6.4 전후로 <span class="g">LL이 뜨고, 크게 올랐던</span> 사례.</h2>
+<p class="lead">아래 수익률은 <b>지나고 난 뒤 차트를 보고 계산한 결과</b>입니다. 그대로 따라 한다고 같은 결과가 나온다는 뜻이 아닙니다. 날짜는 자료에 적힌 대로 4월입니다.</p>
+
+<div class="case"><div class="ch"><span class="num">CASE 1</span><b>KAT</b><span class="kind">LL 4/23 18시 · 6.4 4/23 21시</span></div>
+<div class="figs">
+<figure class="fig "><button type="button" class="zoom" data-full="assets/kat_score.webp" aria-label="크게 보기"><span class="ftag">점수</span><img src="assets/kat_score.webp" alt="KAT 점수선이 4/23 21시에 6.4로 평평해졌습니다." width="1400" height="783" loading="lazy" decoding="async"><span class="zl">크게 보기 ⤢</span></button><figcaption>KAT 점수선이 4/23 21시에 6.4로 평평해졌습니다.</figcaption></figure>
+<figure class="fig "><button type="button" class="zoom" data-full="assets/kat_chart.webp" aria-label="크게 보기"><span class="ftag">캔들</span><img src="assets/kat_chart.webp" alt="LL(4/23 18시) 뒤 가격이 올랐습니다. 6.4 이후 +48%(레버리지 1 기준)." width="1400" height="785" loading="lazy" decoding="async"><span class="zl">크게 보기 ⤢</span></button><figcaption>LL(4/23 18시) 뒤 가격이 올랐습니다. <b>6.4 이후 +48%</b>(레버리지 1 기준).</figcaption></figure>
+</div>
+<p class="learn"><b>배울 점</b> 이 사례는 LL이 6.4보다 3시간 먼저 떴습니다. 6.4가 확인된 뒤에 LL을 보는 순서와는 다릅니다.</p></div>
+
+<div class="case"><div class="ch"><span class="num">CASE 2</span><b>SPK</b><span class="kind">LL 4/22 0시 · 6.4 4/22 1시 확인</span></div>
+<div class="figs">
+<figure class="fig "><button type="button" class="zoom" data-full="assets/spk_score.webp" aria-label="크게 보기"><span class="ftag">점수</span><img src="assets/spk_score.webp" alt="SPK 점수선은 그 전부터 평평했고, 4/22 01:10 값이 6.40 P입니다." width="1400" height="795" loading="lazy" decoding="async"><span class="zl">크게 보기 ⤢</span></button><figcaption>SPK 점수선은 그 전부터 평평했고, 4/22 01:10 값이 6.40 P입니다.</figcaption></figure>
+<figure class="fig "><button type="button" class="zoom" data-full="assets/spk_chart.webp" aria-label="크게 보기"><span class="ftag">캔들</span><img src="assets/spk_chart.webp" alt="LL(4/22 0시) 뒤 상승, 고점에서 SS. LL부터 SS까지 약 +83%." width="1400" height="794" loading="lazy" decoding="async"><span class="zl">크게 보기 ⤢</span></button><figcaption>LL(4/22 0시) 뒤 상승, 고점에서 SS. <b>LL부터 SS까지 약 +83%</b>.</figcaption></figure>
+</div>
+<p class="learn"><b>배울 점</b> 6.4가 먼저 이어지고 그 뒤에 LL이 뜬 경우입니다. 끝은 SS였습니다.</p></div>
+
+<div class="case"><div class="ch"><span class="num">CASE 3</span><b>HUMA</b><span class="kind">LL 4/22 14시 · 6.4 4/23 18시</span></div>
+<div class="figs">
+<figure class="fig "><button type="button" class="zoom" data-full="assets/huma_score.webp" aria-label="크게 보기"><span class="ftag">점수</span><img src="assets/huma_score.webp" alt="HUMA 점수선이 4/23 18시 무렵 평평해졌습니다." width="1400" height="803" loading="lazy" decoding="async"><span class="zl">크게 보기 ⤢</span></button><figcaption>HUMA 점수선이 4/23 18시 무렵 평평해졌습니다.</figcaption></figure>
+<figure class="fig "><button type="button" class="zoom" data-full="assets/huma_chart.webp" aria-label="크게 보기"><span class="ftag">캔들</span><img src="assets/huma_chart.webp" alt="LL(4/22 14시) 뒤 완만하게 상승. 6.4 발생 이후 +22%." width="1400" height="799" loading="lazy" decoding="async"><span class="zl">크게 보기 ⤢</span></button><figcaption>LL(4/22 14시) 뒤 완만하게 상승. <b>6.4 발생 이후 +22%</b>.</figcaption></figure>
+</div>
+<p class="learn"><b>배울 점</b> LL은 약 28시간 먼저 떴고, 6.4 이후의 상승폭은 LL부터의 상승폭보다 작았습니다.</p></div>
+
+<div class="case"><div class="ch"><span class="num">CASE 4</span><b>MOVR</b><span class="kind">6.4 · LL 4/23 22시 무렵</span></div>
+<div class="figs">
+<figure class="fig "><button type="button" class="zoom" data-full="assets/movr_score.webp" aria-label="크게 보기"><span class="ftag">점수</span><img src="assets/movr_score.webp" alt="MOVR 점수선이 4/23 22시 무렵 6.4 근처에서 평평해졌습니다." width="1400" height="793" loading="lazy" decoding="async"><span class="zl">크게 보기 ⤢</span></button><figcaption>MOVR 점수선이 4/23 22시 무렵 6.4 근처에서 평평해졌습니다.</figcaption></figure>
+<figure class="fig "><button type="button" class="zoom" data-full="assets/movr_chart.webp" aria-label="크게 보기"><span class="ftag">캔들</span><img src="assets/movr_chart.webp" alt="장대 양봉으로 급등한 뒤 SS. LL부터 SS까지 +45%." width="1400" height="793" loading="lazy" decoding="async"><span class="zl">크게 보기 ⤢</span></button><figcaption>장대 양봉으로 급등한 뒤 SS. <b>LL부터 SS까지 +45%</b>.</figcaption></figure>
+</div>
+<p class="learn"><b>배울 점</b> 급등 뒤 SS가 떴고, 가격은 고야 라인 근처로 되돌아왔습니다.</p></div>
+
+<div class="case"><div class="ch"><span class="num">CASE 5</span><b>ORCA</b><span class="kind">롱 · 2배</span></div>
+<div class="figs one">
+<figure class="fig "><button type="button" class="zoom" data-full="assets/orca.webp" aria-label="크게 보기"><span class="ftag">롱 5건</span><img src="assets/orca.webp" alt="점수선이 평평한 코인에서 고야 라인 위로 장대 양봉이 나온 뒤 롱 5건(2배). 수익률 +10.74%, +6.69%, +3.24%, +1.93%, +1.61%. 날짜는 자료에 없습니다." width="1130" height="1109" loading="lazy" decoding="async"><span class="zl">크게 보기 ⤢</span></button><figcaption>점수선이 평평한 코인에서 고야 라인 위로 장대 양봉이 나온 뒤 롱 5건(2배). 수익률 +10.74%, +6.69%, +3.24%, +1.93%, +1.61%. 날짜는 자료에 없습니다.</figcaption></figure>
+</div>
+<p class="learn"><b>배울 점</b> 같은 코인에서도 건마다 결과가 1%대에서 10%대까지 달랐습니다.</p></div>
+</div></section>
+
+<section class="sec" id="short"><div class="wrap">
+<span class="eyebrow">CASES · SHORT</span>
+<h2>오른 뒤 <span class="g">SS가 뜨고 고야 아래로</span> 내려온 사례.</h2>
+<p class="lead">올랐던 코인은 SS가 뜬 뒤 고야 라인 아래로 내려오기도 했습니다. 아래는 2배 숏 수익 화면입니다. 계정 정보가 있던 아래쪽 띠는 잘라 냈습니다.</p>
+<div class="grid2 mt">
+<div class="case"><div class="ch"><span class="num">SPK</span><span class="kind">숏 · 2배 · +4.15%</span></div>
+<div class="figs one">
+<figure class="fig "><button type="button" class="zoom" data-full="assets/spk_short_chart.webp" aria-label="크게 보기"><span class="ftag">캔들</span><img src="assets/spk_short_chart.webp" alt="SS 뒤 고야 라인 아래로 내려온 자리(4/25)." width="425" height="478" loading="lazy" decoding="async"><span class="zl">크게 보기 ⤢</span></button><figcaption>SS 뒤 고야 라인 아래로 내려온 자리(4/25).</figcaption></figure>
+<figure class="fig "><button type="button" class="zoom" data-full="assets/spk_bingx.webp" aria-label="크게 보기"><span class="ftag">수익</span><img src="assets/spk_bingx.webp" alt="SPKUSDT 숏 2X +4.15%, 진입 0.04424." width="430" height="335" loading="lazy" decoding="async"><span class="zl">크게 보기 ⤢</span></button><figcaption>SPKUSDT 숏 2X +4.15%, 진입 0.04424.</figcaption></figure>
+</div></div>
+<div class="case"><div class="ch"><span class="num">ZBT</span><span class="kind">숏 · 2배 · +6.79%</span></div>
+<div class="figs one">
+<figure class="fig "><button type="button" class="zoom" data-full="assets/zbt_score.webp" aria-label="크게 보기"><span class="ftag">점수</span><img src="assets/zbt_score.webp" alt="6.4로 평평하던 점수선이 4/26 9시 무렵 아래로 꺾였습니다." width="1100" height="710" loading="lazy" decoding="async"><span class="zl">크게 보기 ⤢</span></button><figcaption>6.4로 평평하던 점수선이 4/26 9시 무렵 아래로 꺾였습니다.</figcaption></figure>
+<figure class="fig "><button type="button" class="zoom" data-full="assets/zbt_bingx.webp" aria-label="크게 보기"><span class="ftag">수익</span><img src="assets/zbt_bingx.webp" alt="ZBTUSDT 숏 2X +6.79%, 진입 0.1649." width="700" height="556" loading="lazy" decoding="async"><span class="zl">크게 보기 ⤢</span></button><figcaption>ZBTUSDT 숏 2X +6.79%, 진입 0.1649.</figcaption></figure>
+</div></div>
+</div>
+<div class="figs mt">
+<figure class="fig "><button type="button" class="zoom" data-full="assets/kat_score_after.webp" aria-label="크게 보기"><span class="ftag">KAT</span><img src="assets/kat_score_after.webp" alt="KAT은 6.4 직선 뒤 가격이 올랐다가 다시 내려왔습니다(4/26)." width="743" height="415" loading="lazy" decoding="async"><span class="zl">크게 보기 ⤢</span></button><figcaption>KAT은 6.4 직선 뒤 가격이 올랐다가 다시 내려왔습니다(4/26).</figcaption></figure>
+<figure class="fig "><button type="button" class="zoom" data-full="assets/kat_chart_after.webp" aria-label="크게 보기"><span class="ftag">KAT</span><img src="assets/kat_chart_after.webp" alt="고점 뒤 SS가 뜨고 고야 라인(분홍) 아래로 하락했습니다." width="743" height="523" loading="lazy" decoding="async"><span class="zl">크게 보기 ⤢</span></button><figcaption>고점 뒤 SS가 뜨고 고야 라인(분홍) 아래로 하락했습니다.</figcaption></figure>
+</div>
+<div class="note mt"><b>STORJ</b>도 같은 모양입니다. 급등 뒤 SS가 뜨고 고야 라인 아래로 내려왔습니다. 이 캡처에는 점수 화면이 없어서 6.4 코인인지는 확인되지 않습니다.
+<div class="figs one" style="margin-top:14px;max-width:420px"><figure class="fig "><button type="button" class="zoom" data-full="assets/storj.webp" aria-label="크게 보기"><span class="ftag">STORJ</span><img src="assets/storj.webp" alt="STORJUSDT 5/6 급등 뒤 SS, 5/7 고야 라인(0.1164) 아래로 하락." width="900" height="999" loading="lazy" decoding="async"><span class="zl">크게 보기 ⤢</span></button><figcaption>STORJUSDT 5/6 급등 뒤 SS, 5/7 고야 라인(0.1164) 아래로 하락.</figcaption></figure></div></div>
+</div></section>
+
+<section class="sec dark" id="follow"><div class="wrap">
+<span class="eyebrow">FOLLOW THE SIGNAL</span>
+<h2>6.4 코인도 <span class="g">시그널대로.</span></h2>
+<p class="lead">SUSDT는 점수선이 6.4에 계속 머무는 동안 가격이 내려갔고, 캔들은 고야 라인 아래에 있었습니다. 자료에는 <b>"6.4 코인도 시그널대로!!!"</b>라고 적혀 있습니다.</p>
+<div class="grid2 mt">
+<div class="card L"><div class="lab">UP</div><h3>올라가는 흐름</h3><p><span class="tg L">LL</span>이 뜨고 캔들이 고야 라인 위에 있으면 롱 쪽으로 봅니다. 6.4 코인의 롱은 6.4일 때만 들어갑니다.</p></div>
+<div class="card S"><div class="lab">DOWN</div><h3>내려가는 흐름</h3><p><span class="tg S">SS</span>가 뜨고 캔들이 고야 라인 아래로 내려오면 숏 쪽으로 봅니다. 급등한 뒤 꺾일 때는 6.4가 필요 없습니다.</p></div>
+</div>
+</div></section>
+
+<section class="sec" id="mine"><div class="wrap">
+<span class="eyebrow">MY RULES · CONFIRMED</span>
+<h2>내가 정한 <span class="g">6.4 매매 원칙.</span></h2>
+<ul class="dots mt">
+<li><b>TOP10 진입:</b> <span class="tg L">LL</span> + L1~3 + RSI L이면 롱, <span class="tg S">SS</span> + S1~3 + RSI S면 숏입니다. 여기에 현재 점수가 정확히 6.4면 강한 진입 조건입니다. <b>LL 롱은 6.4일 때만</b> 들어갑니다.</li>
+<li><b>숏 대상:</b> 20% 넘게 오른 코인과 15% 이상 오른 코인입니다. 추세가 꺾이면 SS/S2 숏을 준비하고, 이때는 6.4가 필요 없습니다.</li>
+<li><b>익절:</b> 레버리지를 반영한 수익률 5%(2배 기준)입니다.</li>
+<li><b>손절:</b> 무명선에서 약 2% 바깥에 잡습니다.</li>
+<li><b>자금:</b> 레버리지는 2배로 고정하고, 시드는 약 5분할하고, 하루 손실은 시드의 10% 이내로 합니다.</li>
+</ul>
+</div></section>
+
+<section class="sec dark" id="diff"><div class="wrap">
+<span class="eyebrow">COMPARE</span>
+<h2>강의 사례와 <span class="g">내 원칙의 다른 점.</span></h2>
+<div class="tbl mt"><table>
+<thead><tr><th>항목</th><th>강의 사례</th><th>내 원칙</th></tr></thead>
+<tbody>
+<tr><td><b>청산</b></td><td>LL부터 SS까지 이어갔을 때의 결과(+45%~+83%, 1배)</td><td>2배 기준 수익률 5%에 닿으면 반대 시그널 전이라도 익절</td></tr>
+<tr><td><b>레버리지</b></td><td>KAT은 1배 기준, 숏과 ORCA는 2배</td><td>2배 고정</td></tr>
+<tr><td><b>LL과 6.4의 순서</b></td><td>KAT · HUMA는 LL이 6.4보다 먼저 뜸, SPK는 6.4 뒤에 LL</td><td>LL 롱은 6.4일 때만 진입</td></tr>
+<tr><td><b>6.4 인정 조건</b></td><td>점수선이 몇 시간 평평한 모습만 보임</td><td>현재 점수 6.4가 3회 이상 연속 + 변동 점수 0</td></tr>
+<tr><td><b>대상 코인</b></td><td>TOP10인지 자료에 없음</td><td>TOP10 기준</td></tr>
+<tr><td><b>손절</b></td><td>사례에 손절 위치 없음</td><td>무명선에서 약 2% 바깥</td></tr>
+</tbody></table></div>
+<p class="hint">강의 사례는 결과를 보여 주는 자료이고, 위 원칙은 직접 정한 기준입니다. 서로 다른 점은 그대로 나란히 적어 두었습니다.</p>
+<div class="note warn mt"><b>초보자는 특히 조심하세요.</b> 강의 안내에서도 6.4 코인은 초보자에게 다소 위험이 있다고 했습니다.</div>
+</div></section>
+
+<section class="sec" id="notice"><div class="wrap">
+<div class="disc">
+<span class="eyebrow">NOTICE · 투자 권유 아님</span>
+<h2>교육용 페이지입니다.</h2>
+<ul class="dots">
+<li>이 페이지는 EX 차트의 6.4 코인을 공부하기 위해 정리한 기록입니다. <b>투자 권유가 아니며</b>, 특정 코인이나 매매를 추천하지 않습니다.</li>
+<li><b>수익을 보장하지 않습니다.</b> 과거의 차트, 시그널, 수익 화면은 미래의 결과를 보장하지 않습니다. 사례의 수익률은 지나고 난 뒤 계산한 결과입니다.</li>
+<li><b>가상자산 선물·레버리지 거래는 원금 전액 손실 위험</b>이 있습니다. 손실이 난 사례도 있을 수 있으니 감당할 수 있는 범위에서만 접근하세요.</li>
+<li>모든 매매 판단과 손실 책임은 본인에게 있습니다.</li>
+<li>수익 화면에서 계정 정보가 있던 부분은 잘라 냈고, 대화방 캡처는 싣지 않았습니다.</li>
+</ul>
+</div>
+</div></section>
+</main>
+
+<footer><div class="wrap in">
+<span>EX 차트 · 6.4 코인 · MJ WORKSPACE</span>
+<a href="#top">맨 위로 ↑</a>
+<span style="flex-basis:100%">교육용 정리이며 투자 권유가 아닙니다. 선물 거래는 원금 손실 위험이 있습니다. 모든 매매 판단과 책임은 본인에게 있습니다.</span>
+</div></footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="이미지 크게 보기">
+<button class="x" id="lbX" type="button" aria-label="닫기">×</button>
+<button class="pv" id="lbP" type="button" aria-label="이전">‹</button>
+<img id="lbImg" alt="">
+<p id="lbCap"></p>
+<button class="nx" id="lbN" type="button" aria-label="다음">›</button>
+</div>
+
+<script>
+(()=>{const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const z=$$('.fig .zoom'),lb=$('#lb'),im=$('#lbImg'),cp=$('#lbCap');let i=-1;
+function op(n){i=n;const b=z[n];im.src=b.dataset.full;im.alt=b.querySelector('img').alt;const c=b.parentElement.querySelector('figcaption');cp.textContent=c?c.textContent:'';lb.classList.add('on');document.body.style.overflow='hidden';$('#lbX').focus()}
+function cl(){lb.classList.remove('on');document.body.style.overflow='';if(i>=0)z[i].focus()}
+const mv=d=>op((i+d+z.length)%z.length);
+z.forEach((b,n)=>b.addEventListener('click',()=>op(n)));
+$('#lbX').onclick=cl;$('#lbP').onclick=()=>mv(-1);$('#lbN').onclick=()=>mv(1);
+lb.addEventListener('click',e=>{if(e.target===lb)cl()});
+addEventListener('keydown',e=>{if(!lb.classList.contains('on'))return;if(e.key==='Escape')cl();if(e.key==='ArrowLeft')mv(-1);if(e.key==='ArrowRight')mv(1)});
+let sx=0;lb.addEventListener('touchstart',e=>sx=e.touches[0].clientX,{passive:true});lb.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>50)mv(dx<0?1:-1)});
+$$('video').forEach(v=>v.addEventListener('play',()=>$$('video').forEach(o=>{if(o!==v)o.pause()})));
+const links=$$('nav.nav a'),secs=[$('#top'),...links.map(a=>$(a.getAttribute('href')))].filter(Boolean);
+if('IntersectionObserver'in window){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id));const a=links.find(a=>a.classList.contains('on'));if(a&&a.scrollIntoView&&innerWidth<760)a.parentElement.scrollTo({left:a.offsetLeft-20,behavior:'smooth'})}}),{rootMargin:'-45% 0px -50% 0px'});secs.forEach(s=>io.observe(s))}
+})();
+
+</script>
+</body>
+</html>
